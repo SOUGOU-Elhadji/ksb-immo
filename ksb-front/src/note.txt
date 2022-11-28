@@ -1,0 +1,8 @@
+
+Create module and routing file at the same time
+ng g m <name> --routing
+
+Create component in the module folder
+ng g c guess/createGuess --module=guess/guess.module.ts
+
+http://localhost:8080/swagger-ui/index.html#/agence-controller/getAllAgence

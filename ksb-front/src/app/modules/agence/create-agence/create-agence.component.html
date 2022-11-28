@@ -1,0 +1,63 @@
+
+<div class="container">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Nom Agence</label>
+        <input type="text" name="nom" [(ngModel)]="agence.nom" class="form-control" id="inputEmail4" placeholder="Nom agence">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Adresse</label>
+        <input type="text" name="adresse" [(ngModel)]="agence.adresse" class="form-control" id="inputPassword4" placeholder="Adresse de l'agence">
+      </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="inputAddress">Region</label>
+            <input type="text" name="region" [(ngModel)]="agence.region" class="form-control" id="inputAddress" placeholder="Dakar...">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputAddress2">Departement</label>
+            <input type="text" name="departement" [(ngModel)]="agence.departement" class="form-control" id="inputAddress2" placeholder="Dakar...">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputAddress">Telephone</label>
+            <input type="text" name="telephone" [(ngModel)]="agence.telephone" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          </div>
+    </div>
+    <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inputAddress2">Date de Creation</label>
+            <input type="date" name="dateCreation" [(ngModel)]="agence.dateCreation" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputCity">Ville</label>
+            <input type="text" name="ville" [(ngModel)]="agence.ville" class="form-control" id="inputCity">
+          </div>
+          <!-- <div class="form-group col-md-4">
+            <label for="inputState">Employee</label>
+            <select id="inputState" name="employee" [(ngModel)]="agence.employees" class="form-control">
+              <option selected>Choose...</option>
+              <option *ngFor="let e of employees" [ngValue]="e.id">{{ e.nom }}</option>
+            </select>
+          </div> -->
+
+          <div class="form-group col-md-4">
+            <button class="btn btn-outline-info" type="button">
+              Ajouter Employee
+            </button>
+          </div>
+    </div>
+   
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+          Check me out
+        </label>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit" >Save Data</button>
+  </form>
+</div>
+   
