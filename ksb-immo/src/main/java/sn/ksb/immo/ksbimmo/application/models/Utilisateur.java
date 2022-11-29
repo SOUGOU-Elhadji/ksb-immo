@@ -18,7 +18,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-public class Utilisateur {
+public abstract class Utilisateur {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -38,7 +38,5 @@ public class Utilisateur {
 
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    private String type_utilisateur;
 
 }

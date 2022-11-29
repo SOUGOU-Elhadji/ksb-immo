@@ -19,5 +19,5 @@ public interface LocataireRepo extends JpaRepository<Locataire, UUID> {
 
     List<Locataire> findByProprietes_id(UUID fromString);
 
-    List<Locataire> findByMensualites_DatePaiementBetween(Date date1, Date date2);
+    List<Locataire> findByLoyers_Mensualites_datePaiementBetween(Date dateDebut, Date dateFin);
 }

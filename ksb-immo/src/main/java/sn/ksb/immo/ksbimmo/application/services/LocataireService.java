@@ -244,7 +244,7 @@ public class LocataireService {
     }
 
     //liste des Locataires avec la Mensualité impayée
-    public List<Locataire> getLocatairesImpayes() {
+    public List<Locataire> getLocatairesPayes() {
         //log entrée dans la méthode getLocatairesImpayes du service LocataireService
         log.info("Entrée dans la méthode getLocatairesImpayes du service LocataireService");
         //initialisation de la liste des locataires
@@ -259,7 +259,7 @@ public class LocataireService {
             calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
             Date dateFin = calendar.getTime();
             //récupération des locataires
-            locataires = locataireRepo.findByMensualites_DatePaiementBetween(dateDebut, dateFin);
+            locataires = locataireRepo.findByLoyers_Mensualites_datePaiementBetween(dateDebut, dateFin);
             //log récupération des locataires
             log.info("Récupération des locataires");
         } catch (Exception e) {

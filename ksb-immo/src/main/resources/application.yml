@@ -1,6 +1,7 @@
 server:
   port: 8080
 
+
 spring:
   application:
     name: ksb-immo-portal
@@ -31,7 +32,6 @@ ksb:
     jwt:
       secret: ksb-immo-portal
       expiration: 3600000
-
 ---
 spring:
   datasource:
