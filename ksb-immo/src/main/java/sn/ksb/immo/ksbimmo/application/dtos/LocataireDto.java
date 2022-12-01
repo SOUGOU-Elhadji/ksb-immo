@@ -26,4 +26,6 @@ public class LocataireDto {
     private String numCompteBancaire;
 
     private String proprieteId;
+
+    private LoyerDto loyerDto;
 }

@@ -24,10 +24,14 @@ public class Loyer {
 
     private Double montant;
 
-    private Date periode;
+    private Date debut;
+
+    private Date fin;
+
+    private Date dernierPaiement;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    private Propriete bien;
+    private Propriete propriete;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     private Locataire locataire;

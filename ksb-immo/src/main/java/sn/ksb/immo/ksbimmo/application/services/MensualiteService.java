@@ -11,6 +11,8 @@ import sn.ksb.immo.ksbimmo.application.repositories.MensualiteRepo;
 import sn.ksb.immo.ksbimmo.application.repositories.ProprieteRepo;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.UUID;
 
@@ -47,6 +49,13 @@ public class MensualiteService {
             mensualite = Mensualite.builder().datePaiement(new Date())
                     .loyer(loyer).build();
             mensualite = mensualiteRepository.save(mensualite);
+            //convertir LocalDate en Date
+            if (dto.getNombreDeMois() == null || dto.getNombreDeMois() == 0 || dto.getNombreDeMois() < 0) {
+                loyer.setDernierPaiement(Date.from(LocalDate.now().withDayOfMonth(1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            }else {
+                loyer.setDernierPaiement(Date.from(LocalDate.now().plusMonths(dto.getNombreDeMois()).withDayOfMonth(1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            }
+            loyerRepository.save(loyer);
             //appeler le service mail pour envoyer le reçu au locataire
         }catch (Exception e) {
             log.error("Erreur lors la création de l'objet : {}", e.getMessage());

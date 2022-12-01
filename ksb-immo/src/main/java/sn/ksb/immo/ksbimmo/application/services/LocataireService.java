@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import sn.ksb.immo.ksbimmo.application.dtos.LocataireDto;
 import sn.ksb.immo.ksbimmo.application.models.Agence;
 import sn.ksb.immo.ksbimmo.application.models.Locataire;
+import sn.ksb.immo.ksbimmo.application.models.Loyer;
 import sn.ksb.immo.ksbimmo.application.models.Propriete;
 import sn.ksb.immo.ksbimmo.application.repositories.AgenceRepo;
 import sn.ksb.immo.ksbimmo.application.repositories.LocataireRepo;
@@ -13,6 +14,9 @@ import sn.ksb.immo.ksbimmo.application.repositories.ProprieteRepo;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.*;
 
 @Service
@@ -136,6 +140,21 @@ public class LocataireService {
             if (agence != null && propriete != null) {
                 locataire.getAgences().add(agence);
                 locataire.getProprietes().add(propriete);
+                //récupérer les infos du loyer
+                Loyer loyer = mapper.map(dto.getLoyerDto(), Loyer.class);
+                loyer.setLocataire(locataire);
+                loyer.setPropriete(propriete);
+                //définir la date de fin du bail
+                LocalDate fin = loyer.getDebut().toInstant()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDate()
+                        .plusMonths(dto.getLoyerDto()
+                                .getDureeBail());
+
+                loyer.setFin(Date.from(fin.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                //ajouter le loyer au locataire
+                locataire.getLoyers().add(loyer);
+
                 //sauvegarde du locataire
                 locataire = locataireRepo.save(locataire);
                 //log création du locataire
@@ -251,15 +270,50 @@ public class LocataireService {
         List<Locataire> locataires = new ArrayList<>();
         //try catch pour récupérer les locataires
         try {
-            //récupération de la date du premier jour du mois
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.DAY_OF_MONTH, 1);
-            Date dateDebut = calendar.getTime();
-            //récupération de la date du dernier jour du mois
-            calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-            Date dateFin = calendar.getTime();
-            //récupération des locataires
-            locataires = locataireRepo.findByLoyers_Mensualites_datePaiementBetween(dateDebut, dateFin);
+            List<Locataire> listLocataires = locataireRepo.findAll();
+            for (Locataire l : listLocataires) {
+                Loyer loyer = l.getLoyers().get(l.getLoyers().size() - 1);
+                //convertir Date en LocalDate
+                LocalDate date = loyer.getDernierPaiement().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                if (Period.between(date, LocalDate.now()).getMonths() <= 0) {
+                    locataires.add(l);
+                }
+            }
+            //log récupération des locataires
+            log.info("Récupération des locataires");
+        } catch (Exception e) {
+            //log erreur récupération des locataires
+            log.error("Erreur lors de la récupération des locataires : {}", e.getMessage());
+        }
+
+        //si la liste est vide
+        if (locataires.isEmpty()) {
+            //log aucun locataire trouvé dans la base de données
+            log.error("Aucun locataire trouvé dans la base de données");
+        }
+        //log sortie de la méthode getLocatairesImpayes du service LocataireService
+        log.info("Sortie de la méthode getLocatairesImpayes du service LocataireService");
+        //retourner la liste des locataires
+        return locataires;
+    }
+
+    //liste des Locataires avec la Mensualité impayée
+    public List<Locataire> getLocatairesImpayes() {
+        //log entrée dans la méthode getLocatairesImpayes du service LocataireService
+        log.info("Entrée dans la méthode getLocatairesImpayes du service LocataireService");
+        //initialisation de la liste des locataires
+        List<Locataire> locataires = new ArrayList<>();
+        //try catch pour récupérer les locataires
+        try {
+            List<Locataire> listLocataires = locataireRepo.findAll();
+            for (Locataire l : listLocataires) {
+                Loyer loyer = l.getLoyers().get(l.getLoyers().size() - 1);
+                //convertir Date en LocalDate
+                LocalDate date = loyer.getDernierPaiement().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                if (Period.between(date, LocalDate.now()).getMonths() > 0) {
+                    locataires.add(l);
+                }
+            }
             //log récupération des locataires
             log.info("Récupération des locataires");
         } catch (Exception e) {

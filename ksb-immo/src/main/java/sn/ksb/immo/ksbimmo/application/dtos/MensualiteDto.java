@@ -6,5 +6,4 @@ import lombok.Data;
 public class MensualiteDto {
     private String loyerId;
     private Integer nombreDeMois;
-    private String locataireId;
 }

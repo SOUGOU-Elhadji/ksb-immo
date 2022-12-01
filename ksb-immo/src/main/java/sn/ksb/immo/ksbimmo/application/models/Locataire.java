@@ -41,7 +41,7 @@ public class Locataire extends Utilisateur{
     @JoinColumn(table = "locataire_propriete")
     private List<Propriete> proprietes;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Loyer> loyers;
 
 }
