@@ -1,11 +1,12 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Agence } from '../models/agence';
 
 
 import {catchError, map} from 'rxjs/operators';
+import { AgenceDto } from '../dts/agence-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,22 @@ export class AgenceService {
   private Url = environment.apiAgence;
 
   constructor(private httpClient: HttpClient) { }
+
+  // Add Test
+  public createTheAgence(agence: AgenceDto): Observable<AgenceDto> {
+    return this.httpClient.post<AgenceDto>(this.Url, agence).pipe(
+      catchError(this.handleHttpError)
+    )
+  }
+
+  // update Test
+  public updateTheAgence(agenceDto: AgenceDto): Observable<AgenceDto> {
+    const url = `${this.Url}/${agenceDto.id}`;
+
+    return this.httpClient.put<AgenceDto>(url, agenceDto).pipe(
+      catchError(this.handleHttpError)
+    );
+  }
 
   // METHOD TO CREATE A NEW AGENCE
   public createAgence(agence: Agence): Observable<Object>{
@@ -125,6 +142,31 @@ export class AgenceService {
   public getAgence(nom: String) {
     return this.httpClient.get<Agence[]>(`${this.Url}/page-query=${nom}&_limit=10`, 
     {observe: 'response'});
+  }
+
+
+  // manage error handling
+  private handleHttpError(err: HttpErrorResponse) {
+    let error: string;
+    if (err.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', err.error.message);
+      error = `An error occurred: ${err.error.message}`;
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${err.status}, ` +
+        `body was: ${err.error}`
+      );
+      error = `Backend returned code ${err.status}, body was: ${err.error}`;
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(
+      'Something bad happened; please try again later.'
+      + '\n'
+      + error
+    );
   }
   
 }

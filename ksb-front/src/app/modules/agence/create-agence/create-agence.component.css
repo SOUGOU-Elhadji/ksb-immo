@@ -1,3 +1,15 @@
 .container{
     margin-top: 15%;
 }
+
+table {
+    width: 100%;
+  }
+
+  .mat-mdc-radio-button ~ .mat-mdc-radio-button {
+    margin-left: 16px;
+  }
+
+  .example-margin {
+    margin: 0 10px;
+  }

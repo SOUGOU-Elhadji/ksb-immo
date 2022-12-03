@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -12,7 +13,25 @@ export class EmployeeService {
 
   private Url = environment.apiEmployee;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private fb: FormBuilder ,private httpClient: HttpClient) { }
+
+
+  getEmployeeForm(){
+    return this.fb.group({
+      matricule: [''],
+      nom: [' '],
+      prenom: [' '],
+      telephone: [' '],
+      email: [' '],
+      cni: [' '],
+      adresse: [' '],
+      numCompteBancaire: [' '],
+      manager: true,
+      agence: [' ']
+    });
+  }
+
+
 
   // METHOD TO CREATE A NEW Employee
   public createEmployee(employee: Employee): Observable<Object>{
