@@ -6,10 +6,9 @@ import lombok.Data;
 @Data
 @Builder
 public class LoyerDto {
-    private String id;
     private Double montant;
-    private String debut;
+    private String dateDebut;
+
+    //la durée de la location en mois
     private Integer dureeBail;
-    private String proprieteId;
-    private String locataireId;
 }

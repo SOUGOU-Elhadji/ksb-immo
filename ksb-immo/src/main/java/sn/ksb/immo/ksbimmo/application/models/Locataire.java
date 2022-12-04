@@ -28,8 +28,8 @@ public class Locataire extends Utilisateur{
     @Embedded
     private SituationProfessionnelle situationProfessionnelle;
 
-    @OneToOne
-    private Locataire garant;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Garant garant;
 
     @ManyToMany
     @JoinColumn(table = "locataire_agence")

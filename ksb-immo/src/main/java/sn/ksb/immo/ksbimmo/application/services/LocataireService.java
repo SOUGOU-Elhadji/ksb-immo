@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import sn.ksb.immo.ksbimmo.application.dtos.LocataireDto;
+import sn.ksb.immo.ksbimmo.application.enums.Role;
 import sn.ksb.immo.ksbimmo.application.models.Agence;
 import sn.ksb.immo.ksbimmo.application.models.Locataire;
 import sn.ksb.immo.ksbimmo.application.models.Loyer;
@@ -134,11 +135,11 @@ public class LocataireService {
             //création du locataire
             locataire = locataireRepo.existsByCni(dto.getCni()) ? locataireRepo.findByCni(dto.getCni()) : mapper.map(dto, Locataire.class);
             //recupération de l'agence
-            Agence agence = agenceService.findById(UUID.fromString(dto.getAgenceId())).orElse(null);
+            //Agence agence = agenceService.findById(UUID.fromString(dto.getAgenceId())).orElse(null);
             Propriete propriete = proprieteRepo.findById(UUID.fromString(dto.getProprieteId())).orElse(null);
             //ajout de l'agence au locataire
-            if (agence != null && propriete != null) {
-                locataire.getAgences().add(agence);
+            if (propriete != null) {
+                //locataire.getAgences().add(agence);
                 locataire.getProprietes().add(propriete);
                 //récupérer les infos du loyer
                 Loyer loyer = mapper.map(dto.getLoyerDto(), Loyer.class);
@@ -154,7 +155,7 @@ public class LocataireService {
                 loyer.setFin(Date.from(fin.atStartOfDay(ZoneId.systemDefault()).toInstant()));
                 //ajouter le loyer au locataire
                 locataire.getLoyers().add(loyer);
-
+                locataire.setRole(Role.LOCATAIRE);
                 //sauvegarde du locataire
                 locataire = locataireRepo.save(locataire);
                 //log création du locataire

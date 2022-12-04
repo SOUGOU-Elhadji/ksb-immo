@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import sn.ksb.immo.ksbimmo.application.dtos.ProprietaireDto;
 import sn.ksb.immo.ksbimmo.application.dtos.ProprieteDto;
+import sn.ksb.immo.ksbimmo.application.enums.Role;
 import sn.ksb.immo.ksbimmo.application.enums.TypePropriete;
 import sn.ksb.immo.ksbimmo.application.models.Proprietaire;
 import sn.ksb.immo.ksbimmo.application.models.Propriete;
@@ -117,7 +118,7 @@ public class ProprietaireService {
                 propriete.setDateModification(new Date());
                 proprietaire.getProprietes().add(propriete);
             }
-
+            proprietaire.setRole(Role.PROPRIETAIRE);
             //save the proprietaire in the database
             proprietaire = proprietaireRepo.save(proprietaire);
         } catch (Exception e) {

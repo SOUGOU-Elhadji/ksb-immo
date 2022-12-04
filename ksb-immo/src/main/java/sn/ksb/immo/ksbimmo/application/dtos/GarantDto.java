@@ -5,9 +5,8 @@ import lombok.Data;
 
 @Data
 @Builder
-public class LocataireDto {
+public class GarantDto {
 
-    private String id;
     private String nom;
 
     private String prenom;
@@ -20,13 +19,5 @@ public class LocataireDto {
 
     private String profession;
 
-    private GarantDto garant;
-
     private String cni;
-
-    private String numCompteBancaire;
-
-    private String proprieteId;
-
-    private LoyerDto loyerDto;
 }
