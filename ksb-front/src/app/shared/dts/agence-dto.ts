@@ -1,6 +1,6 @@
-import { Employee } from "./employee";
+import { Employee } from "../models/employee";
 
-export class Agence {
+export class AgenceDto {
     id!: number;
     nom!: string;
     adresse!: string;
