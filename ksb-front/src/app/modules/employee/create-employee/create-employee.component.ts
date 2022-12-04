@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Agence } from 'src/app/shared/models/agence';
 import { Employee } from 'src/app/shared/models/employee';
 import { AgenceService } from 'src/app/shared/services/agence.service';
@@ -14,7 +15,11 @@ export class CreateEmployeeComponent implements OnInit {
   employee: Employee = new Employee();
   agences: Agence[] = [];
 
-  constructor(private employeeService: EmployeeService, private agenceService: AgenceService) { }
+  @Input() inputFormGroup = this.fb.group({});
+
+
+
+  constructor(private fb: FormBuilder, private employeeService: EmployeeService, private agenceService: AgenceService) { }
 
   ngOnInit(): void {
     this.agenceService.getAllAgences().subscribe((response) => {

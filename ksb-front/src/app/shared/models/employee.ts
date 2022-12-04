@@ -11,5 +11,5 @@ export class Employee {
     adresse!: string;
     numCompteBancaire!: string;
     manager!: Boolean;
-    agence!: Agence;
+    // agence!: Agence;
 }
