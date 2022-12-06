@@ -14,7 +14,7 @@ public class SituationProfessionnelleDto {
 
     private String posteOccupe;
 
-    private String salaire;
+    private Double salaire;
 
     private String dateEmbauche;
 

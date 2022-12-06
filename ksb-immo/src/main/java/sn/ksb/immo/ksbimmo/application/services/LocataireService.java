@@ -105,7 +105,7 @@ public class LocataireService {
         //try catch pour récupérer les locataires
         try {
             //récupération des locataires
-            locataires = locataireRepo.findByAgences_id(UUID.fromString(idAgence));
+            //locataires = locataireRepo.findByAgences_id(UUID.fromString(idAgence));
             //log récupération des locataires
             log.info("Récupération des locataires");
         } catch (Exception e) {
@@ -139,22 +139,24 @@ public class LocataireService {
             Propriete propriete = proprieteRepo.findById(UUID.fromString(dto.getProprieteId())).orElse(null);
             //ajout de l'agence au locataire
             if (propriete != null) {
-                //locataire.getAgences().add(agence);
+                if (locataire.getProprietes() == null) {
+                    locataire.setProprietes(new ArrayList<>());
+                }
                 locataire.getProprietes().add(propriete);
                 //récupérer les infos du loyer
-                Loyer loyer = mapper.map(dto.getLoyerDto(), Loyer.class);
+                Loyer loyer = mapper.map(dto.getLoyer(), Loyer.class);
                 loyer.setLocataire(locataire);
                 loyer.setPropriete(propriete);
-                //définir la date de fin du bail
-                LocalDate fin = loyer.getDebut().toInstant()
-                        .atZone(ZoneId.systemDefault())
-                        .toLocalDate()
-                        .plusMonths(dto.getLoyerDto()
-                                .getDureeBail());
+                loyer.setMontant(dto.getLoyer().getMontant());
+                //convertir le Date en LocalDate
+                LocalDate date = LocalDate.parse(dto.getLoyer().getDateDebut());
+                //ajouter la durée du bail
+                date = date.plusMonths(dto.getLoyer().getDureeBail());
+                //convertir le LocalDate en Date
+                Date dateFin = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                //ajouter la date de fin du bail
+                loyer.setFin(dateFin);
 
-                loyer.setFin(Date.from(fin.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-                //ajouter le loyer au locataire
-                locataire.getLoyers().add(loyer);
                 locataire.setRole(Role.LOCATAIRE);
                 //sauvegarde du locataire
                 locataire = locataireRepo.save(locataire);
@@ -163,7 +165,7 @@ public class LocataireService {
                 //générer le contrat de location ici
 
             }else {
-                log.error("Agence ou propriété non trouvée");
+                log.error("La propriété demandée n'existe pas dans la base de données");
             }
         } catch (Exception e) {
             //log erreur création du locataire
@@ -273,12 +275,12 @@ public class LocataireService {
         try {
             List<Locataire> listLocataires = locataireRepo.findAll();
             for (Locataire l : listLocataires) {
-                Loyer loyer = l.getLoyers().get(l.getLoyers().size() - 1);
+                /*Loyer loyer = l.getLoyers().get(l.getLoyers().size() - 1);
                 //convertir Date en LocalDate
                 LocalDate date = loyer.getDernierPaiement().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 if (Period.between(date, LocalDate.now()).getMonths() <= 0) {
                     locataires.add(l);
-                }
+                }*/
             }
             //log récupération des locataires
             log.info("Récupération des locataires");
@@ -308,12 +310,12 @@ public class LocataireService {
         try {
             List<Locataire> listLocataires = locataireRepo.findAll();
             for (Locataire l : listLocataires) {
-                Loyer loyer = l.getLoyers().get(l.getLoyers().size() - 1);
+                /*Loyer loyer = l.getLoyers().get(l.getLoyers().size() - 1);
                 //convertir Date en LocalDate
                 LocalDate date = loyer.getDernierPaiement().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 if (Period.between(date, LocalDate.now()).getMonths() > 0) {
                     locataires.add(l);
-                }
+                }*/
             }
             //log récupération des locataires
             log.info("Récupération des locataires");

@@ -37,7 +37,7 @@ public class GenerateContratService {
     public void simpleContract(HttpServletResponse response) throws IOException {
         document = new Document(PageSize.A4, 70, 70, 70, 70);
         PdfWriter.getInstance(document, response.getOutputStream());
-
+        subTitleFont.setStyle(Font.BOLD);
         document.open();
 
         Paragraph paragraph = new Paragraph("MANDAT DE GESTION LOCATIVE SIMPLE", titleFont);
@@ -189,7 +189,7 @@ public class GenerateContratService {
      setAlignment(Paragraph.ALIGN_JUSTIFIED);
         paragraph16.setSpacingAfter(10);
 
-        Paragraph paragraph17 = new Paragraph("Chapitre II: Les obligations du Mandant", titleFont);
+        Paragraph paragraph17 = new Paragraph("Chapitre II: Les obligations du Mandant", chapterFont);
         paragraph17.
      setAlignment(Paragraph.ALIGN_JUSTIFIED);
         paragraph17.setSpacingAfter(10);
@@ -211,7 +211,7 @@ public class GenerateContratService {
         paragraph19.setSpacingAfter(10);
 
 
-        Paragraph paragraph20 = new Paragraph("Chapitre III: disposions générales", titleFont);
+        Paragraph paragraph20 = new Paragraph("Chapitre III: disposions générales", chapterFont);
         paragraph20.setAlignment(Paragraph.ALIGN_JUSTIFIED);
         paragraph20.setSpacingAfter(10);
 
@@ -258,7 +258,7 @@ public class GenerateContratService {
 
 
 
-        Paragraph paragraph27 = new Paragraph("Chapitre IV: Gestion de litiges", subTitleFont);
+        Paragraph paragraph27 = new Paragraph("Chapitre IV: Gestion de litiges", chapterFont);
         paragraph27.setAlignment(Paragraph.ALIGN_JUSTIFIED);
         paragraph27.setSpacingAfter(10);
 

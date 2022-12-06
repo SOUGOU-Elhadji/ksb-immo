@@ -24,9 +24,13 @@ public class LocataireDto {
 
     private String cni;
 
+    private String dateDelivranceCni;
+
     private String numCompteBancaire;
 
     private String proprieteId;
 
-    private LoyerDto loyerDto;
+    private LoyerDto loyer;
+
+    private SituationProfessionnelleDto situationProfessionnelle;
 }

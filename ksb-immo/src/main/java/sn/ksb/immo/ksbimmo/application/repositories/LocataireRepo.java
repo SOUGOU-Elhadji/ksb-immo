@@ -13,11 +13,10 @@ public interface LocataireRepo extends JpaRepository<Locataire, UUID> {
 
     Locataire findByCni(String cni);
 
-    List<Locataire> findByAgences_id(UUID id);
 
     Boolean existsByCni(String cni);
 
     List<Locataire> findByProprietes_id(UUID fromString);
 
-    List<Locataire> findByLoyers_Mensualites_datePaiementBetween(Date dateDebut, Date dateFin);
+    //List<Locataire> findByLoyers_Mensualites_datePaiementBetween(Date dateDebut, Date dateFin);
 }

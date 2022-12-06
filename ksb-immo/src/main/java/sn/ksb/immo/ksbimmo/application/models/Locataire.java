@@ -31,17 +31,13 @@ public class Locataire extends Utilisateur{
     @OneToOne(cascade = CascadeType.ALL)
     private Garant garant;
 
-    @ManyToMany
-    @JoinColumn(table = "locataire_agence")
-    private List<Agence> agences;
-
     private String numCompteBancaire;
 
     @ManyToMany
     @JoinColumn(table = "locataire_propriete")
     private List<Propriete> proprietes;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Loyer> loyers;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Loyer loyer;
 
 }

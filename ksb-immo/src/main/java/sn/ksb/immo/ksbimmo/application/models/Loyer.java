@@ -33,7 +33,7 @@ public class Loyer {
     @ManyToOne(cascade = CascadeType.MERGE)
     private Propriete propriete;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @OneToOne(cascade = CascadeType.ALL)
     private Locataire locataire;
 
     @OneToMany(cascade = CascadeType.MERGE)
