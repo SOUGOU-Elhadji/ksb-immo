@@ -1,8 +1,7 @@
-import { Agence } from "./agence";
+import { Agence } from "../models/agence";
 
-export class Employee {
-    id!: string;
-    matricule!: string;
+export class EmployeeDto{
+    id!: number;
     nom!: string;
     prenom!: string;
     telephone!: string;
@@ -11,6 +10,6 @@ export class Employee {
     dateDelivranceCni!: string;
     adresse!: string;
     numCompteBancaire!: string;
-    manager!: Boolean;
-    agence!: Agence;
+    manager!: boolean;
+    agenceId!: Agence;
 }

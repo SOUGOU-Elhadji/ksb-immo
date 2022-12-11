@@ -19,7 +19,7 @@ export class AgenceService {
 
   // Add Test
   public createTheAgence(agence: AgenceDto): Observable<AgenceDto> {
-    return this.httpClient.post<AgenceDto>(this.Url, agence).pipe(
+    return this.httpClient.post<AgenceDto>(`${this.Url}`, agence).pipe(
       catchError(this.handleHttpError)
     )
   }
@@ -34,7 +34,7 @@ export class AgenceService {
   }
 
   // METHOD TO CREATE A NEW AGENCE
-  public createAgence(agence: Agence): Observable<Object>{
+  public createAgence(agence: AgenceDto): Observable<Object>{
     const headers = { 'content-type': 'application/json'}  
 
     const params = new HttpParams()
@@ -58,26 +58,37 @@ export class AgenceService {
   }
 
   // METHOD TO GET ALL AGENCES
+  // public getAllAgences(): Observable<Agence[]> {
+  //   const params = new HttpParams()
+  //     .set('sort',"description")
+  //     .set('page',"2");
+  //   const headers = new HttpHeaders()
+  //     .set('Content-Type', 'application/json');
+  //   return this.httpClient.get<Agence[]>(this.Url, {"params": params, 'headers': headers})
+  //   // return this.httpClient.get<Agence[]>(`${this.Url}`, {'params': params})
+  //   .pipe(
+  //     map((response) => {
+  //       return response;
+  //     }),
+  //     catchError((err, caught) => {
+  //       console.log('error caught in service', err)
+  //         console.error(err);
+  //         // return throwError(err);   
+  //         throw err;
+  //     })
+  //   );
+  // }
+
   public getAllAgences(): Observable<Agence[]> {
-    const params = new HttpParams()
-      .set('sort',"description")
-      .set('page',"2");
-    const headers = new HttpHeaders()
-      .set('Content-Type', 'application/json');
-    return this.httpClient.get<Agence[]>(this.Url, {"params": params, 'headers': headers})
-    // return this.httpClient.get<Agence[]>(`${this.Url}`, {'params': params})
-    .pipe(
-      map((response) => {
-        return response;
-      }),
-      catchError((err, caught) => {
-        console.log('error caught in service', err)
-          console.error(err);
-          // return throwError(err);   
-          throw err;
-      })
-    );
+    return this.httpClient.get<Agence[]>(`${this.Url}`);
   }
+
+
+
+
+
+
+
 
   // METHOD TO GET A AGENCE BY ID
   public getAgenceById(id: string): Observable<Agence>{

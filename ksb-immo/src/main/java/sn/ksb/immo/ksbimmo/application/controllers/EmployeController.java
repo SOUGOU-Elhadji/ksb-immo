@@ -14,6 +14,7 @@ import java.util.List;
 @Slf4j
 @OpenAPIDefinition(tags = {@Tag(name = "Employé", description = "Employé API")})
 @RequestMapping("/api/employee")
+@CrossOrigin(origins = "http://localhost:4200")
 public class EmployeController {
 
     private final EmployeeService service;
