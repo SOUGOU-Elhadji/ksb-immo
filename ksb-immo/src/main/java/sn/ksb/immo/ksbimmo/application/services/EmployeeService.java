@@ -11,11 +11,12 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import sn.ksb.immo.ksbimmo.application.dtos.EmployeeDto;
-import sn.ksb.immo.ksbimmo.application.enums.Role;
 import sn.ksb.immo.ksbimmo.application.models.Agence;
 import sn.ksb.immo.ksbimmo.application.models.Employee;
+import sn.ksb.immo.ksbimmo.application.models.Role;
 import sn.ksb.immo.ksbimmo.application.repositories.AgenceRepo;
 import sn.ksb.immo.ksbimmo.application.repositories.EmployeeRepo;
+import sn.ksb.immo.ksbimmo.application.repositories.RoleRepo;
 
 @Service
 @Slf4j
@@ -26,11 +27,14 @@ public class EmployeeService {
 
     private final AgenceRepo agenceRepo;
 
+    private final RoleRepo roleRepo;
+
     private final ModelMapper mapper;
 
-    public EmployeeService(EmployeeRepo employeeRepo, AgenceRepo agenceRepo, ModelMapper mapper) {
+    public EmployeeService(EmployeeRepo employeeRepo, AgenceRepo agenceRepo, RoleRepo roleRepo, ModelMapper mapper) {
         this.employeeRepo = employeeRepo;
         this.agenceRepo = agenceRepo;
+        this.roleRepo = roleRepo;
         this.mapper = mapper;
     }
 
@@ -132,7 +136,7 @@ public class EmployeeService {
             if (agence != null) {
                 employee.setAgence(agence);
             }
-            employee.setRole(Role.AGENT);
+
             //ajout de l'employé
             employee = employeeRepo.save(employee);
             //log ajout de l'employé

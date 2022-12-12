@@ -7,6 +7,8 @@ import sn.ksb.immo.ksbimmo.application.dtos.*;
 import sn.ksb.immo.ksbimmo.application.models.Agence;
 import sn.ksb.immo.ksbimmo.application.models.Locataire;
 import sn.ksb.immo.ksbimmo.application.models.Proprietaire;
+import sn.ksb.immo.ksbimmo.application.models.Role;
+import sn.ksb.immo.ksbimmo.application.repositories.RoleRepo;
 import sn.ksb.immo.ksbimmo.application.services.*;
 
 import java.util.List;
@@ -26,9 +28,19 @@ public class InitDatas implements CommandLineRunner {
     @Autowired
     private MensualiteService mensualiteService;
 
+    @Autowired
+    private RoleRepo roleRepo;
 
     @Override
     public void run(String... args) throws Exception {
+
+        roleRepo.save(Role.builder().name("Admin").role("ROLE_ADMIN").build());
+        roleRepo.save(Role.builder().name("Manager").role("ROLE_MANAGER").build());
+        roleRepo.save(Role.builder().name("Agent").role("ROLE_AGENT").build());
+        roleRepo.save(Role.builder().name("Locataire").role("ROLE_LOCATAIRE").build());
+        roleRepo.save(Role.builder().name("Proprietaire").role("ROLE_PROPRIETAIRE").build());
+
+
         AgenceDto agenceDto1 = AgenceDto.builder()
                 .nom("KSB IMMO 1")
                 .adresse("Dakar")

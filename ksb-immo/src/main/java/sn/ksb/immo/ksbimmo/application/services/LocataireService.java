@@ -4,15 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import sn.ksb.immo.ksbimmo.application.dtos.LocataireDto;
-import sn.ksb.immo.ksbimmo.application.enums.Role;
+import sn.ksb.immo.ksbimmo.application.models.Role;
 import sn.ksb.immo.ksbimmo.application.models.Locataire;
 import sn.ksb.immo.ksbimmo.application.models.Loyer;
 import sn.ksb.immo.ksbimmo.application.models.Propriete;
 import sn.ksb.immo.ksbimmo.application.models.SituationProfessionnelle;
-import sn.ksb.immo.ksbimmo.application.repositories.AgenceRepo;
-import sn.ksb.immo.ksbimmo.application.repositories.LocataireRepo;
-import sn.ksb.immo.ksbimmo.application.repositories.LoyerRepo;
-import sn.ksb.immo.ksbimmo.application.repositories.ProprieteRepo;
+import sn.ksb.immo.ksbimmo.application.repositories.*;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
@@ -26,19 +23,19 @@ public class LocataireService {
 
     private final LocataireRepo locataireRepo;
 
-    private final AgenceRepo agenceService;
 
     private final ProprieteRepo proprieteRepo;
 
-    private final LoyerRepo loyerRepo;
+    private final RoleRepo roleRepo;
+
+
 
     private final ModelMapper mapper;
 
-    public LocataireService(LocataireRepo locataireRepo, AgenceRepo agenceService, ProprieteRepo proprieteRepo, LoyerRepo loyerRepo, ModelMapper mapper) {
+    public LocataireService(LocataireRepo locataireRepo, ProprieteRepo proprieteRepo, RoleRepo roleRepo, ModelMapper mapper) {
         this.locataireRepo = locataireRepo;
-        this.agenceService = agenceService;
         this.proprieteRepo = proprieteRepo;
-        this.loyerRepo = loyerRepo;
+        this.roleRepo = roleRepo;
         this.mapper = mapper;
     }
 
@@ -141,12 +138,7 @@ public class LocataireService {
             Propriete propriete = proprieteRepo.findById(UUID.fromString(dto.getProprieteId())).orElse(null);
             //ajout de l'agence au locataire
             if (propriete != null) {
-                /*if (locataire.getProprietes() == null) {
-                    locataire.setProprietes(new ArrayList<>());
-                }
-                propriete.setStatus(true);
-                locataire.getProprietes().add(propriete);*/
-                locataire.setRole(Role.LOCATAIRE);
+                locataire.getRoles().add(roleRepo.findByName("Locataire"));
                 //récupérer les infos du loyer
                 Loyer loyer = mapper.map(dto.getLoyer(), Loyer.class);
                 loyer.setPropriete(propriete);
