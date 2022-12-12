@@ -3,14 +3,19 @@ package sn.ksb.immo.ksbimmo.application.configs;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.spi.MappingContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 import sn.ksb.immo.ksbimmo.application.enums.TypePropriete;
+import sn.ksb.immo.ksbimmo.application.models.Role;
+import sn.ksb.immo.ksbimmo.application.repositories.RoleRepo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Configuration
@@ -37,6 +42,7 @@ public class GeneralConfig {
                 return TypePropriete.valueOf(mappingContext.getSource().toUpperCase());
             }
         });
+
 
         return mapper;
     }

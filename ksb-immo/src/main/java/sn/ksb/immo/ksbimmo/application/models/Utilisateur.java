@@ -4,11 +4,11 @@ package sn.ksb.immo.ksbimmo.application.models;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import sn.ksb.immo.ksbimmo.application.enums.Role;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.UUID;
+import java.util.*;
+
+import static javax.persistence.FetchType.EAGER;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -36,7 +36,7 @@ public class Utilisateur {
 
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @ManyToMany(fetch = EAGER)
+    private List<Role> roles = new ArrayList<>();
 
 }

@@ -1,5 +1,6 @@
 package sn.ksb.immo.ksbimmo.application.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -38,6 +39,7 @@ public class Employee extends Utilisateur{
     private Boolean manager;
 
     @ManyToOne
+    @JsonIgnore
     private Agence agence;
 
     //generer le matricule

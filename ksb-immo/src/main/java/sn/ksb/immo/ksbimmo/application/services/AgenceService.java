@@ -4,10 +4,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import sn.ksb.immo.ksbimmo.application.dtos.AgenceDto;
-import sn.ksb.immo.ksbimmo.application.enums.Role;
+import sn.ksb.immo.ksbimmo.application.models.Role;
 import sn.ksb.immo.ksbimmo.application.models.Agence;
 import sn.ksb.immo.ksbimmo.application.models.Employee;
 import sn.ksb.immo.ksbimmo.application.repositories.AgenceRepo;
+import sn.ksb.immo.ksbimmo.application.repositories.RoleRepo;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -19,14 +20,17 @@ import java.util.UUID;
 @Transactional
 @Slf4j
 public class AgenceService {
+    private final RoleRepo roleRepo;
 
     private final AgenceRepo agenceRepo;
 
     private final ModelMapper mapper;
 
-    public AgenceService(AgenceRepo agenceRepo, ModelMapper mapper) {
+    public AgenceService(AgenceRepo agenceRepo, ModelMapper mapper,
+                         RoleRepo roleRepo) {
         this.agenceRepo = agenceRepo;
         this.mapper = mapper;
+        this.roleRepo = roleRepo;
     }
 
     //récupérer toutes les agences qui ne sont pas supprimées
@@ -97,9 +101,12 @@ public class AgenceService {
             for (Employee employee : agence.getEmployees()) {
                 employee.setUsername(employee.getEmail());
                 employee.setPassword(employee.getPrenom().toLowerCase()+employee.getNom().toLowerCase());
-                employee.setRole(Role.AGENT);
                 employee.generateMatricule();
                 employee.setAgence(agence);
+                employee.getRoles().add(roleRepo.findByName("Agent"));
+                if (employee.getManager()) {
+                    employee.getRoles().add(roleRepo.findByName("Manager"));
+                }
             }
             agence.setDateCreation(new Date());
             //ajout de l'agence

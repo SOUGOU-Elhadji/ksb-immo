@@ -24,7 +24,7 @@ public class ProprieteDto {
     private Boolean piscine;
     private Boolean jardin;
     private Boolean ascenseur;
-    private String apporteurAffaire;
+    private ApporteurDto apporteurAffaire;
     private String agenceId;
 
     private String dateDisponibilite;
