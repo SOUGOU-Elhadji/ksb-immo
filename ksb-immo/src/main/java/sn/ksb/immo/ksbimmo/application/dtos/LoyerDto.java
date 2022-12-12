@@ -8,9 +8,8 @@ import lombok.ToString;
 @Builder
 @ToString
 public class LoyerDto {
-    private Double montant;
+    private Double mensualite;
+    private Double caution;
     private String dateDebut;
-
-    //la durée de la location en mois
     private Integer dureeBail;
 }

@@ -158,7 +158,7 @@ public class LocataireController {
     //supprimer un locataire
     @DeleteMapping("/{idLocataire}")
     public void deleteLocataire(@PathVariable String idLocataire) {
-        //log entrée dans la méthode deleteLocataire du controller LocataireController
+        //log entré dans la méthode deleteLocataire du controller LocataireController
         log.info("Entrée dans la méthode deleteLocataire du controller LocataireController");
         //try catch pour supprimer le locataire
         try {
@@ -172,27 +172,5 @@ public class LocataireController {
         }
         //log sortie de la méthode deleteLocataire du controller LocataireController
         log.info("Sortie de la méthode deleteLocataire du controller LocataireController");
-    }
-
-    //récuperer les locataires qui ont payé leur loyer
-    @GetMapping("/loyer-paye")
-public List<Locataire> getLocatairesLoyerPaye() {
-        //log entrée dans la méthode getLocatairesLoyerPaye du controller LocataireController
-        log.info("Entrée dans la méthode getLocatairesLoyerPaye du controller LocataireController");
-        List<Locataire> locataires = new ArrayList<>();
-        //try catch pour récupérer les locataires
-        try {
-            //récupération des locataires
-            locataires = locataireService.getLocatairesPayes();
-            //log récupération des locataires
-            log.info("Récupération des locataires");
-        } catch (Exception e) {
-            //log erreur récupération des locataires
-            log.error("Erreur lors de la récupération des locataires");
-        }
-        //log sortie de la méthode getLocatairesLoyerPaye du controller LocataireController
-        log.info("Sortie de la méthode getLocatairesLoyerPaye du controller LocataireController");
-        //retour des locataires
-        return locataires;
     }
 }

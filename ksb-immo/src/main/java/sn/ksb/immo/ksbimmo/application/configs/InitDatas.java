@@ -3,16 +3,11 @@ package sn.ksb.immo.ksbimmo.application.configs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
-import sn.ksb.immo.ksbimmo.application.dtos.AgenceDto;
-import sn.ksb.immo.ksbimmo.application.dtos.EmployeeDto;
-import sn.ksb.immo.ksbimmo.application.dtos.ProprietaireDto;
-import sn.ksb.immo.ksbimmo.application.dtos.ProprieteDto;
+import sn.ksb.immo.ksbimmo.application.dtos.*;
 import sn.ksb.immo.ksbimmo.application.models.Agence;
+import sn.ksb.immo.ksbimmo.application.models.Locataire;
 import sn.ksb.immo.ksbimmo.application.models.Proprietaire;
-import sn.ksb.immo.ksbimmo.application.services.AgenceService;
-import sn.ksb.immo.ksbimmo.application.services.LocataireService;
-import sn.ksb.immo.ksbimmo.application.services.ProprietaireService;
-import sn.ksb.immo.ksbimmo.application.services.ProprieteService;
+import sn.ksb.immo.ksbimmo.application.services.*;
 
 import java.util.List;
 
@@ -27,6 +22,9 @@ public class InitDatas implements CommandLineRunner {
 
     @Autowired
     private LocataireService locataireService;
+
+    @Autowired
+    private MensualiteService mensualiteService;
 
 
     @Override
@@ -204,5 +202,136 @@ public class InitDatas implements CommandLineRunner {
                 )).build();
         Proprietaire proprietaire1 = proprietaireService.add(proprietaireDto1);
         Proprietaire proprietaire2 = proprietaireService.add(proprietaireDto2);
+
+        //creer deux locataires
+        LocataireDto locataireDto1 = LocataireDto.builder()
+                .nom("Diop")
+                .prenom("Macoumba")
+                .adresse("Dakar")
+                .cni("569542839540")
+                .dateDelivranceCni("01/01/2020")
+                .telephone("77 685 74 85")
+                .numCompteBancaire("745896321")
+                .garant(
+                        GarantDto.builder()
+                                .adresse("Dakar")
+                                .nom("Diop")
+                                .prenom("Alioune")
+                                .cni("2354893158")
+                                .dateDelivranceCni("01/01/2020")
+                                .telephone("77 666 66 88")
+                                .profession("Developpeur")
+                                .situationProfessionnelle(
+                                        SituationProfessionnelleDto.builder()
+                                                .nomEmployeur("KSB")
+                                                .adresseEmployeur("Dakar")
+                                                .telephoneEmployeur("77 666 66 11")
+                                                .salaire(100000.0)
+                                                .dateEmbauche("01/01/2020")
+                                                .dateDepart("01/01/2021")
+                                                .emailEmployeur("employeur1@ksb.com")
+                                                .posteOccupe("Developpeur")
+                                                .build()
+                                )
+                                .build()
+                )
+                .profession("Developpeur")
+                .situationProfessionnelle(
+                        SituationProfessionnelleDto.builder()
+                                .nomEmployeur("KSB")
+                                .adresseEmployeur("Dakar")
+                                .telephoneEmployeur("77 666 66 11")
+                                .salaire(100000.0)
+                                .dateEmbauche("01/01/2020")
+                                .dateDepart("01/01/2021")
+                                .emailEmployeur("employeur2@ksb.com")
+                                .posteOccupe("Developpeur")
+                                .build()
+                )
+                .proprieteId(proprietaire1.getProprietes().get(0).getId().toString())
+                .loyer(
+                        LoyerDto.builder()
+                                .mensualite(100000.0)
+                                .dateDebut("01/01/2021")
+                                .dureeBail(48)
+                                .caution(200000.0)
+                                .build()
+                )
+                .build();
+
+        LocataireDto locataireDto2 = LocataireDto.builder()
+                .nom("Diop")
+                .prenom("Elhadji")
+                .adresse("Dakar")
+                .cni("56954283954084")
+                .dateDelivranceCni("01/01/2020")
+                .telephone("77 666 66 36")
+                .numCompteBancaire("74589632231")
+                .garant(
+                        GarantDto.builder()
+                                .adresse("Dakar")
+                                .nom("Diop")
+                                .prenom("Alioune")
+                                .cni("23548931587")
+                                .dateDelivranceCni("01/01/2020")
+                                .telephone("77 666 66 77")
+                                .profession("Developpeur")
+                                .situationProfessionnelle(
+                                        SituationProfessionnelleDto.builder()
+                                                .nomEmployeur("KSB")
+                                                .adresseEmployeur("Dakar")
+                                                .telephoneEmployeur("77 666 66 22")
+                                                .salaire(100000.0)
+                                                .dateEmbauche("01/01/2020")
+                                                .dateDepart("01/01/2021")
+                                                .emailEmployeur("employeur1@ksb.com")
+                                                .posteOccupe("Developpeur")
+                                                .build()
+                                )
+                                .build()
+                )
+                .profession("Developpeur")
+                .situationProfessionnelle(
+                        SituationProfessionnelleDto.builder()
+                                .nomEmployeur("KSB")
+                                .adresseEmployeur("Dakar")
+                                .telephoneEmployeur("77 666 66 22")
+                                .salaire(100000.0)
+                                .dateEmbauche("01/01/2020")
+                                .dateDepart("01/01/2021")
+                                .emailEmployeur("employeur2@ksb.com")
+                                .posteOccupe("Developpeur")
+                                .build()
+                )
+                .proprieteId(proprietaire2.getProprietes().get(0).getId().toString())
+                .loyer(
+                        LoyerDto.builder()
+                                .mensualite(100000.0)
+                                .dateDebut("01/01/2021")
+                                .dureeBail(48)
+                                .caution(200000.0)
+                                .build()
+                )
+                .build();
+
+        Locataire locataire1 = locataireService.createLocataire(locataireDto1);
+        Locataire locataire2 = locataireService.createLocataire(locataireDto2);
+
+        //enregitrer deux mois de mensualités pour chaque locataire
+        MensualiteDto mensualiteDto1 = MensualiteDto.builder()
+                .locataireId(locataire1.getId().toString())
+                .montant(100000.0)
+                .nombreMois(1)
+                .build();
+
+        MensualiteDto mensualiteDto2 = MensualiteDto.builder()
+                .locataireId(locataire2.getId().toString())
+                .montant(100000.0)
+                .nombreMois(1)
+                .build();
+
+        mensualiteService.createMensualite(mensualiteDto1);
+        mensualiteService.createMensualite(mensualiteDto2);
+
     }
 }

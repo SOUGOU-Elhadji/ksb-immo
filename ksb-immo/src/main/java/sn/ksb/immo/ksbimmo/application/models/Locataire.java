@@ -33,11 +33,7 @@ public class Locataire extends Utilisateur{
 
     private String numCompteBancaire;
 
-    @ManyToMany
-    @JoinColumn(table = "locataire_propriete")
-    private List<Propriete> proprietes;
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "locataire")
     private Loyer loyer;
 
 }
