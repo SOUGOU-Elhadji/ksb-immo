@@ -6,7 +6,6 @@ export class Agence {
     adresse!: string;
     region!: string;
     departement!: string;
-    // ville!: string;
     telephone!: string;
     dateCreation!: Date;
     employees!: Employee[];
