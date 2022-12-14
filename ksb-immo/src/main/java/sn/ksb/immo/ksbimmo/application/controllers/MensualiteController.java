@@ -13,6 +13,7 @@ import sn.ksb.immo.ksbimmo.application.services.MensualiteService;
 @Slf4j
 @OpenAPIDefinition(tags = {@Tag(name = "Mensualité", description = "Mensualité API")})
 @RequestMapping("/api/mensualite")
+@CrossOrigin
 public class MensualiteController {
 
     private final MensualiteService mensualiteService;

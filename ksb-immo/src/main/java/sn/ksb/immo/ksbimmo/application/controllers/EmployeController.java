@@ -14,6 +14,7 @@ import java.util.List;
 @Slf4j
 @OpenAPIDefinition(tags = {@Tag(name = "Employé", description = "Employé API")})
 @RequestMapping("/api/employee")
+@CrossOrigin
 public class EmployeController {
 
     private final EmployeeService service;
@@ -123,5 +124,67 @@ public class EmployeController {
         log.info("Sortie de la méthode createEmployee du controller EmployeController");
         //return the employee
         return employee;
+    }
+
+    //update an employee
+    @PutMapping
+    public Employee updateEmployee(@RequestBody Employee dto) {
+        //log the entry of the method
+        log.info("Entrée dans la méthode updateEmployee du controller EmployeController");
+        Employee employee = null;
+        //try to update the employee
+        try {
+            employee = service.updateEmployee(dto);
+        } catch (Exception e) {
+            //log the error
+            log.error("Erreur lors de la modification de l'employé dans la base de données");
+        }
+        //if the employee is null
+        if (employee == null) {
+            //log the error
+            log.error("Aucun employé n'a été trouvé dans la base de données");
+        }
+        //log the exit of the method
+        log.info("Sortie de la méthode updateEmployee du controller EmployeController");
+        //return the employee
+        return employee;
+    }
+
+    //delete an employee
+    @DeleteMapping("/{matricule}")
+    public void deleteEmployee(@PathVariable String matricule) {
+        //log the entry of the method
+        log.info("Entrée dans la méthode deleteEmployee du controller EmployeController");
+        //log the matricule parameter
+        log.info("Paramètre matricule : " + matricule);
+        //try to delete the employee
+        try {
+            service.deleteEmployee(matricule);
+        } catch (Exception e) {
+            //log the error
+            log.error("Erreur lors de la suppression de l'employé dans la base de données");
+        }
+        //log the exit of the method
+        log.info("Sortie de la méthode deleteEmployee du controller EmployeController");
+    }
+
+    //affecter un employé à une agence
+    @PutMapping("/affecter/{matricule}/{id}")
+    public void affecterEmployeAgence(@PathVariable String matricule, @PathVariable String id) {
+        //log the entry of the method
+        log.info("Entrée dans la méthode affecterEmployeAgence du controller EmployeController");
+        //log the matricule parameter
+        log.info("Paramètre matricule : " + matricule);
+        //log the id parameter
+        log.info("Paramètre id : " + id);
+        //try to affect the employee to the agency
+        try {
+            service.affecterEmployeeToAgence(matricule, id);
+        } catch (Exception e) {
+            //log the error
+            log.error("Erreur lors de l'affectation de l'employé à l'agence dans la base de données");
+        }
+        //log the exit of the method
+        log.info("Sortie de la méthode affecterEmployeAgence du controller EmployeController");
     }
 }

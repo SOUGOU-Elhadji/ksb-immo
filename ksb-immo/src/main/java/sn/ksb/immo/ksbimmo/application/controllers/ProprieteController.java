@@ -15,6 +15,7 @@ import java.util.List;
 @Slf4j
 @OpenAPIDefinition(tags = {@Tag(name = "Propriete", description = "Propriete API")})
 @RequestMapping("/api/proprietes")
+@CrossOrigin
 public class ProprieteController {
 
     private final ProprieteService proprieteService;

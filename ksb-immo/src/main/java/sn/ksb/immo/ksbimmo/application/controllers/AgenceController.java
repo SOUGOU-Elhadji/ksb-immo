@@ -15,6 +15,7 @@ import java.util.List;
 @Slf4j
 @OpenAPIDefinition(tags = {@Tag(name = "Agence", description = "Agence API")})
 @RequestMapping("/api/agence")
+@CrossOrigin
 public class AgenceController {
 
     private final AgenceService service;

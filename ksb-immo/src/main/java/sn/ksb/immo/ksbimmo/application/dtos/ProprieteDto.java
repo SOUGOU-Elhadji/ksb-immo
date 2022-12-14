@@ -2,6 +2,7 @@ package sn.ksb.immo.ksbimmo.application.dtos;
 
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @Builder
@@ -25,6 +26,8 @@ public class ProprieteDto {
     private Boolean jardin;
     private Boolean ascenseur;
     private ApporteurDto apporteurAffaire;
+
+    private MultipartFile[] images;
     private String agenceId;
 
     private String dateDisponibilite;

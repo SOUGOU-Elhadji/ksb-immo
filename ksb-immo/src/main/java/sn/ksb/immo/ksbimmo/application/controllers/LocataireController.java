@@ -15,6 +15,7 @@ import java.util.List;
 @Slf4j
 @OpenAPIDefinition(tags = {@Tag(name = "Locataire", description = "Locataire API")})
 @RequestMapping("/api/locataires")
+@CrossOrigin
 public class LocataireController {
 
     private final LocataireService locataireService;

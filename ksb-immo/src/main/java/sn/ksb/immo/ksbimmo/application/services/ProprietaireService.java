@@ -119,6 +119,7 @@ public class ProprietaireService {
                 propriete.setProprietaire(proprietaire);
                 propriete.setDateCreation(new Date());
                 propriete.setDateModification(new Date());
+
                 proprietaire.getProprietes().add(propriete);
             }
             proprietaire.getRoles().add(roleRepo.findByName("Proprietaire"));
