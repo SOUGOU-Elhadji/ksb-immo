@@ -6,8 +6,6 @@ export class AgenceDto {
     adresse!: string;
     region!: string;
     departement!: string;
-    // ville!: string;
     telephone!: string;
-    dateCreation!: Date;
     employees!: Employee[];
 }
