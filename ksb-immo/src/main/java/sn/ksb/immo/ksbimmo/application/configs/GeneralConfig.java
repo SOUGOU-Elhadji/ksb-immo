@@ -1,5 +1,6 @@
 package sn.ksb.immo.ksbimmo.application.configs;
 
+import org.modelmapper.Conditions;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.spi.MappingContext;
@@ -28,11 +29,23 @@ public class GeneralConfig {
         mapper.addConverter(new Converter<String, Date>() {
             @Override
             public Date convert(MappingContext<String, Date> mappingContext) {
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                Date date = null;
                 try {
-                    return new SimpleDateFormat("dd/MM/yyyy").parse(mappingContext.getSource());
+                    date = format.parse(mappingContext.getSource());
                 } catch (ParseException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
+                return date;
+            }
+        });
+
+        //convertir du java.util.Date vers String
+        mapper.addConverter(new Converter<Date, String>() {
+            @Override
+            public String convert(MappingContext<Date, String> mappingContext) {
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                return format.format(mappingContext.getSource());
             }
         });
 

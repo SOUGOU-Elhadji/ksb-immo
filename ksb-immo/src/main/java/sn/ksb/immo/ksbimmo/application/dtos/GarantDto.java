@@ -1,8 +1,6 @@
 package sn.ksb.immo.ksbimmo.application.dtos;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 import sn.ksb.immo.ksbimmo.application.models.SituationProfessionnelle;
 
 import javax.persistence.Column;
@@ -13,6 +11,8 @@ import java.util.UUID;
 @Data
 @Builder
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class GarantDto {
 
     private String id;

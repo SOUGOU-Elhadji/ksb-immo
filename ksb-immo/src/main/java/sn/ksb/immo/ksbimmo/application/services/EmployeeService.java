@@ -39,15 +39,19 @@ public class EmployeeService {
     }
 
     //récupérer tous les employés
-    public List<Employee> getAllEmployees() {
+    public List<EmployeeDto> getAllEmployees() {
         //log entrée dans la méthode getAllEmployees du service EmployeeService
         log.info("Entrée dans la méthode getAllEmployees du service EmployeeService");
         //initialisation de la liste des employés
-        List<Employee> employees = new ArrayList<>();
+        List<EmployeeDto> dtos = new ArrayList<>();
         //try catch pour récupérer les employés
         try {
             //récupération des employés
-            employees = employeeRepo.findAll();
+            List<Employee> employees = employeeRepo.findAll();
+            //changer le type de la liste des employés
+            employees.forEach(employee -> {
+                dtos.add(mapper.map(employee, EmployeeDto.class));
+            });
             //log récupération des employés
             log.info("Récupération des employés");
         } catch (Exception e) {
@@ -55,26 +59,30 @@ public class EmployeeService {
             log.error("Erreur lors de la récupération des employés");
         }
         //si la liste est vide
-        if (employees.isEmpty()) {
+        if (dtos.isEmpty()) {
             //log aucun employé trouvé dans la base de données
             log.error("Aucun employé trouvé dans la base de données");
         }
         //log sortie de la méthode getAllEmployees du service EmployeeService
         log.info("Sortie de la méthode getAllEmployees du service EmployeeService");
         //retourner la liste des employés
-        return employees;
+        return dtos;
     }
 
     //récupérer les employées d'une agence
-    public List<Employee> getEmployeesByAgence(String agenceId) {
+    public List<EmployeeDto> getEmployeesByAgence(String agenceId) {
         //log entrée dans la méthode getEmployeesByAgence du service EmployeeService
         log.info("Entrée dans la méthode getEmployeesByAgence du service EmployeeService");
         //initialisation de la liste des employées
-        List<Employee> employees = new ArrayList<>();
+        List<EmployeeDto> dtos = new ArrayList<>();
         //try catch pour récupérer les employées
         try {
             //récupération des employées
-            employees = employeeRepo.findByAgence_Id(UUID.fromString(agenceId));
+            List<Employee> employees = employeeRepo.findByAgence_Id(UUID.fromString(agenceId));
+            //changer le type de la liste des employées
+            employees.forEach(employee -> {
+                dtos.add(mapper.map(employee, EmployeeDto.class));
+            });
             //log récupération des employées
             log.info("Récupération des employées");
         } catch (Exception e) {
@@ -82,28 +90,28 @@ public class EmployeeService {
             log.error("Erreur lors de la récupération des employées");
         }
         //si la liste est vide
-        if (employees.isEmpty()) {
+        if (dtos.isEmpty()) {
             //log aucun employé trouvé dans la base de données
             log.error("Aucun employé trouvé dans la base de données pour l'agence d'id : {}" , agenceId);
         }
         //log sortie de la méthode getEmployeesByAgence du service EmployeeService
         log.info("Sortie de la méthode getEmployeesByAgence du service EmployeeService");
         //retourner la liste des employées
-        return employees;
+        return dtos;
     }
 
     //récupérer un employé par son matricule
-    public Employee getEmployeeByMatricule(String matricule) {
+    public EmployeeDto getEmployeeByMatricule(String matricule) {
         //log entrée dans la méthode getEmployeeByMatricule du service EmployeeService
         log.info("Entrée dans la méthode getEmployeeByMatricule du service EmployeeService");
         //initialisation de l'employé
-        Employee employee = null;
+        EmployeeDto employee = null;
         //log matricule
         log.info("Paramètre matricule : {}", matricule);
         //try catch pour récupérer l'employé
         try {
             //récupération de l'employé
-            employee = employeeRepo.findByMatricule(matricule);
+            employee = mapper.map(employeeRepo.findByMatricule(matricule), EmployeeDto.class);
             //log récupération de l'employé
             log.info("Récupération de l'employé");
         } catch (Exception e) {
@@ -122,23 +130,23 @@ public class EmployeeService {
     }
 
     //ajouter un employé
-    public Employee addEmployee(EmployeeDto dto) {
+    public EmployeeDto addEmployee(EmployeeDto dto) {
         //log entrée dans la méthode addEmployee du service EmployeeService
         log.info("Entrée dans la méthode addEmployee du service EmployeeService");
         //try catch pour ajouter l'employé
-        Employee employee = null;
+        EmployeeDto employee = null;
         try {
-            employee = mapper.map(dto, Employee.class);
-            employee.generateMatricule();
-            employee.setUsername(employee.getEmail());
-            employee.setPassword(employee.getPrenom().toLowerCase()+employee.getNom().toLowerCase());
+            Employee e = mapper.map(dto, Employee.class);
+            e.generateMatricule();
+            e.setUsername(e.getEmail());
+            e.setPassword(e.getPrenom().toLowerCase()+e.getNom().toLowerCase());
             Agence agence = agenceRepo.findById(UUID.fromString(dto.getAgenceId())).orElse(null);
             if (agence != null) {
-                employee.setAgence(agence);
+                e.setAgence(agence);
             }
 
             //ajout de l'employé
-            employee = employeeRepo.save(employee);
+            employee = mapper.map(employeeRepo.save(e), EmployeeDto.class);
             //log ajout de l'employé
             log.info("Ajout de l'employé");
         } catch (Exception e) {
@@ -147,7 +155,7 @@ public class EmployeeService {
         }
         if (employee != null) {
             //log ajout de l'employé
-            log.info("Employé {} ajouté avec succès", employee.getMatricule());
+            log.info("Employé {} ajouté avec succès", employee.getCni());
         }
         //log sortie de la méthode addEmployee du service EmployeeService
         log.info("Sortie de la méthode addEmployee du service EmployeeService");
@@ -156,13 +164,14 @@ public class EmployeeService {
     }
 
     //modifier un employé
-    public Employee updateEmployee(Employee employee) {
+    public EmployeeDto updateEmployee(EmployeeDto employee) {
         //log entrée dans la méthode updateEmployee du service EmployeeService
         log.info("Entrée dans la méthode updateEmployee du service EmployeeService");
+        EmployeeDto employeeDto = null;
         //try catch pour modifier l'employé
         try {
             //modification de l'employé
-            employee = employeeRepo.save(employee);
+            employeeDto = mapper.map(employeeRepo.save(mapper.map(employee, Employee.class)), EmployeeDto.class);
             //log modification de l'employé
             log.info("Modification de l'employé");
         } catch (Exception e) {
@@ -172,19 +181,19 @@ public class EmployeeService {
         //log sortie de la méthode updateEmployee du service EmployeeService
         log.info("Sortie de la méthode updateEmployee du service EmployeeService");
         //retourner l'employé
-        return employee;
+        return employeeDto;
     }
 
     //affecter un employé à une agence
-    public Employee affecterEmployeeToAgence(String employeeMatricule, String agenceId) {
+    public EmployeeDto affecterEmployeeToAgence(String employeeMatricule, String agenceId) {
         //log entrée dans la méthode affecterEmployeeToAgence du service EmployeeService
         log.info("Entrée dans la méthode affecterEmployeeToAgence du service EmployeeService");
         //initialisation de l'employé
-        Employee employee = null;
+        EmployeeDto e = null;
         //try catch pour affecter l'employé à une agence
         try {
             //récupération de l'employé
-            employee = employeeRepo.findByMatricule(employeeMatricule);
+            Employee employee = employeeRepo.findByMatricule(employeeMatricule);
             //récuperation de l'agence
             Agence agence = agenceRepo.findById(UUID.fromString(agenceId)).orElse(null);
             if (agence != null) {
@@ -192,18 +201,19 @@ public class EmployeeService {
                 employee.setAgence(agence);
                 //log affectation de l'employé à une agence
                 log.info("Affectation de l'employé à une agence");
+                e = mapper.map(employeeRepo.save(employee), EmployeeDto.class);
             }else {
                 //log agence non trouvée
                 log.error("Aucune agence trouvée pour l'id : {}", agenceId);
             }
-        } catch (Exception e) {
+        } catch (Exception ex) {
             //log erreur affectation de l'employé à une agence
-            log.error("Erreur lors de l'affectation de l'employé à une agence");
+            log.error("Erreur lors de l'affectation de l'employé à une agence : {}", ex.getMessage());
         }
         //log sortie de la méthode affecterEmployeeToAgence du service EmployeeService
         log.info("Sortie de la méthode affecterEmployeeToAgence du service EmployeeService");
         //retourner l'employé
-        return employee;
+        return e;
     }
 
     //supprimer un employé

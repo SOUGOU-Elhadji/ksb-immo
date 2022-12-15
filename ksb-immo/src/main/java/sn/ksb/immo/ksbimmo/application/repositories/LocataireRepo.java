@@ -16,7 +16,7 @@ public interface LocataireRepo extends JpaRepository<Locataire, UUID> {
     List<Locataire> findByLoyer_Propriete_Id(UUID id);
     Boolean existsByCni(String cni);
 
-    //List<Locataire> findByProprietes_id(UUID fromString);
+    List<Locataire> findByLoyer_Propriete_Agence_Id(UUID fromString);
 
     void deleteByCni(String cni);
 

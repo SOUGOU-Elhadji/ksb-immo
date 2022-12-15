@@ -14,7 +14,9 @@ import sn.ksb.immo.ksbimmo.application.repositories.ProprieteRepo;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -37,15 +39,19 @@ public class ProprieteService {
     }
 
     //récupérer les propriétés d'une agence
-    public List<Propriete> getProprietesByAgence(String agenceId) {
+    public List<ProprieteDto> getProprietesByAgence(String agenceId) {
         //log entrée dans la méthode getProprietesByAgence du service ProprieteService
         log.info("Entrée dans la méthode getProprietesByAgence du service ProprieteService");
         //initialisation de la liste des propriétés
-        List<Propriete> proprietes = new ArrayList<>();
+        List<ProprieteDto> proprietes = new ArrayList<>();
         //try catch pour récupérer les propriétés
         try {
             //récupération des propriétés
-            proprietes = proprieteRepo.findByAgence_Id(UUID.fromString(agenceId));
+            List<Propriete> proprietesList = proprieteRepo.findByAgence_Id(UUID.fromString(agenceId));
+            //si la liste n'est pas vide la mapper
+            if (!proprietesList.isEmpty()) {
+                proprietes = proprietesList.stream().map(propriete -> mapper.map(propriete, ProprieteDto.class)).collect(Collectors.toList());
+            }
             //log récupération des propriétés
             log.info("Récupération des propriétés");
         } catch (Exception e) {
@@ -64,15 +70,19 @@ public class ProprieteService {
     }
 
     //récupérer les propriétés d'un propriétaire
-    public List<Propriete> getProprietesByProprietaire(String proprietaireId) {
+    public List<ProprieteDto> getProprietesByProprietaire(String proprietaireId) {
         //log entrée dans la méthode getProprietesByProprietaire du service ProprieteService
         log.info("Entrée dans la méthode getProprietesByProprietaire du service ProprieteService");
         //initialisation de la liste des propriétés
-        List<Propriete> proprietes = new ArrayList<>();
+        List<ProprieteDto> proprietes = new ArrayList<>();
         //try catch pour récupérer les propriétés
         try {
             //récupération des propriétés
-            proprietes = proprieteRepo.findByProprietaire_Id(UUID.fromString(proprietaireId));
+            List<Propriete> proprietesList = proprieteRepo.findByProprietaire_Id(UUID.fromString(proprietaireId));
+            //si la liste n'est pas vide la mapper
+            if (!proprietesList.isEmpty()) {
+                proprietes = proprietesList.stream().map(propriete -> mapper.map(propriete, ProprieteDto.class)).collect(Collectors.toList());
+            }
             //log récupération des propriétés
             log.info("Récupération des propriétés");
         } catch (Exception e) {
@@ -91,25 +101,27 @@ public class ProprieteService {
     }
 
     //récupérer une propriété par son id
-    public Propriete getProprieteById(String proprieteId) {
+    public ProprieteDto getProprieteById(String proprieteId) {
         //log entrée dans la méthode getProprieteById du service ProprieteService
         log.info("Entrée dans la méthode getProprieteById du service ProprieteService");
         //initialisation de la propriété
-        Propriete propriete = new Propriete();
+        ProprieteDto propriete = null;
         //try catch pour récupérer la propriété
         try {
-            //récupération de la propriété
-            propriete = proprieteRepo.findById(UUID.fromString(proprieteId)).orElse(null);
+            //récupération de la propriété dans un optional
+            Optional<Propriete> proprieteOptional = proprieteRepo.findById(UUID.fromString(proprieteId));
+            //si la propriété est présente la mapper
+            if (proprieteOptional.isPresent()) {
+                propriete = mapper.map(proprieteOptional.get(), ProprieteDto.class);
+            }else {
+                //log aucune propriété trouvée dans la base de données
+                log.error("Aucune propriété trouvée dans la base de données pour l'id : {}" , proprieteId);
+            }
             //log récupération de la propriété
             log.info("Récupération de la propriété");
         } catch (Exception e) {
             //log erreur récupération de la propriété
             log.error("Erreur lors de la récupération de la propriété");
-        }
-        //si la propriété est vide
-        if (propriete == null) {
-            //log aucune propriété trouvée dans la base de données
-            log.error("Aucune propriété trouvée dans la base de données pour l'id : {}" , proprieteId);
         }
         //log sortie de la méthode getProprieteById du service ProprieteService
         log.info("Sortie de la méthode getProprieteById du service ProprieteService");
@@ -118,30 +130,32 @@ public class ProprieteService {
     }
 
     //ajouter une propriété
-    public Propriete addPropriete(ProprieteDto propriete) {
+    public ProprieteDto addPropriete(ProprieteDto propriete) {
         //log entrée dans la méthode addPropriete du service ProprieteService
         log.info("Entrée dans la méthode addPropriete du service ProprieteService");
         //try catch pour ajouter la propriété
-        Propriete proprieteToSave = null;
+        ProprieteDto proprieteToSave = null;
         try {
             //mapper la propriété
-            proprieteToSave = mapper.map(propriete, Propriete.class);
+            Propriete proprieteEntity = mapper.map(propriete, Propriete.class);
             //récupérer l'agence
             Agence agence = agenceRepo.findById(UUID.fromString(propriete.getAgenceId())).orElse(null);
             if (agence == null) {
                 //log aucune agence trouvée dans la base de données
-                throw new Exception("Aucune agence trouvée dans la base de données pour l'id : {}" + propriete.getAgenceId());
+                log.error("Aucune agence trouvée dans la base de données pour l'id : {}" , propriete.getAgenceId());
+                return null;
             }
             //récupérer le propriétaire
             Proprietaire proprietaire = proprietaireRepo.findById(UUID.fromString(propriete.getProprietaireId())).orElse(null);
             if (proprietaire == null) {
                 //log aucun propriétaire trouvé dans la base de données
-                throw new Exception("Aucun propriétaire trouvé dans la base de données pour l'id : {}" + propriete.getProprietaireId());
+                log.error("Aucun propriétaire trouvé dans la base de données pour l'id : {}" , propriete.getProprietaireId());
+                return null;
             }
-            proprieteToSave.setAgence(agence);
-            proprieteToSave.setProprietaire(proprietaire);
+            proprieteEntity.setAgence(agence);
+            proprieteEntity.setProprietaire(proprietaire);
             //ajouter la propriété
-            proprieteToSave = proprieteRepo.save(proprieteToSave);
+            proprieteToSave = mapper.map(proprieteRepo.save(proprieteEntity), ProprieteDto.class);
         } catch (Exception e) {
             //log erreur ajout de la propriété
             log.error("Erreur lors de l'ajout de la propriété");
@@ -157,33 +171,35 @@ public class ProprieteService {
     }
 
     //modifier une propriété
-    public Propriete updatePropriete(ProprieteDto dto) {
+    public ProprieteDto updatePropriete(ProprieteDto dto) {
         //log entrée dans la méthode updatePropriete du service ProprieteService
         log.info("Entrée dans la méthode updatePropriete du service ProprieteService");
-        Propriete propriete = null;
+        ProprieteDto propriete = null;
         try {
             //récupérer la propriété
-            propriete = proprieteRepo.findById(UUID.fromString(dto.getId())).orElse(null);
+            Propriete proprieteEntity = proprieteRepo.findById(UUID.fromString(dto.getId())).orElse(null);
             //si la propriété n'est pas null
-            if (propriete != null) {
+            if (proprieteEntity != null) {
                 //mapper la propriété
-                propriete = mapper.map(dto, Propriete.class);
+                Propriete proprieteToUpdate = mapper.map(dto, Propriete.class);
                 //récupérer l'agence
                 Agence agence = agenceRepo.findById(UUID.fromString(dto.getAgenceId())).orElse(null);
                 if (agence == null) {
                     //log aucune agence trouvée dans la base de données
-                    throw new Exception("Aucune agence trouvée dans la base de données pour l'id : {}" + dto.getAgenceId());
+                    log.error("Aucune agence trouvée dans la base de données pour l'id : {}" , dto.getAgenceId());
+                    return null;
                 }
                 //récupérer le propriétaire
                 Proprietaire proprietaire = proprietaireRepo.findById(UUID.fromString(dto.getProprietaireId())).orElse(null);
                 if (proprietaire == null) {
                     //log aucun propriétaire trouvé dans la base de données
-                    throw new Exception("Aucun propriétaire trouvé dans la base de données pour l'id : {}" + dto.getProprietaireId());
+                    log.error("Aucun propriétaire trouvé dans la base de données pour l'id : {}" , dto.getProprietaireId());
+                    return null;
                 }
-                propriete.setAgence(agence);
-                propriete.setProprietaire(proprietaire);
+                proprieteToUpdate.setAgence(agence);
+                proprieteToUpdate.setProprietaire(proprietaire);
                 //modifier la propriété
-                propriete = proprieteRepo.save(propriete);
+                propriete = mapper.map(proprieteRepo.save(proprieteToUpdate), ProprieteDto.class);
             }
             else {
                 //log aucune propriété trouvée dans la base de données
@@ -222,13 +238,17 @@ public class ProprieteService {
     }
 
     //récupérer propriété par status
-    public List<Propriete> getProprieteByStatus(Boolean status) {
+    public List<ProprieteDto> getProprieteByStatus(Boolean status) {
         //log entrée dans la méthode getProprieteByStatus du service ProprieteService
         log.info("Entrée dans la méthode getProprieteByStatus du service ProprieteService");
-        List<Propriete> proprieteList = null;
+        List<ProprieteDto> proprieteList = null;
         try {
             //récupérer la liste des propriétés par status
-            proprieteList = proprieteRepo.findByStatus(status);
+            List<Propriete> proprieteEntityList = proprieteRepo.findByStatus(status);
+            //si la liste des propriétés n'est pas null la mapper
+            if (proprieteEntityList != null) {
+                proprieteList = proprieteEntityList.stream().map(propriete -> mapper.map(propriete, ProprieteDto.class)).collect(Collectors.toList());
+            }
         } catch (Exception e) {
             //log erreur récupération de la liste des propriétés par status
             log.error("Erreur lors de la récupération de la liste des propriétés par status");
@@ -240,13 +260,17 @@ public class ProprieteService {
     }
 
     //récupérer propriétés par adresse
-    public List<Propriete> getProprieteByAdresse(String adresse) {
+    public List<ProprieteDto> getProprieteByAdresse(String adresse) {
         //log entrée dans la méthode getProprieteByAdresse du service ProprieteService
         log.info("Entrée dans la méthode getProprieteByAdresse du service ProprieteService");
-        List<Propriete> proprieteList = null;
+        List<ProprieteDto> proprieteList = null;
         try {
             //récupérer la liste des propriétés par adresse
-            proprieteList = proprieteRepo.findByAdresse(adresse);
+            List<Propriete> proprieteEntityList = proprieteRepo.findByAdresse(adresse);
+            //si la liste des propriétés n'est pas null la mapper
+            if (proprieteEntityList != null) {
+                proprieteList = proprieteEntityList.stream().map(propriete -> mapper.map(propriete, ProprieteDto.class)).collect(Collectors.toList());
+            }
         } catch (Exception e) {
             //log erreur récupération de la liste des propriétés par adresse
             log.error("Erreur lors de la récupération de la liste des propriétés par adresse");
