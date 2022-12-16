@@ -14,11 +14,22 @@ import { ProprieteModule } from './modules/propriete/propriete.module';
 import { UtilisateurModule } from './modules/utilisateur/utilisateur.module';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './header/header.component';
+import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { FooterComponent } from './footer/footer.component';
+import { ListApporteurComponent } from './apporteur/list-apporteur/list-apporteur.component';
+import { NewApporteurComponent } from './apporteur/new-apporteur/new-apporteur.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderComponent,
+    AdminLayoutComponent,
+    FooterComponent,
+    ListApporteurComponent,
+    NewApporteurComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +43,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProprieteModule,
     UtilisateurModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatMenuModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
