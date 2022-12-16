@@ -14,6 +14,7 @@ import java.util.List;
 @Slf4j
 @OpenAPIDefinition(tags = {@Tag(name = "Apporteur", description = "Apporteur API")})
 @RequestMapping("/api/apporteurs")
+@CrossOrigin
 class ApporteurController {
 
     private final ApporteurService service;

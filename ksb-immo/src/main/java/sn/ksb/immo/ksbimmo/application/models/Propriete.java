@@ -92,5 +92,10 @@ public class Propriete {
     @Column(columnDefinition = "boolean default false")
     private Boolean deleted;
 
+    @OneToMany(mappedBy = "propriete", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @JsonIgnore
+    private List<Image> images;
+
 
 }

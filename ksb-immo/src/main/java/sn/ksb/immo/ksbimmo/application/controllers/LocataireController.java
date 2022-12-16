@@ -15,6 +15,7 @@ import java.util.List;
 @Slf4j
 @OpenAPIDefinition(tags = {@Tag(name = "Locataire", description = "Locataire API")})
 @RequestMapping("/api/locataires")
+@CrossOrigin
 public class LocataireController {
 
     private final LocataireService locataireService;
@@ -25,10 +26,10 @@ public class LocataireController {
 
     //récupérer les locataires d'une agence
     @GetMapping("/agence/{agenceId}")
-    public List<Locataire> getLocatairesByAgence(@PathVariable String agenceId) {
+    public List<LocataireDto> getLocatairesByAgence(@PathVariable String agenceId) {
         //log entrée dans la méthode getLocatairesByAgence du controller LocataireController
         log.info("Entrée dans la méthode getLocatairesByAgence du controller LocataireController");
-        List<Locataire> locataires = new ArrayList<>();
+        List<LocataireDto> locataires = new ArrayList<>();
         //try catch pour récupérer les locataires
         try {
             //récupération des locataires
@@ -47,10 +48,10 @@ public class LocataireController {
 
     //récuperer les locataires
     @GetMapping
-    public List<Locataire> getAllLocataires() {
+    public List<LocataireDto> getAllLocataires() {
         //log entrée dans la méthode getAllLocataires du controller LocataireController
         log.info("Entrée dans la méthode getAllLocataires du controller LocataireController");
-        List<Locataire> locataires = new ArrayList<>();
+        List<LocataireDto> locataires = new ArrayList<>();
         //try catch pour récupérer les locataires
         try {
             //récupération des locataires
@@ -69,10 +70,10 @@ public class LocataireController {
 
     //récupérer un locataire par son cin
     @GetMapping("/{cin}")
-    public Locataire getLocataireByCin(@PathVariable String cin) {
+    public LocataireDto getLocataireByCin(@PathVariable String cin) {
         //log entrée dans la méthode getLocataireByCin du controller LocataireController
         log.info("Entrée dans la méthode getLocataireByCin du controller LocataireController");
-        Locataire locataire = new Locataire();
+        LocataireDto locataire = new LocataireDto();
         //try catch pour récupérer le locataire
         try {
             //récupération du locataire
@@ -91,10 +92,10 @@ public class LocataireController {
 
     //récupérer les locataires d'une propriété
     @GetMapping("/propriete/{proprieteId}")
-    public List<Locataire> getLocatairesByPropriete(@PathVariable String proprieteId) {
+    public List<LocataireDto> getLocatairesByPropriete(@PathVariable String proprieteId) {
         //log entrée dans la méthode getLocatairesByPropriete du controller LocataireController
         log.info("Entrée dans la méthode getLocatairesByPropriete du controller LocataireController");
-        List<Locataire> locataires = new ArrayList<>();
+        List<LocataireDto> locataires = new ArrayList<>();
         //try catch pour récupérer les locataires
         try {
             //récupération des locataires
@@ -113,10 +114,10 @@ public class LocataireController {
 
     //créer un locataire
     @PostMapping
-    public Locataire createLocataire(@RequestBody LocataireDto locataire) {
+    public LocataireDto createLocataire(@RequestBody LocataireDto locataire) {
         //log entrée dans la méthode createLocataire du controller LocataireController
         log.info("Entrée dans la méthode createLocataire du controller LocataireController");
-        Locataire locataireCreated = new Locataire();
+        LocataireDto locataireCreated = new LocataireDto();
         //try catch pour créer le locataire
         try {
             //création du locataire
@@ -135,10 +136,10 @@ public class LocataireController {
 
     //modifier un locataire
     @PutMapping
-    public Locataire updateLocataire(@RequestBody LocataireDto locataire) {
+    public LocataireDto updateLocataire(@RequestBody LocataireDto locataire) {
         //log entrée dans la méthode updateLocataire du controller LocataireController
         log.info("Entrée dans la méthode updateLocataire du controller LocataireController");
-        Locataire locataireUpdated = new Locataire();
+        LocataireDto locataireUpdated = new LocataireDto();
         //try catch pour modifier le locataire
         try {
             //modification du locataire

@@ -1,8 +1,10 @@
 package sn.ksb.immo.ksbimmo.application.dtos;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import sn.ksb.immo.ksbimmo.application.annotations.ValidEmail;
 import sn.ksb.immo.ksbimmo.application.models.Role;
 
@@ -12,6 +14,8 @@ import java.util.List;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class EmployeeDto {
     private String id;
 

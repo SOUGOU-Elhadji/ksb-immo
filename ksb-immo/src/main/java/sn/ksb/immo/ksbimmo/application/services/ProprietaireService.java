@@ -38,14 +38,20 @@ public class ProprietaireService {
     }
 
     //récuperer les proprietaires qui ne sont pas supprimer
-    public List<Proprietaire> getAll() {
+    public List<ProprietaireDto> getAll() {
         //log entrée de la méthode getAll dans le service
         log.info("Entrée dans la méthode getAll du service ProprietaireService");
         //initialize an empty list
-        List<Proprietaire> proprietaires = new ArrayList<>();
+        List<ProprietaireDto> proprietaires = new ArrayList<>();
         //try to get all proprietaires from the database
         try {
-            proprietaires = proprietaireRepo.findByDeletedFalse();
+            List<Proprietaire> pList = proprietaireRepo.findAll();
+            //if the list is not empty change the proprietaire list to proprietaireDto list
+            if (pList != null && !pList.isEmpty()) {
+                for (Proprietaire p : pList) {
+                    proprietaires.add(modelMapper.map(p, ProprietaireDto.class));
+                }
+            }
         } catch (Exception e) {
             //log the error
             log.error("Erreur lors de la récupération des proprietaires dans la base de données");
@@ -62,16 +68,16 @@ public class ProprietaireService {
     }
 
     //récuperer un proprietaire par son numero de carte d'identité
-    public Proprietaire getByCni(String numCarteIdentite) {
+    public ProprietaireDto getByCni(String numCarteIdentite) {
         //log the entry of the method
         log.info("Entrée dans la méthode getByCni du service ProprietaireService");
         //initialize a proprietaire
-        Proprietaire proprietaire = null;
+        ProprietaireDto proprietaire = null;
         //log the numCarteIdentite parameter
         log.info("Paramètre numCarteIdentite : " + numCarteIdentite);
         //try to get the proprietaire from the database
         try {
-            proprietaire = proprietaireRepo.findByCni(numCarteIdentite);
+            proprietaire = modelMapper.map(proprietaireRepo.findByCni(numCarteIdentite), ProprietaireDto.class);
         } catch (Exception e) {
             //log the error
             log.error("Erreur lors de la récupération du proprietaire dans la base de données");
@@ -88,42 +94,43 @@ public class ProprietaireService {
     }
 
     //ajouter un proprietaire
-    public Proprietaire add(ProprietaireDto dto) {
+    public ProprietaireDto add(ProprietaireDto dto) {
         //log the entry of the method
         log.info("Entrée dans la méthode add du service ProprietaireService");
         //log the proprietaire parameter
         log.info("Paramètre proprietaire : " + dto.getCni());
-        Proprietaire proprietaire = null;
+        ProprietaireDto proprietaire = null;
         //try to save the proprietaire in the database
         try {
-            proprietaire = modelMapper.map(dto, Proprietaire.class);
+            Proprietaire p = modelMapper.map(dto, Proprietaire.class);
             //check if the proprietaire already exists
-            if (proprietaireRepo.existsByCni(proprietaire.getCni())) {
+            if (proprietaireRepo.existsByCni(p.getCni())) {
                 //log the error
                 log.error("Le proprietaire {} existe déjà dans la base de données", proprietaire.getCni());
                 //return null
                 return null;
             }
             //set the created at date
-            proprietaire.setDateCreation(new Date());
+            p.setDateCreation(new Date());
             //set the updated at date
-            proprietaire.setDateModification(new Date());
+            p.setDateModification(new Date());
             //set the proprietaire as not deleted
-            proprietaire.setDeleted(false);
-            proprietaire.getProprietes().clear();
+            p.setDeleted(false);
+            p.getProprietes().clear();
             for (ProprieteDto proprieteDto: dto.getProprietes()) {
                 Propriete propriete = modelMapper.map(proprieteDto, Propriete.class);
                 propriete.setAgence(agenceRepo.findById(UUID.fromString(proprieteDto.getAgenceId())).orElse(null));
                 propriete.setStatus(false);
                 propriete.setDeleted(false);
-                propriete.setProprietaire(proprietaire);
+                propriete.setProprietaire(p);
                 propriete.setDateCreation(new Date());
                 propriete.setDateModification(new Date());
-                proprietaire.getProprietes().add(propriete);
+
+                p.getProprietes().add(propriete);
             }
-            proprietaire.getRoles().add(roleRepo.findByName("Proprietaire"));
+            p.getRoles().add(roleRepo.findByName("Proprietaire"));
             //save the proprietaire in the database
-            proprietaire = proprietaireRepo.save(proprietaire);
+            proprietaire = modelMapper.map(proprietaireRepo.save(p), ProprietaireDto.class);
         } catch (Exception e) {
             //log the error
             log.error("Erreur lors de l'ajout du proprietaire dans la base de données : {}", e.getMessage());
@@ -136,9 +143,10 @@ public class ProprietaireService {
     }
 
     //modifier un proprietaire
-    public Proprietaire update(Proprietaire proprietaire) {
+    public ProprietaireDto update(ProprietaireDto proprietaire) {
         //log the entry of the method
         log.info("Entrée dans la méthode update du service ProprietaireService");
+        ProprietaireDto proprietaireDto = null;
         //try to update the proprietaire in the database
         try {
             //check if the proprietaire exists
@@ -150,11 +158,30 @@ public class ProprietaireService {
             }
             //retrieve the proprietaire from the database
             Proprietaire proprietaireFromDb = proprietaireRepo.findByCni(proprietaire.getCni());
-            proprietaire.setId(proprietaireFromDb.getId());
+            proprietaireFromDb.setId(UUID.fromString(proprietaire.getId()));
+            proprietaireFromDb.setNom(proprietaire.getNom());
+            proprietaireFromDb.setPrenom(proprietaire.getPrenom());
+            proprietaireFromDb.setTelephone(proprietaire.getTelephone());
+            proprietaireFromDb.setAdresse(proprietaire.getAdresse());
+            proprietaireFromDb.setEmail(proprietaire.getEmail());
+            proprietaireFromDb.setDateModification(new Date());
+            proprietaireFromDb.getProprietes().clear();
+            for (ProprieteDto proprieteDto: proprietaire.getProprietes()) {
+                Propriete propriete = modelMapper.map(proprieteDto, Propriete.class);
+                propriete.setAgence(agenceRepo.findById(UUID.fromString(proprieteDto.getAgenceId())).orElse(null));
+                propriete.setStatus(false);
+                propriete.setDeleted(false);
+                propriete.setProprietaire(proprietaireFromDb);
+                propriete.setDateCreation(new Date());
+                propriete.setDateModification(new Date());
+
+                proprietaireFromDb.getProprietes().add(propriete);
+            }
+
             //set the updated at date
-            proprietaire.setDateModification(new Date());
+            proprietaireFromDb.setDateModification(new Date());
             //save the proprietaire in the database
-            proprietaire = proprietaireRepo.save(proprietaire);
+            proprietaireDto = modelMapper.map(proprietaireRepo.save(proprietaireFromDb), ProprietaireDto.class);
         } catch (Exception e) {
             //log the error
             log.error("Erreur lors de la modification du proprietaire dans la base de données");
@@ -166,7 +193,7 @@ public class ProprietaireService {
     }
 
     //supprimer un proprietaire
-    public Proprietaire delete(String numCarteIdentite) {
+    public void delete(String numCarteIdentite) {
         //log the entry of the method
         log.info("Entrée dans la méthode deleteProprietaire du service ProprietaireService");
         //log the numCarteIdentite parameter
@@ -179,19 +206,11 @@ public class ProprietaireService {
                 //log the error
                 log.error("Le proprietaire {} n'existe pas dans la base de données", numCarteIdentite);
                 //return null
-                return null;
             }
             //retrieve the proprietaire from the database
             proprietaire = proprietaireRepo.findByCni(numCarteIdentite);
-            //set the proprietaire as deleted
-            proprietaire.setDeleted(true);
-            proprietaire.setDateDeleted(new Date());
-            //save the proprietaire in the database
-            proprietaire.getProprietes().forEach(p -> {
-                p.setDeleted(true);
-                p.setDateModification(new Date());
-            });
-            proprietaire = proprietaireRepo.save(proprietaire);
+            //delete the proprietaire from the database
+            proprietaireRepo.delete(proprietaire);
         } catch (Exception e) {
             //log the error
             log.error("Erreur lors de la suppression du proprietaire dans la base de données");
@@ -204,42 +223,6 @@ public class ProprietaireService {
         //log the exit of the method
         log.info("Sortie de la méthode deleteProprietaire du service ProprietaireService");
 
-        //return the proprietaire
-        return proprietaire;
     }
 
-    //restaurer un proprietaire
-    public void restoreProprietaire(String numCarteIdentite) {
-        //log the entry of the method
-        log.info("Entrée dans la méthode restoreProprietaire du service ProprietaireService");
-        //log the numCarteIdentite parameter
-        Proprietaire proprietaire = null;
-        log.info("Paramètre numCarteIdentite : " + numCarteIdentite);
-        //try to restore the proprietaire from the database
-        try {
-            //check if the proprietaire exists
-            if (!proprietaireRepo.existsByCni(numCarteIdentite)) {
-                //log the error
-                log.error("Le proprietaire {} n'existe pas dans la base de données", numCarteIdentite);
-                //return null
-                return;
-            }
-            //retrieve the proprietaire from the database
-            proprietaire = proprietaireRepo.findByCni(numCarteIdentite);
-            //set the proprietaire as not deleted
-            proprietaire.setDeleted(false);
-            //save the proprietaire in the database
-            proprietaire = proprietaireRepo.save(proprietaire);
-        } catch (Exception e) {
-            //log the error
-            log.error("Erreur lors de la restauration du proprietaire dans la base de données");
-        }
-        //check if the proprietaire is not deleted
-        if (proprietaire != null && !proprietaire.getDeleted()) {
-            //log the success
-            log.info("Le proprietaire {} a été restauré avec succès", numCarteIdentite);
-        }
-        //log the exit of the method
-        log.info("Sortie de la méthode restoreProprietaire du service ProprietaireService");
-    }
 }

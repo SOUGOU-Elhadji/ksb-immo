@@ -16,6 +16,7 @@ import java.util.List;
 @Slf4j
 @OpenAPIDefinition(tags = {@Tag(name = "Proprietaire", description = "Proprietaire API")})
 @RequestMapping("/api/proprietaire")
+@CrossOrigin
 public class ProprietaireController {
 
     private final ProprietaireService service;
@@ -26,11 +27,11 @@ public class ProprietaireController {
 
     //get All proprietaires
     @GetMapping
-    public ResponseEntity<List<Proprietaire>> getAll() {
+    public List<ProprietaireDto> getAll() {
         //log the entry of the method
         log.info("Entrée dans la méthode getAll du controller ProprietaireController");
         //initialize a list of proprietaire
-        List<Proprietaire> proprietaires = null;
+        List<ProprietaireDto> proprietaires = null;
         //try to get all proprietaires from the service
         try {
             proprietaires = service.getAll();
@@ -46,17 +47,16 @@ public class ProprietaireController {
         //log the exit of the method
         log.info("Sortie de la méthode getAll du controller ProprietaireController");
         //return the list
-        return new ResponseEntity<>(proprietaires, HttpStatus.OK);
+        return proprietaires;
     }
 
     //get proprietaire by numCarteIdentite
     @GetMapping("/{numCarteIdentite}")
-    public ResponseEntity<Proprietaire> getByNumCarteIdentite(@PathVariable String numCarteIdentite) {
+    public ProprietaireDto getByNumCarteIdentite(@PathVariable String numCarteIdentite) {
         //log the entry of the method
         log.info("Entrée dans la méthode getByNumCarteIdentite du controller ProprietaireController");
         //initialize a proprietaire
-        Proprietaire proprietaire = null;
-        HttpStatus status = HttpStatus.OK;
+        ProprietaireDto proprietaire = null;
         //log the numCarteIdentite parameter
         log.info("Paramètre numCarteIdentite : " + numCarteIdentite);
         //try to get the proprietaire from the service
@@ -70,22 +70,20 @@ public class ProprietaireController {
         if (proprietaire == null) {
             //log the error
             log.error("Aucun proprietaire n'a été trouvé dans la base de données");
-            status = HttpStatus.NOT_FOUND;
         }
         //log the exit of the method
         log.info("Sortie de la méthode getByNumCarteIdentite du controller ProprietaireController");
         //return the proprietaire
-        return new ResponseEntity<>(proprietaire, status);
+        return proprietaire;
     }
 
     //create proprietaire
     @PostMapping
-    public ResponseEntity<Proprietaire> create(@RequestBody ProprietaireDto proprietaire) {
+    public ProprietaireDto create(@RequestBody ProprietaireDto proprietaire) {
         //log the entry of the method
         log.info("Entrée dans la méthode create du controller ProprietaireController");
         //initialize a proprietaire
-        Proprietaire proprietaireCreated = null;
-        HttpStatus status = HttpStatus.CREATED;
+        ProprietaireDto proprietaireCreated = null;
         //log the proprietaire parameter
         log.info("Paramètre proprietaire : " + proprietaire);
         //try to create the proprietaire
@@ -99,21 +97,19 @@ public class ProprietaireController {
         if (proprietaireCreated == null) {
             //log the error
             log.error("Aucun proprietaire n'a été créé dans la base de données");
-            status = HttpStatus.BAD_REQUEST;
         }
         //log the exit of the method
         log.info("Sortie de la méthode create du controller ProprietaireController");
         //return the proprietaire
-        return new ResponseEntity<>(proprietaireCreated, status);
+        return proprietaireCreated;
     }
 
     //update Proprietaire
-    public ResponseEntity<Proprietaire> update(@RequestBody Proprietaire proprietaire) {
+    public ProprietaireDto update(@RequestBody ProprietaireDto proprietaire) {
         //log the entry of the method
         log.info("Entrée dans la méthode update du controller ProprietaireController");
         //initialize a proprietaire
-        Proprietaire proprietaireUpdated = null;
-        HttpStatus status = HttpStatus.OK;
+        ProprietaireDto proprietaireUpdated = null;
         //log the proprietaire parameter
         log.info("Paramètre proprietaire : " + proprietaire);
         //try to update the proprietaire
@@ -127,40 +123,31 @@ public class ProprietaireController {
         if (proprietaireUpdated == null) {
             //log the error
             log.error("Aucun proprietaire n'a été mis à jour dans la base de données");
-            status = HttpStatus.BAD_REQUEST;
         }
         //log the exit of the method
         log.info("Sortie de la méthode update du controller ProprietaireController");
         //return the proprietaire
-        return new ResponseEntity<>(proprietaireUpdated, status);
+        return proprietaireUpdated;
     }
 
     //delete proprietaire
     @DeleteMapping("/{numCarteIdentite}")
-    public ResponseEntity<Proprietaire> delete(@PathVariable String numCarteIdentite) {
+    public void delete(@PathVariable String numCarteIdentite) {
         //log the entry of the method
         log.info("Entrée dans la méthode delete du controller ProprietaireController");
         //initialize a proprietaire
-        Proprietaire proprietaireDeleted = null;
+        ProprietaireDto proprietaireDeleted = null;
         HttpStatus status = HttpStatus.OK;
         //log the numCarteIdentite parameter
         log.info("Paramètre numCarteIdentite : " + numCarteIdentite);
         //try to delete the proprietaire
         try {
-            proprietaireDeleted = service.delete(numCarteIdentite);
+            service.delete(numCarteIdentite);
         } catch (Exception e) {
             //log the error
             log.error("Erreur lors de la suppression du proprietaire dans la base de données");
         }
-        //if the proprietaire is null
-        if (proprietaireDeleted == null) {
-            //log the error
-            log.error("Aucun proprietaire n'a été supprimé dans la base de données");
-            status = HttpStatus.BAD_REQUEST;
-        }
         //log the exit of the method
         log.info("Sortie de la méthode delete du controller ProprietaireController");
-        //return the proprietaire
-        return new ResponseEntity<>(proprietaireDeleted, status);
     }
 }
