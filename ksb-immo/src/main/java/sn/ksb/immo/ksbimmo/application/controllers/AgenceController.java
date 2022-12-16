@@ -16,7 +16,11 @@ import java.util.stream.Collectors;
 @Slf4j
 @OpenAPIDefinition(tags = {@Tag(name = "Agence", description = "Agence API")})
 @RequestMapping("/api/agence")
+<<<<<<< HEAD
+@CrossOrigin(origins = "http://localhost:4200")
+=======
 @CrossOrigin
+>>>>>>> a63cb9f2f2db6e095a956fdc57ae78d46285b00e
 public class AgenceController {
 
     private final AgenceService service;

@@ -55,7 +55,7 @@ public class AgenceService {
             log.info("Récupération des agences");
         } catch (Exception e) {
             //log erreur récupération des agences
-            log.error("Erreur lors de la récupération des agences");
+            log.error("Erreur lors de la récupération des agences: {}", e.getMessage());
         }
 
         //si la liste est vide
@@ -125,7 +125,7 @@ public class AgenceService {
             log.info("Ajout de l'agence");
         } catch (Exception e) {
             //log erreur ajout de l'agence
-            log.error("Erreur lors de l'ajout de l'agence");
+            log.error("Erreur lors de l'ajout de l'agence: {}", e.getMessage());
         }
         //si l'id de l'agence est null
         if (agence.getId() == null) {
