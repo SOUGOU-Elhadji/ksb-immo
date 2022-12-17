@@ -28,4 +28,14 @@ export class AllAgenceComponent implements OnInit {
     })
   }
 
+  public deleteAgence(agence : Agence){
+    return this.serviceAgence.deleteAgence(agence.id).subscribe((response) => {
+      try{
+        this.getAllAgence();
+      }catch (error){
+        throw error;
+      }
+    })
+  }
+
 }

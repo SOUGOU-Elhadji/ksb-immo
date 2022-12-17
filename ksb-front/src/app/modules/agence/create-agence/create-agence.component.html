@@ -1,10 +1,4 @@
-<div class="container">
-
-  <pre>{{ agences | json }}</pre>
-
-  <hr>
-
-
+<div>
   <form [formGroup]="form">
     <mat-form-field>
       <mat-label for="nomId">Nom Agence</mat-label>
@@ -63,16 +57,16 @@
 
       <!-- <app-create-employee [inputFormGroup]="$any(u)"></app-create-employee> &nbsp; &nbsp; -->
 
-      
 
-     
+
+
         <div [formGroupName]="i">
 
           <!-- <mat-form-field>
             <mat-label attr.for="{{ 'matriculeId' + i }}" >Matricule</mat-label>
             <input matInput placeholder="Matricule"  formControlName="matricule" id="{{ 'matriculeId' + i }}">
           </mat-form-field> &nbsp; &nbsp; -->
-  
+
           <mat-form-field>
             <mat-label>Nom</mat-label>
             <input matInput placeholder="Nom"  formControlName="nom" [(ngModel)]="em.nom" >
@@ -115,7 +109,7 @@
             <input matInput placeholder="Numero Compte Bancaire" formControlName="numCompteBancaire" [(ngModel)]="em.numCompteBancaire">
           </mat-form-field> &nbsp; &nbsp;
 
-         
+
           <label class="example-margin" >Manager:</label>
           <select id=""  name="manager" formControlName="manager" [(ngModel)]="em.manager">
             <option selected>Choose...</option>
@@ -133,7 +127,7 @@
             </select>
           </mat-form-field> &nbsp; &nbsp;
    -->
-   
+
           <br>
           <button mat-raised-button color="warn" (click)="removeEmployee(i)">
             <mat-icon>delete</mat-icon>
@@ -155,48 +149,48 @@
 
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
-      
+
         <!-- Position Column -->
         <!-- <ng-container matColumnDef="position">
           <th mat-header-cell *matHeaderCellDef> No. </th>
           <td mat-cell *matCellDef="let  listdata"> {{listdata.id}} </td>
         </ng-container> -->
-      
+
         <!-- Name Column -->
         <!-- <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Name </th>
           <td mat-cell *matCellDef="let listdata"> {{listdata.nom}} </td>
         </ng-container> -->
-      
+
         <!-- Weight Column -->
         <!-- <ng-container matColumnDef="weight">
           <th mat-header-cell *matHeaderCellDef> Prenom </th>
           <td mat-cell *matCellDef="let listdata"> {{listdata.prenom}} </td>
         </ng-container> -->
-      
+
         <!-- Symbol Column -->
         <!-- <ng-container matColumnDef="symbol">
           <th mat-header-cell *matHeaderCellDef> Telephone </th>
           <td mat-cell *matCellDef="let listdata"> {{listdata.telephone}} </td>
         </ng-container> -->
-      
+
         <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-        
+
       </table>-->
       <hr>
-    </div> 
-   
-    
+    </div>
 
-    
+
+
+
   </form>
 
 
 
 
-  <table class="table table-striped table-black">
+  <table class="table table-striped" *ngIf="employeeList.length == 0">
     <thead  class="thead-dark">
       <tr>
         <th scope="col">Nom</th>
@@ -205,14 +199,12 @@
         <th scope="col">Email</th>
         <th scope="col-2">CNI</th>
         <th scope="col">Adresse</th>
-        <th scope="col-2">numCompteBancaire</th>
-        <th scope="col-2">dateDelivranceCni</th>
         <th scope="col-2">Manager</th>
         <th scope="col-2">Action</th>
-        
+
       </tr>
     </thead>
-    <tbody style="color: black;">
+    <tbody>
       <tr *ngFor="let item of listdata">
         <th scope="row">{{item.nom}}</th>
         <td>{{item.prenom}}</td>
@@ -220,14 +212,12 @@
         <td>{{ item.email }}</td>
         <td>{{ item.cni}}</td>
         <td>{{ item.adresse }}</td>
-        <td>{{ item.numCompteBancaire }}</td>
-        <td>{{ item.dateDelivranceCni}}</td>
         <td>{{ item.manager}}</td>
-        
-        
+
+
         <td><button type="button" class="btn btn-danger" (click)="deleteEmpl(item)"><i class="far fa-trash-alt"></i></button></td>
       </tr>
-   
+
     </tbody>
   </table>
 
