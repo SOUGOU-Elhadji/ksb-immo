@@ -29,6 +29,7 @@ public class ProprieteDto {
     private Boolean piscine;
     private Boolean jardin;
     private Boolean ascenseur;
+    private String numeroLot;
     private ApporteurDto apporteurAffaire;
 
     private MultipartFile[] images;

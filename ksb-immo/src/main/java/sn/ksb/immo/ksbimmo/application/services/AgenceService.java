@@ -102,7 +102,7 @@ public class AgenceService {
     public AgenceDto addAgence(AgenceDto dto) {
         //log entrée dans la méthode addAgence du service AgenceService
         log.info("Entrée dans la méthode addAgence du service AgenceService");
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String date = formatter.format(new Date());
         dto.setDateCreation(date);
         Agence agence = mapper.map(dto, Agence.class);

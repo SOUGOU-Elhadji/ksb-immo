@@ -24,7 +24,7 @@ public class EmployeController {
     }
 
     //get All employees
-    @GetMapping("/all")
+    @GetMapping
     public List<EmployeeDto> getAllEmployee() {
         //log the entry of the method
         log.info("Entrée dans la méthode getAllEmployee du controller EmployeController");
