@@ -94,7 +94,7 @@
 
           <mat-form-field>
             <mat-label>Date Delivrance CNI</mat-label>
-            <input matInput  placeholder="dateDelivranceCni"  formControlName="dateDelivranceCni" [(ngModel)]="em.dateDelivranceCni">
+            <input type="date" matInput  placeholder="dateDelivranceCni"  formControlName="dateDelivranceCni" [(ngModel)]="em.dateDelivranceCni">
           </mat-form-field> &nbsp; &nbsp;
 
 
@@ -215,7 +215,7 @@
         <td>{{ item.manager}}</td>
 
 
-        <td><button type="button" class="btn btn-danger" (click)="deleteEmpl(item)"><i class="far fa-trash-alt"></i></button></td>
+        <td><button type="button" class="btn btn-danger" (click)="deleteEmpl(item)"><i class="fa fa-trash-alt"></i></button></td>
       </tr>
 
     </tbody>

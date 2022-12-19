@@ -29,7 +29,7 @@ import {MatMenuModule} from '@angular/material/menu';
     AdminLayoutComponent,
     FooterComponent,
     ListApporteurComponent,
-    NewApporteurComponent
+    NewApporteurComponent,
   ],
   imports: [
     BrowserModule,

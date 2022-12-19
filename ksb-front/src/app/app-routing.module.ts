@@ -3,7 +3,6 @@ import { UpdateAgenceComponent } from './modules/agence/update-agence/update-age
 import { DetailsAgenceComponent } from './modules/agence/details-agence/details-agence.component';
 import { AllAgenceComponent } from './modules/agence/all-agence/all-agence.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
-import { FooterComponent } from './footer/footer.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';

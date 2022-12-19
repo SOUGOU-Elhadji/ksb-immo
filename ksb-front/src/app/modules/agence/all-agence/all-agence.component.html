@@ -57,8 +57,10 @@
                       <td>{{ agence.adresse }}</td>
                       <td>{{ agence.dateCreation }}</td>
                       <td>{{ agence.telephone }}</td>
-                      <td *ngFor="let em of agence.employees">
-                        <span *ngIf="em.manager == true"> {{em.prenom}} {{em.nom}} </span>
+                      <td >
+                        <span *ngFor="let em of agence.employees">
+                          <span *ngIf="em.manager == true"> {{em.prenom}} {{em.nom}} </span>
+                        </span>
                       </td>
                       <td>
                         <span class="dropdown table-dropdown">
