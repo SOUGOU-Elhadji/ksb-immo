@@ -230,3 +230,195 @@
 
           </div>
    
+
+<div>
+
+  <div class="page-title">
+    <div class="title_left">
+      <h3>Nouvelle Agence <small style="font-size:medium;">Some examples to get you started</small></h3>
+    </div>
+
+    <div class="title_right">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button">Go!</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <br><br><br>
+  <hr>
+  <form [formGroup]="form" #agenceForm="ngForm">
+    <mat-form-field>
+      <mat-label for="nomId">Nom Agence</mat-label>
+      <input matInput placeholder="Nom agence" id="nom" [(ngModel)]="agence.nom" formControlName="nom" placeholder="Nom* (obligatoire)"
+      [ngClass]="{ 'is-invalid': formErrors.nom }" >
+      <span class="invalid-feedback">
+        {{ formErrors.nom }}
+      </span>
+    </mat-form-field> &nbsp; &nbsp;
+
+    <mat-form-field>
+      <mat-label>Adresse</mat-label>
+      <input matInput placeholder="Adresse" [(ngModel)]="agence.adresse" formControlName="adresse" placeholder="Adresse* (obligatoire)"
+      [ngClass]="{ 'is-invalid': formErrors.adresse }" >
+    </mat-form-field> &nbsp; &nbsp;
+
+    <mat-form-field>
+      <mat-label>Region</mat-label>
+      <input matInput placeholder="Region" [(ngModel)]="agence.region" formControlName="region" placeholder="Region* (obligatoire)"
+      [ngClass]="{ 'is-invalid': formErrors.region }" >
+    </mat-form-field> &nbsp; &nbsp;
+
+    <mat-form-field>
+      <mat-label>Departement</mat-label>
+      <input matInput placeholder="departement"  [(ngModel)]="agence.departement" formControlName="departement" placeholder="departement* (obligatoire)"
+      [ngClass]="{ 'is-invalid': formErrors.departement }" >
+    </mat-form-field> &nbsp; &nbsp;
+
+    <mat-form-field>
+      <mat-label>Telephone</mat-label>
+      <input matInput placeholder="telephone" [(ngModel)]="agence.telephone" formControlName="telephone" placeholder="Telephone* (obligatoire)"
+      [ngClass]="{ 'is-invalid': formErrors.telephone }" >
+    </mat-form-field> &nbsp; &nbsp;
+    <br>
+    Add a new employee &nbsp; &nbsp;
+    <button type="button" mat-raised-button (click)="addEmployee()">
+      <mat-icon matTooltip="Add a new Employee">add</mat-icon>
+    </button>
+    <br>
+    <hr>
+
+    <div formArrayName="employees" *ngFor="let u of employeeArray.controls; index as i" id="click">
+
+      <span>Employee {{ i + 1 }}</span> &nbsp; &nbsp;
+
+      <!-- <app-create-employee [inputFormGroup]="$any(u)"></app-create-employee> &nbsp; &nbsp; -->
+
+
+
+
+        <div [formGroupName]="i">
+
+          <!-- <mat-form-field>
+            <mat-label attr.for="{{ 'matriculeId' + i }}" >Matricule</mat-label>
+            <input matInput placeholder="Matricule"  formControlName="matricule" id="{{ 'matriculeId' + i }}">
+          </mat-form-field> &nbsp; &nbsp; -->
+
+          <mat-form-field>
+            <mat-label>Nom</mat-label>
+            <input matInput placeholder="Nom"  formControlName="nom" [(ngModel)]="em.nom" >
+          </mat-form-field> &nbsp; &nbsp;
+
+          <mat-form-field>
+            <mat-label  >Prenom</mat-label>
+            <input matInput placeholder="Prenom"  formControlName="prenom" [(ngModel)]="em.prenom">
+          </mat-form-field> &nbsp; &nbsp;
+
+          <mat-form-field>
+            <mat-label >Telephone</mat-label>
+            <input matInput placeholder="Telephone"  formControlName="telephone" [(ngModel)]="em.telephone">
+          </mat-form-field> &nbsp; &nbsp;
+
+          <mat-form-field>
+            <mat-label  >Email</mat-label>
+            <input matInput placeholder="Email" type="email"  formControlName="email" [(ngModel)]="em.email">
+          </mat-form-field> &nbsp; &nbsp;
+
+          <mat-form-field>
+            <mat-label>CNI</mat-label>
+            <input matInput placeholder="Cni"   formControlName="cni" [(ngModel)]="em.cni">
+          </mat-form-field> &nbsp; &nbsp;
+
+          <mat-form-field>
+            <mat-label>Date Delivrance CNI</mat-label>
+            <input type="date" matInput  placeholder="dateDelivranceCni"  formControlName="dateDelivranceCni" [(ngModel)]="em.dateDelivranceCni">
+          </mat-form-field> &nbsp; &nbsp;
+
+          <mat-form-field>
+            <mat-label >Adreesse</mat-label>
+            <input matInput placeholder="adresse"  formControlName="adresse" [(ngModel)]="em.adresse">
+          </mat-form-field> &nbsp; &nbsp;
+
+          <mat-form-field>
+            <mat-label  >Numero Compte Bancaire</mat-label>
+            <input matInput placeholder="Numero Compte Bancaire" formControlName="numCompteBancaire" [(ngModel)]="em.numCompteBancaire">
+          </mat-form-field> &nbsp; &nbsp;
+
+            <mat-slide-toggle [color]="color"  name="manager" formControlName="manager" [(ngModel)]="em.manager">Manager 
+  </mat-slide-toggle>
+         
+          &nbsp; &nbsp;
+
+          <!-- <mat-form-field>
+            <mat-label attr.for="{{ 'agenceId' + i }}" >Agence</mat-label>
+            <select matNativeControl formControlName="agence" id="{{ 'agenceId' + i }}">
+              <option value="" selected></option>
+              <option *ngFor="let a of agences" ngValue="a.id" >{{ a.nom }}</option>
+            </select>
+          </mat-form-field> &nbsp; &nbsp;
+   -->
+
+          <br>
+          <button mat-raised-button color="#2A3F54" (click)="removeEmployee(i)">
+            <mat-icon color="warn">delete</mat-icon>
+          </button>&nbsp;
+          <button type="button" mat-raised-button (click)="registEmpl()" [disabled]="!agenceForm.form.valid">
+            <mat-icon matTooltip="Add a new Employee">save</mat-icon>
+          </button>
+      </div><br>
+      <hr>
+      <table class="table table-striped" *ngIf="employeeList.length == 0">
+        <thead  style="background-color:rgb(84, 115, 146) ; color: white;">
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Telephone</th>
+            <th scope="col">Email</th>
+            <th scope="col-2">CNI</th>
+            <th scope="col">Adresse</th>
+            <th scope="col-2">Manager</th>
+            <th scope="col-2">Action</th>
+    
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listdata">
+            <th scope="row">{{item.nom}}</th>
+            <td>{{item.prenom}}</td>
+            <td>{{ item.telephone }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.cni}}</td>
+            <td>{{ item.adresse }}</td>
+            <td>{{ item.manager}}</td>
+    
+    
+            <td><button type="button" mat-raised-button color="#2A3F54" (click)="deleteEmpl(item)"><mat-icon color="warn">delete</mat-icon></button></td>
+          </tr>
+    
+        </tbody>
+      </table>
+    </div>
+
+    
+
+
+  </form>
+
+  <button type="submit" mat-raised-button style="background-color: rgb(42,63,84); color: white;" (click)="onSubmit()">Submit</button>
+
+
+
+
+
+
+
+
+
+
+
+</div>

@@ -8,7 +8,7 @@
     <div class="title_right">
       <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for...">
+          <input type="text" class="form-control" [(ngModel)]="departement" (input)="search()" placeholder="Rechercher">
           <span class="input-group-btn">
             <button class="btn btn-secondary" type="button">Go!</button>
           </span>
@@ -43,20 +43,23 @@
                 <table class="table table-striped dt-responsive nowrap" aria-label="Liste agences">
                   <thead>
                     <tr>
-                      <th>Nom</th>
+                      <th>Nom de l'agence</th>
                       <th>Adresse</th>
                       <th>Date d'ouverture</th>
                       <th>Contact</th>
+                      <th>Departement</th>
                       <th>Manager</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let agence of agences">
+                    <tr *ngFor="let agence of agences | paginate: { itemsPerPage: 10, currentPage: p }">
+                    <!-- <tr *ngFor="let agence of agences"> -->
                       <td>{{ agence.nom }}</td>
                       <td>{{ agence.adresse }}</td>
                       <td>{{ agence.dateCreation }}</td>
                       <td>{{ agence.telephone }}</td>
+                      <td>{{ agence.departement }}</td>
                       <td >
                         <span *ngFor="let em of agence.employees">
                           <span *ngIf="em.manager == true"> {{em.prenom}} {{em.nom}} </span>
@@ -74,7 +77,12 @@
                       </td>
                     </tr>
                   </tbody>
+                 <br>
+                 <br>
+                  <pagination-controls class="page my-pagination" (pageChange)="p = $event"></pagination-controls>
+                    
                 </table>
+                
               </div>
             </div>
           </div>

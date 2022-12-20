@@ -19,7 +19,10 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { FooterComponent } from './footer/footer.component';
 import { ListApporteurComponent } from './apporteur/list-apporteur/list-apporteur.component';
 import { NewApporteurComponent } from './apporteur/new-apporteur/new-apporteur.component';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import {MatMenuModule} from '@angular/material/menu';
     UtilisateurModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSlideToggleModule,
+
+    NgxPaginationModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
