@@ -39,7 +39,7 @@ export class UpdateAgenceComponent implements OnInit {
 
     this.id = this.route.snapshot.params['id'];
     this.serviceAgence.getAgenceById(this.id).subscribe(data => {
-      this.agence=data; 
+      this.agence = data;
     }, error => console.log(error));
  
   }

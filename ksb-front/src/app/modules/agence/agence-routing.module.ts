@@ -7,16 +7,15 @@ import { DetailsAgenceComponent } from './details-agence/details-agence.componen
 import { UpdateAgenceComponent } from './update-agence/update-agence.component';
 
 const routes: Routes = [
-<<<<<<< HEAD
+
  
   // {path: 'agence', component: AllAgenceComponent},
   // {path: 'detail/:id', component: DetailsAgenceComponent},
   // {path: 'edit/:id', component: UpdateAgenceComponent},
   // {path: 'new', component: CreateAgenceComponent},
    
- 
-=======
->>>>>>> 8aa6e20aa801b95daf4f4cdf0657bf6d26d71177
+
+
 ];
 
 @NgModule({

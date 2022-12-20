@@ -7,10 +7,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ListApporteurComponent } from './apporteur/list-apporteur/list-apporteur.component';
-import { CreateAgenceComponent } from './modules/agence/create-agence/create-agence.component';
-import { DetailsAgenceComponent } from './modules/agence/details-agence/details-agence.component';
-import { AllAgenceComponent } from './modules/agence/all-agence/all-agence.component';
-import { UpdateAgenceComponent } from './modules/agence/update-agence/update-agence.component';
 import { CreateEmployeeComponent } from './modules/employee/create-employee/create-employee.component';
 import { AllEmployeeComponent } from './modules/employee/all-employee/all-employee.component';
 
@@ -25,7 +21,7 @@ const routes: Routes = [
     children: [
       {path: 'home', component: HomeComponent},
       {path: 'apporteurs', component: ListApporteurComponent},
-<<<<<<< HEAD
+
        
       {path: 'agence', component: AllAgenceComponent},
       {path: 'agence/detail/:id', component: DetailsAgenceComponent},
@@ -34,12 +30,12 @@ const routes: Routes = [
 
       {path: 'employee', component: AllEmployeeComponent},
       {path: 'employee/new', component: CreateEmployeeComponent},
-=======
+
       {path: 'agences', component : AllAgenceComponent},
       {path: 'agences/:id/details', component: DetailsAgenceComponent},
       {path: 'agences/:id/edit', component: UpdateAgenceComponent},
       {path: 'agences/new', component: CreateAgenceComponent, pathMatch: 'full'},
->>>>>>> 8aa6e20aa801b95daf4f4cdf0657bf6d26d71177
+
     ]
   }
 ];

@@ -35,29 +35,29 @@ export class EmployeeService {
 
 
 
-  // METHOD TO CREATE A NEW Employee
-  // public createEmployee(employee: Employee): Observable<Object>{
-  //   const headers = { 'content-type': 'application/json'}  
+  //METHOD TO CREATE A NEW Employee
+  public createEmployee(employee: EmployeeDto): Observable<Object>{
+    const headers = { 'content-type': 'application/json'}  
 
-  //   const params = new HttpParams()
-  //     .set('para1', "value1")
-  //     .set('para2',"value2");
+    const params = new HttpParams()
+      .set('para1', "value1")
+      .set('para2',"value2");
 
-  //   const body=JSON.stringify(Employee);
-  //   console.log(body)
-  //   return this.httpClient.post(this.Url, body, {'headers':headers, observe:'response', 
-  //     reportProgress: true, 'params': params})
-  //     .pipe(
-  //       catchError((err) => {
-  //         console.error(err);
-  //         throw err;
-  //       })
-  //     );
-  // }
-
-  public createEmployee(employee: EmployeeDto): Observable<EmployeeDto>{
-    return this.httpClient.post<EmployeeDto>(`${this.Url}`, employee)
+    const body=JSON.stringify(employee);
+    console.log(body)
+    return this.httpClient.post(this.Url, body, {'headers':headers, observe:'response', 
+      reportProgress: true, 'params': params})
+      .pipe(
+        catchError((err) => {
+          console.error(err);
+          throw err;
+        })
+      );
   }
+
+  // public createEmployee(employee: EmployeeDto): Observable<Object>{
+  //   return this.httpClient.post(`${this.Url}`, employee)
+  // }
 
 
 
@@ -65,7 +65,7 @@ export class EmployeeService {
 
   // METHOD TO GET ALL Employee
 
-  test_url = "http://localhost:8080/api/employee/all";
+  test_url = "http://localhost:8080/api/employee";
   public getAllEmployee(): Observable<Employee[]> {
     const params = new HttpParams()
       .set('sort',"description")

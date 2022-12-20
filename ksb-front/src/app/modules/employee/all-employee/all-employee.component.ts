@@ -14,7 +14,9 @@ export class AllEmployeeComponent implements OnInit {
   constructor(private serviceEmployee: EmployeeService ) { }
 
   ngOnInit(): void {
-    this.getAllEmployee();
+    this.getAllEmployee()
+      
+   
   }
 
 
