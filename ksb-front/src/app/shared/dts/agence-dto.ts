@@ -1,4 +1,4 @@
-import { Employee } from "../models/employee";
+import { EmployeeDto } from 'src/app/shared/dts/employee-dto';
 
 export class AgenceDto {
     id!: string;
@@ -7,5 +7,5 @@ export class AgenceDto {
     region!: string;
     departement!: string;
     telephone!: string;
-    employees!: Employee[];
+    employees!: EmployeeDto[];
 }

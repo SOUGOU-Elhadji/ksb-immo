@@ -18,7 +18,7 @@ import { EmployeeService } from 'src/app/shared/services/employee.service';
 
 //  const ELEMENT_DATA: Employee[] = [
 //   {id: '1', matricule: 'Hydrogen', nom: "malick", prenom: 'H', telephone: "778541256", email: "sougou@gmail.com", cni: "78451236",  dateDelivranceCni:"12/04/2022", adresse: "thialy", numCompteBancaire: "1245214521452", manager: true,},
-  
+
 //  ];
 
 @Component({
@@ -33,7 +33,7 @@ export class CreateAgenceComponent implements OnInit {
   agences!: Agence[];
   employeeList: Employee[] = [];
 
- 
+
   em: Employee = new Employee();
   listdata: any;
 
@@ -53,17 +53,17 @@ export class CreateAgenceComponent implements OnInit {
     return (this.click = true);
   }
 
-  constructor(private serviceAgence: AgenceService, private router: Router, 
+  constructor(private serviceAgence: AgenceService, private router: Router,
     private serviceEmployee: EmployeeService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.serviceEmployee.getAllEmployee().subscribe((response) => {
-      this.employeeList = response;
-    });
+    // this.serviceEmployee.getAllEmployee().subscribe((response) => {
+    //   this.employeeList = response;
+    // });
 
-    this.serviceAgence.getAllAgences().subscribe((response) => {
-      this.agences = response;
-    });
+    // this.serviceAgence.getAllAgences().subscribe((response) => {
+    //   this.agences = response;
+    // });
 
 
     this.listdata = [];
@@ -75,13 +75,13 @@ export class CreateAgenceComponent implements OnInit {
       departement: ['', [Validators.required, Validators.maxLength(40)]],
       telephone: ['', [Validators.required, Validators.maxLength(40)]],
       employees: new FormArray([])
-   
+
     });
 
-    
+
   }
 
-  
+
   // public saveAgence(): void {
   //   this.isFormSubmitted = true;
   //   this.form.updateValueAndValidity({
@@ -121,11 +121,11 @@ export class CreateAgenceComponent implements OnInit {
   //   this.router.navigate(['/agences']);
   // }
 
-  ag!: AgenceDto; 
+  ag!: AgenceDto;
 
   public onSubmit() {
     try {
-    
+
       this.ag = this.form.value
       this.ag.employees = this.listdata
       this.serviceAgence.createAgence(this.ag).subscribe(data => {

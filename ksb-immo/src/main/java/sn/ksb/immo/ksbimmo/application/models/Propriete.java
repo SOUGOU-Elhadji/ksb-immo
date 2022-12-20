@@ -57,6 +57,8 @@ public class Propriete {
     private Boolean jardin;
 
     private Boolean ascenseur;
+    
+    private String numeroLot;
 
     @Column(columnDefinition = "boolean default false")
     private Boolean status;

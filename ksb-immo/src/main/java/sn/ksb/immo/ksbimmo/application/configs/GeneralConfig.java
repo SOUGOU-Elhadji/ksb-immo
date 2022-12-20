@@ -29,7 +29,7 @@ public class GeneralConfig {
         mapper.addConverter(new Converter<String, Date>() {
             @Override
             public Date convert(MappingContext<String, Date> mappingContext) {
-                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = null;
                 try {
                     date = format.parse(mappingContext.getSource());

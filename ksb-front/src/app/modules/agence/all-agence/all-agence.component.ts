@@ -30,6 +30,7 @@ export class AllAgenceComponent implements OnInit {
     })
   }
 
+<<<<<<< HEAD
 
   public deleteAgence(id: string) {
     return this.serviceAgence.deleteAgence(id).subscribe(data => {
@@ -46,4 +47,16 @@ export class AllAgenceComponent implements OnInit {
 
 
 
+=======
+  public deleteAgence(agence : Agence){
+    return this.serviceAgence.deleteAgence(agence.id).subscribe((response) => {
+      try{
+        this.getAllAgence();
+      }catch (error){
+        throw error;
+      }
+    })
+  }
+
+>>>>>>> 8aa6e20aa801b95daf4f4cdf0657bf6d26d71177
 }

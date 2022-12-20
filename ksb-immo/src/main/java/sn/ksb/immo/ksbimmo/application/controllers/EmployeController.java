@@ -14,11 +14,7 @@ import java.util.List;
 @Slf4j
 @OpenAPIDefinition(tags = {@Tag(name = "Employé", description = "Employé API")})
 @RequestMapping("/api/employee")
-<<<<<<< HEAD
-@CrossOrigin(origins = "http://localhost:4200")
-=======
 @CrossOrigin
->>>>>>> a63cb9f2f2db6e095a956fdc57ae78d46285b00e
 public class EmployeController {
 
     private final EmployeeService service;
@@ -28,7 +24,7 @@ public class EmployeController {
     }
 
     //get All employees
-    @GetMapping("/all")
+    @GetMapping
     public List<EmployeeDto> getAllEmployee() {
         //log the entry of the method
         log.info("Entrée dans la méthode getAllEmployee du controller EmployeController");

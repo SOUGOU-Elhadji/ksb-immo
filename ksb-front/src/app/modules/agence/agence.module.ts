@@ -22,10 +22,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatTableModule} from '@angular/material/table';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
-    
+
     AllAgenceComponent,
     CreateAgenceComponent,
     UpdateAgenceComponent,
@@ -40,6 +41,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatExpansionModule,
     MatIconModule,
     MatSelectModule,
+    MatSlideToggleModule, 
     MatButtonModule,
     MatToolbarModule,
     MatDividerModule,
@@ -47,7 +49,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatMenuModule,
     MatTooltipModule,
     MatFormFieldModule,
-    
+
     MatDatepickerModule,
     MatTableModule,
     MatRadioModule
