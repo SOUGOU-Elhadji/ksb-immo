@@ -30,24 +30,6 @@ export class AllAgenceComponent implements OnInit {
     })
   }
 
-<<<<<<< HEAD
-
-  public deleteAgence(id: string) {
-    return this.serviceAgence.deleteAgence(id).subscribe(data => {
-      console.log(data);
-      window.location.reload();
-    })
-  }
-
-
-  updateAgence(id: string) {
-    this.router.navigate(['agence/edit', id]);
-  }
-
-
-
-
-=======
   public deleteAgence(agence : Agence){
     return this.serviceAgence.deleteAgence(agence.id).subscribe((response) => {
       try{
@@ -58,5 +40,4 @@ export class AllAgenceComponent implements OnInit {
     })
   }
 
->>>>>>> 8aa6e20aa801b95daf4f4cdf0657bf6d26d71177
 }

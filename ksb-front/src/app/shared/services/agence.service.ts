@@ -91,13 +91,13 @@ export class AgenceService {
 
 
   // METHOD TO GET A AGENCE BY ID
-  public getAgenceById(id: string): Observable<Agence>{
+  public getAgenceById(id: string): Observable<AgenceDto>{
     const params = new HttpParams()
       .set('sort',"description")
       .set('page',"2");
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    return this.httpClient.get<Agence>(`${this.Url}/${id}`, {"params": params, 'headers': headers})
+    return this.httpClient.get<AgenceDto>(`${this.Url}/${id}`, {"params": params, 'headers': headers})
     .pipe(
       map((response) => {
         return response;
