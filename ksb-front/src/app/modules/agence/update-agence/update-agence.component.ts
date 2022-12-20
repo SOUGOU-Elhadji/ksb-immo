@@ -10,6 +10,7 @@ export class UpdateAgenceComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

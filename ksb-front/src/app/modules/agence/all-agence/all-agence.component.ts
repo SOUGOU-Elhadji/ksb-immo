@@ -9,7 +9,11 @@ import { AgenceService } from 'src/app/shared/services/agence.service';
 })
 export class AllAgenceComponent implements OnInit {
 
+  p: number = 1;
   agences!: Agence[];
+  departement!: string;
+
+  
 
   constructor(private serviceAgence: AgenceService) { }
 
@@ -37,5 +41,15 @@ export class AllAgenceComponent implements OnInit {
       }
     })
   }
+
+  public search(){
+    if(this.departement != ""){
+      this.agences = this.agences.filter(res =>{
+        return res.departement.toLocaleLowerCase().match(this.departement.toLocaleLowerCase());
+      });
+    }else if(this.departement == ""){
+      this.ngOnInit();
+    }   
+    }
 
 }

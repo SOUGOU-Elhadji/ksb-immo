@@ -1,0 +1,14 @@
+.page{
+    right: 0;
+    position: absolute;
+    /* position: relative; */
+    bottom: -20px;
+    /*padding-right: 10px;*/
+    
+  }
+  
+  .my-pagination /deep/ .ngx-pagination .current {
+      background:rgb(42,63,84);
+      border-radius: 5px;
+      
+    }
