@@ -111,7 +111,7 @@ export class AgenceService {
   }
 
   // METHOD TO DELETE A AGENCE
-  public deleteAgence(id: string): Observable<Object>{
+  public deleteAgence(id: string): Observable<Agence>{
     const params = new HttpParams()
       .set('sort',"description")
       .set('page',"2");
@@ -131,13 +131,13 @@ export class AgenceService {
   }
 
   // METHOD TO UPDATE A AGENCE
-  public updateAgence(id: string, agence: Agence): Observable<Object>{
+  public updateAgence(agence: AgenceDto): Observable<Object>{
     const params = new HttpParams()
       .set('sort', "description")
       .set('page', "2");
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    return this.httpClient.put<Agence>(`${this.Url}/${id}`, agence, {'params': params, 'headers': headers})
+    return this.httpClient.put(`${this.Url}`, agence, {'params': params, 'headers': headers})
       .pipe(
         map((response) => {
           return response;

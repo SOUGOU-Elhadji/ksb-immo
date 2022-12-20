@@ -130,7 +130,8 @@ export class CreateAgenceComponent implements OnInit {
       this.ag.employees = this.listdata
       this.serviceAgence.createAgence(this.ag).subscribe(data => {
         console.log(data);
-        // window.location.reload();
+        alert("Agence ajouter!")
+         window.location.reload();
       });
     } catch (error) {
       throw error;

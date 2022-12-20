@@ -1,7 +1,7 @@
 import { Employee } from "../models/employee";
 
 export class AgenceDto {
-    id!: number;
+    id!: string;
     nom!: string;
     adresse!: string;
     region!: string;

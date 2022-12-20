@@ -1,7 +1,7 @@
 import { Employee } from "./employee";
 
 export class Agence {
-    id!: number;
+    id!: string;
     nom!: string;
     adresse!: string;
     region!: string;

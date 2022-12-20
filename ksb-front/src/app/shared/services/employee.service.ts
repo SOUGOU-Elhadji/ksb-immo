@@ -63,15 +63,6 @@ export class EmployeeService {
 
 
 
-
-
-
-
-
-
-
-
-
   // METHOD TO GET ALL Employee
 
   test_url = "http://localhost:8080/api/employee/all";
@@ -117,7 +108,7 @@ export class EmployeeService {
   }
 
   // METHOD TO DELETE A Employee
-  public deleteEmployee(id: string): Observable<Object>{
+  public deleteEmployee(id: string): Observable<Employee>{
     const params = new HttpParams()
       .set('sort',"description")
       .set('page',"2");
