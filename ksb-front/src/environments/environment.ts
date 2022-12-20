@@ -7,6 +7,7 @@ export const environment = {
   apiAgence: 'http://localhost:8080/api/agence',
   apiEmployee: 'http://localhost:8080/api/employee',
   apiProprietaire: 'http://localhost:8080/api/proprietaire',
+  apiLoyer: 'http://localhost:8080/api/loyer',
 };
 
 /*

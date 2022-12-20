@@ -1,0 +1,96 @@
+<div>
+  <!-- page content -->
+  <div class="page-title">
+      <div class="title_left">
+          <h3>Loyers  <small style="font-size:medium;">Some examples to get you started</small></h3>
+      </div>
+
+      <div class="title_right">
+          <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+              <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search for...">
+                  <span class="input-group-btn">
+                      <button class="btn btn-secondary" type="button">Go!</button>
+                  </span>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <!-- table content -->
+  <div class="col-md-12 col-sm-12">
+      <div class="x_panel">
+          <div class="x_title">
+              <h2>Loyers <small>Payés</small></h2>
+              <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><em class="fa fa-chevron-up"></em></a>
+                  </li>
+
+                  <li><a class="close-link"><em class="fa fa-close"></em></a>
+                  </li>
+              </ul>
+              <div class="clearfix"></div>
+          </div>
+
+          <div class="x_content">
+              <div class="row">
+                  <div class="col-sm-12">
+                      <div class="card-box table-responsive">
+                          <table class="table table-striped dt-responsive nowrap" cellSpacing="0" width="100%">
+                              <thead>
+                                  <tr>
+                                      <th scope="col">Locataire</th>
+                                      <th scope="col">Adresse</th>
+                                      <th scope="col">Début Bail</th>
+                                      <th scope="col">Fin Bail</th>
+                                      <th scope="col">Mensualité</th>
+                                      <th scope="col">Date Prochain Paiement</th>
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                
+                                  <tr *ngFor="let loyer of loyers">
+                                      <td>{{loyer.locataire?.prenom}} {{loyer.locataire?.nom}}</td>
+                                      <td>{{loyer.propriete?.adresse}}</td>
+                                      <td>{{loyer.dateDebut}}</td>
+                                      <td>{{loyer.dateFin}}</td>
+                                      <td>{{loyer.mensualite}}</td>
+                                      <td>{{loyer.dateProchainPaiement}}</td>
+
+                                      <td>
+                                        <a href=""><em class="fa fa-user-plus" aria-hidden="true"></em></a>
+                                        &nbsp;&nbsp;
+                                          <span class="dropdown table-dropdown">
+                                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                                  aria-expanded="false"></a>
+                                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                  <a class="dropdown-item" href="#"><em class="fa fa-eye"></em> Afficher</a>
+                                                  <a class="dropdown-item" ><em class="fa fa-edit"></em>
+                                                      Modifier</a>
+                                                  <a class="dropdown-item" ><em class="fa fa-trash"></em>
+                                                      Supprimer</a>
+                                              </div>
+                                          </span>
+                                      </td>
+                                  </tr>
+
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+  <!-- table content -->
+
+  <!-- page content -->
+
+</div>
+
+
+

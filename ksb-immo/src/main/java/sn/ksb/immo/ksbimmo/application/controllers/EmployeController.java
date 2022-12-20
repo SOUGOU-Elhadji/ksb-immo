@@ -25,11 +25,11 @@ public class EmployeController {
 
     //get All employees
     @GetMapping
-    public List<EmployeeDto> getAllEmployee() {
+    public List<Employee> getAllEmployee() {
         //log the entry of the method
         log.info("Entrée dans la méthode getAllEmployee du controller EmployeController");
         //initialize a list of employee
-        List<EmployeeDto> employees = null;
+        List<Employee> employees = null;
         //try to get all employees from the service
         try {
             employees = service.getAllEmployees();

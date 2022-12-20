@@ -25,10 +25,13 @@
             <div class="x_title">
                 <h2>Datas <small>Employee</small></h2>
                 <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <a  routerLink="/employee/new" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Add</a>
-                 
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li>
+                    <a href="employes/new" style="color: #5A738E;"><i class="fa fa-plus"></i></a>
+                  </li>
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
                 </ul>
                 <div class="clearfix"></div>
             </div>
@@ -40,30 +43,26 @@
                             <table class="table table-striped  dt-responsive nowrap" cellSpacing="0" width="100%">
                                 <thead>
                                     <tr>
+                                        <th scope="col">CNI</th>
                                         <th scope="col">Nom </th>
                                         <th scope="col">Prenom</th>
                                         <th scope="col">Telephone</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">CNI</th>
-                                        <th scope="col">Date de Livrance CNI</th>
                                         <th scope="col">Adresse</th>
-                                        <th scope="col">Numero Compte Bancaire</th>
-                                        <th scope="col">Manager</th>
+                                        <th scope="col">Agence</th>
                                         <!-- <th scope="col">Agence</th> -->
 
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let e of employ">
-                                        <th scope="row">{{e.nom}}</th>
+                                      <td>{{e.cni}}</td>
+                                      <td>{{e.nom}}</td>
                                         <td>{{e.prenom}}</td>
                                         <td>{{e.telephone}}</td>
                                         <td>{{e.email}}</td>
-                                        <td>{{e.cni}}</td>
-                                        <td>{{e.dateDelivranceCni}}</td>
                                         <td>{{e.adresse}}</td>
-                                        <td>{{e.numCompteBancaire}}</td>
-                                        <td>{{e.manager}}</td>
+                                        <td>{{e.agence?.nom}}</td>
                                         <!-- <td>{{e.agence?.nom}}</td> -->
                                         <td>
                                             <span class="dropdown table-dropdown">

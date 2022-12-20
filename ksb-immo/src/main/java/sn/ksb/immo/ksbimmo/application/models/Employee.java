@@ -39,7 +39,6 @@ public class Employee extends Utilisateur{
     private Boolean manager;
 
     @ManyToOne
-    @JsonIgnore
     private Agence agence;
 
     //generer le matricule

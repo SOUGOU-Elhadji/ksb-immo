@@ -12,4 +12,5 @@ public class LoyerDto {
     private Double caution;
     private String dateDebut;
     private Integer dureeBail;
+
 }

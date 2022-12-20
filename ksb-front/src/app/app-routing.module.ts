@@ -1,3 +1,4 @@
+import { LoyerPayesComponent } from './modules/loyer/loyer-payes/loyer-payes.component';
 import { CreateAgenceComponent } from './modules/agence/create-agence/create-agence.component';
 import { UpdateAgenceComponent } from './modules/agence/update-agence/update-agence.component';
 import { DetailsAgenceComponent } from './modules/agence/details-agence/details-agence.component';
@@ -21,20 +22,24 @@ const routes: Routes = [
     children: [
       {path: 'home', component: HomeComponent},
       {path: 'apporteurs', component: ListApporteurComponent},
-
-       
-      {path: 'agence', component: AllAgenceComponent},
-      {path: 'agence/detail/:id', component: DetailsAgenceComponent},
-      {path: 'agence/edit/:id', component: UpdateAgenceComponent},
-      {path: 'agence/new', component: CreateAgenceComponent},
-
-      {path: 'employee', component: AllEmployeeComponent},
-      {path: 'employee/new', component: CreateEmployeeComponent},
-
+      //Employee Routes
+      {path: 'employes', component: AllEmployeeComponent},
+      {path: 'employes/new', component: CreateEmployeeComponent},
+      //Agence Routes
       {path: 'agences', component : AllAgenceComponent},
       {path: 'agences/:id/details', component: DetailsAgenceComponent},
       {path: 'agences/:id/edit', component: UpdateAgenceComponent},
       {path: 'agences/new', component: CreateAgenceComponent, pathMatch: 'full'},
+
+      //Proprietaire Routes
+
+      //Propriete Routes
+
+      //Locataire Routes
+
+      //Loyer Routes
+      {path: 'loyers/payes', component: LoyerPayesComponent},
+      {path: 'loyers/non-payes', component: LoyerPayesComponent}
 
     ]
   }

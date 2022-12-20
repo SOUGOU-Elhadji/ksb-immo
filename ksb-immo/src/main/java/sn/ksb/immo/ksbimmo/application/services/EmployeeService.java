@@ -39,19 +39,19 @@ public class EmployeeService {
     }
 
     //récupérer tous les employés
-    public List<EmployeeDto> getAllEmployees() {
+    public List<Employee> getAllEmployees() {
         //log entrée dans la méthode getAllEmployees du service EmployeeService
         log.info("Entrée dans la méthode getAllEmployees du service EmployeeService");
         //initialisation de la liste des employés
-        List<EmployeeDto> dtos = new ArrayList<>();
+        List<Employee> dtos = new ArrayList<>();
         //try catch pour récupérer les employés
         try {
             //récupération des employés
-            List<Employee> employees = employeeRepo.findAll();
+            dtos = employeeRepo.findAll();
             //changer le type de la liste des employés
-            employees.forEach(employee -> {
+            /*employees.forEach(employee -> {
                 dtos.add(mapper.map(employee, EmployeeDto.class));
-            });
+            });*/
             //log récupération des employés
             log.info("Récupération des employés");
         } catch (Exception e) {
