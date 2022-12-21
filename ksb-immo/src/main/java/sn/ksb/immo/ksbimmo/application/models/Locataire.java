@@ -1,5 +1,6 @@
 package sn.ksb.immo.ksbimmo.application.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -34,6 +35,7 @@ public class Locataire extends Utilisateur{
     private String numCompteBancaire;
 
     @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "locataire")
+    @JsonIgnore
     private Loyer loyer;
 
 }

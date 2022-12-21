@@ -145,12 +145,20 @@ public class AgenceService {
         //try catch pour modifier l'agence
         Agence agence = null;
         try {
-            agence = mapper.map(dto, Agence.class);
-            //modifier l'agence a la liste des employés
-            for (Employee employee : agence.getEmployees()) {
-                employee.setAgence(agence);
+            //récupération de l'agence par son id
+            agence = agenceRepo.findById(UUID.fromString(dto.getId())).orElse(null);
+            //si l'agence est null
+            if (agence == null) {
+                //log agence non trouvée dans la base de données
+                log.error("Agence non trouvée dans la base de données");
+                return dto;
             }
             //modification de l'agence
+            agence.setNom(dto.getNom());
+            agence.setAdresse(dto.getAdresse());
+            agence.setTelephone(dto.getTelephone());
+            agence.setRegion(dto.getRegion());
+            agence.setDepartement(dto.getDepartement());
             agence = agenceRepo.save(agence);
             //log modification de l'agence
             log.info("Modification de l'agence");
@@ -159,7 +167,7 @@ public class AgenceService {
             log.error("Erreur lors de la modification de l'agence");
         }
         //si l'id de l'agence est null
-        if (agence == null && !agence.getId().equals(agence.getId())) {
+        if (agence == null || agence.getId() != UUID.fromString(dto.getId())) {
             //log agence non modifiée dans la base de données
             log.error("Agence non modifiée dans la base de données");
         }

@@ -319,7 +319,7 @@ public class InitDatas implements CommandLineRunner {
                 .loyer(
                         LoyerDto.builder()
                                 .mensualite(100000.0)
-                                .dateDebut("01-01-2021")
+                                .dateDebut("2023-01-01")
                                 .dureeBail(48)
                                 .caution(200000.0)
                                 .build()

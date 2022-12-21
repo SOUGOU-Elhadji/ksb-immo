@@ -31,7 +31,7 @@ public class LoyerController {
         }catch (Exception e) {
             log.error("Erreur lors la récupération des loyers payés : {}", e.getMessage());
         }
-        if (loyers != null) {
+        if (loyers == null || loyers.isEmpty()) {
             log.error("Erreur lors la récupération des loyers payés");
         }
         log.info("Sortie dans la méthode getloyerPayes du controller LoyerController");

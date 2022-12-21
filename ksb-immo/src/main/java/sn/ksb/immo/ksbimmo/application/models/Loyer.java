@@ -44,7 +44,6 @@ public class Loyer {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "locataire_id", referencedColumnName = "id")
-    @JsonIgnore
     private Locataire locataire;
 
     @OneToMany(cascade = CascadeType.MERGE)
