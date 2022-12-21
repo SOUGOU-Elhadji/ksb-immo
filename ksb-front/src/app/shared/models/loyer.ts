@@ -2,7 +2,7 @@ import { Locataire } from "./locataire";
 import { Propriete } from "./propriete";
 
 export class Loyer {
-  mensualite !: number;
+    mensualite !: number;
     dateDebut !: Date
     dateFin !: Date
     dateDernierPaiement !: Date

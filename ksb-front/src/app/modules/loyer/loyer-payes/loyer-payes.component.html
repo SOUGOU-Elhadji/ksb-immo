@@ -51,18 +51,16 @@
                                   </tr>
                               </thead>
                               <tbody>
-                                
+
                                   <tr *ngFor="let loyer of loyers">
                                       <td>{{loyer.locataire?.prenom}} {{loyer.locataire?.nom}}</td>
                                       <td>{{loyer.propriete?.adresse}}</td>
-                                      <td>{{loyer.dateDebut}}</td>
-                                      <td>{{loyer.dateFin}}</td>
-                                      <td>{{loyer.mensualite}}</td>
-                                      <td>{{loyer.dateProchainPaiement}}</td>
+                                      <td>{{loyer.dateDebut | date:"dd-MM-yyy"}}</td>
+                                      <td>{{loyer.dateFin | date:"dd-MM-yyy"}}</td>
+                                      <td>{{loyer.mensualite}} CFA</td>
+                                      <td>{{loyer.dateProchainPaiement| date:"dd-MM-yyy"}}</td>
 
                                       <td>
-                                        <a href=""><em class="fa fa-user-plus" aria-hidden="true"></em></a>
-                                        &nbsp;&nbsp;
                                           <span class="dropdown table-dropdown">
                                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                                   aria-expanded="false"></a>

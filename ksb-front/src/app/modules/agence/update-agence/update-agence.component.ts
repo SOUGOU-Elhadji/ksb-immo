@@ -27,21 +27,6 @@ export class UpdateAgenceComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.form = this.fb.group({
-      nom: ['', [Validators.required, Validators.maxLength(40)]],
-      adresse: ['', [Validators.required, Validators.maxLength(40)]],
-      region: ['', [Validators.required, Validators.maxLength(40)]],
-      departement: ['', [Validators.required, Validators.maxLength(40)]],
-      telephone: ['', [Validators.required, Validators.maxLength(40)]],
-      // employees: new FormArray([])
-
-    });
-
-    this.id = this.route.snapshot.params['id'];
-    this.serviceAgence.getAgenceById(this.id).subscribe(data => {
-      this.agence = data;
-    }, error => console.log(error));
- 
   }
 
 

@@ -10,7 +10,11 @@ import { AgenceService } from 'src/app/shared/services/agence.service';
 })
 export class AllAgenceComponent implements OnInit {
 
+  p: number = 1;
   agences!: Agence[];
+  departement!: string;
+
+
 
   constructor(private serviceAgence: AgenceService,
               private router: Router) { }
@@ -30,23 +34,24 @@ export class AllAgenceComponent implements OnInit {
     })
   }
 
-
-
-  public deleteAgence(id: string) {
-    return this.serviceAgence.deleteAgence(id).subscribe(data => {
-      console.log(data);
-      window.location.reload();
+  public deleteAgence(agence : Agence){
+    return this.serviceAgence.deleteAgence(agence.id).subscribe((response) => {
+      try{
+        this.getAllAgence();
+      }catch (error){
+        throw error;
+      }
     })
   }
 
-
-  updateAgence(id: string) {
-    this.router.navigate(['agence/edit', id]);
-  }
-
-
-
-
-
+  public search(){
+    if(this.departement != ""){
+      this.agences = this.agences.filter(res =>{
+        return res.departement.toLocaleLowerCase().match(this.departement.toLocaleLowerCase());
+      });
+    }else if(this.departement == ""){
+      this.ngOnInit();
+    }
+    }
 
 }

@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { ListApporteurComponent } from './apporteur/list-apporteur/list-apporteur.component';
 import { CreateEmployeeComponent } from './modules/employee/create-employee/create-employee.component';
 import { AllEmployeeComponent } from './modules/employee/all-employee/all-employee.component';
+import { CreateLocataireComponent } from './modules/locataire/create-locataire/create-locataire.component';
 
 const routes: Routes = [
   // {path: 'home', component: HomeComponent},
@@ -30,16 +31,10 @@ const routes: Routes = [
       {path: 'agences/:id/details', component: DetailsAgenceComponent},
       {path: 'agences/:id/edit', component: UpdateAgenceComponent},
       {path: 'agences/new', component: CreateAgenceComponent, pathMatch: 'full'},
-
-      //Proprietaire Routes
-
-      //Propriete Routes
-
       //Locataire Routes
-
+      {path: 'locataires/new', component: CreateLocataireComponent},
       //Loyer Routes
-      {path: 'loyers/payes', component: LoyerPayesComponent},
-      {path: 'loyers/non-payes', component: LoyerPayesComponent}
+      {path: 'loyers/payes', component: LoyerPayesComponent}
 
     ]
   }
