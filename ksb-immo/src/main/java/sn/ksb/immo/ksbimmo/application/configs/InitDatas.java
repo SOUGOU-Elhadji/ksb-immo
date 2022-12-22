@@ -264,7 +264,7 @@ public class InitDatas implements CommandLineRunner {
                 .loyer(
                         LoyerDto.builder()
                                 .mensualite(100000.0)
-                                .dateDebut("2023-01-01")
+                                .dateDebut("2022-11-26")
                                 .dureeBail(48)
                                 .caution(200000.0)
                                 .build()
@@ -319,7 +319,7 @@ public class InitDatas implements CommandLineRunner {
                 .loyer(
                         LoyerDto.builder()
                                 .mensualite(100000.0)
-                                .dateDebut("2023-01-01")
+                                .dateDebut("2022-12-01")
                                 .dureeBail(48)
                                 .caution(200000.0)
                                 .build()
@@ -329,21 +329,6 @@ public class InitDatas implements CommandLineRunner {
         LocataireDto locataire1 = locataireService.createLocataire(locataireDto1);
         LocataireDto locataire2 = locataireService.createLocataire(locataireDto2);
 
-        //enregitrer deux mois de mensualités pour chaque locataire
-        MensualiteDto mensualiteDto1 = MensualiteDto.builder()
-                .locataireId(locataire1.getId())
-                .montant(100000.0)
-                .nombreMois(1)
-                .build();
-
-        MensualiteDto mensualiteDto2 = MensualiteDto.builder()
-                .locataireId(locataire2.getId())
-                .montant(100000.0)
-                .nombreMois(1)
-                .build();
-
-        mensualiteService.createMensualite(mensualiteDto1);
-        mensualiteService.createMensualite(mensualiteDto2);
 
     }
 }

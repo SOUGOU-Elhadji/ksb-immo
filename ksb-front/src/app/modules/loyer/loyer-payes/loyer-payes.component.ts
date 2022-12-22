@@ -9,7 +9,7 @@ import { LoyerService } from 'src/app/shared/services/loyer.service';
 })
 export class LoyerPayesComponent implements OnInit {
 
-  loyers: any[] = [];
+  loyers: Loyer[] = [];
 
   constructor(private service: LoyerService) { }
 

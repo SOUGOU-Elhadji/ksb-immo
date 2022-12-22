@@ -1,3 +1,4 @@
+import { LoyerNonPayesComponent } from './modules/loyer/loyer-non-payes/loyer-non-payes.component';
 import { LoyerPayesComponent } from './modules/loyer/loyer-payes/loyer-payes.component';
 import { CreateAgenceComponent } from './modules/agence/create-agence/create-agence.component';
 import { UpdateAgenceComponent } from './modules/agence/update-agence/update-agence.component';
@@ -34,7 +35,8 @@ const routes: Routes = [
       //Locataire Routes
       {path: 'locataires/new', component: CreateLocataireComponent},
       //Loyer Routes
-      {path: 'loyers/payes', component: LoyerPayesComponent}
+      {path: 'loyers/payes', component: LoyerPayesComponent},
+      {path: 'loyers/non-payes', component: LoyerNonPayesComponent}
 
     ]
   }

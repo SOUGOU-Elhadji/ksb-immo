@@ -35,7 +35,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CreateAgenceComponent,
     UpdateAgenceComponent,
     DetailsAgenceComponent,
-    FormatDatePipe
   ],
   imports: [
     CommonModule,

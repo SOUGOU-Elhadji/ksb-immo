@@ -43,15 +43,31 @@ public class MensualiteService {
         Mensualite mensualite = null;
         try {
             //recuperer le loyer du locataire
-            Locataire locataire = locataireRepository.findById(UUID.fromString(dto.getLocataireId())).get();
-            Loyer loyer = locataire.getLoyer();
-            //creer un objet mensualite
-            mensualite = Mensualite.builder().loyer(loyer).datePaiement(new Date()).build();
-            loyer.getMensualites().add(mensualite);
+            Loyer loyer = loyerRepository.findById(UUID.fromString(dto.getLoyerId())).orElse(null);
+            //si le loyer n'existe pas
+            if (loyer == null) {
+                log.warn("Le loyer n'existe pas");
+                return null;
+            }
+            //creer la mensualite
+            mensualite = new Mensualite();
+            mensualite.setLoyer(loyer);
+            mensualite.setDatePaiement(new Date());
+            if (dto.getNombreMois() > 1) {
+                mensualite.setMontant(loyer.getMensualite() * dto.getNombreMois());
+            } else {
+                mensualite.setMontant(loyer.getMensualite());
+            }
+            //enregistrer la mensualite
+            mensualite = mensualiteRepository.save(mensualite);
+            //modifier le dernier paiement du loyer
             loyer.setDernierPaiement(new Date());
-            loyer.setDateProchainPaiement(Date.from(LocalDate.now().plusMonths(1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            //modifier la date du prochain paiement
+            LocalDate localDate = loyer.getDateProchainPaiement().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            localDate = localDate.plusMonths(dto.getNombreMois());
+            loyer.setDateProchainPaiement(Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            //enregistrer le loyer
             loyerRepository.save(loyer);
-            mensualiteRepository.save(mensualite);
         }catch (Exception e) {
             log.error("Erreur lors la création de l'objet : {}", e.getMessage());
         }

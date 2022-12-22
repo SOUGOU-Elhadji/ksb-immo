@@ -9,6 +9,7 @@ export const environment = {
   apiProprietaire: 'http://localhost:8080/api/proprietaire',
   apiLoyer: 'http://localhost:8080/api/loyer',
   apiLocataire: 'http://localhost:8080/api/locataires',
+  apiMensualite: 'http://localhost:8080/api/mensualite',
 };
 
 /*

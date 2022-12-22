@@ -25,6 +25,8 @@ public class Mensualite {
 
     private Date datePaiement;
 
+    private Double montant;
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JsonIgnore
     private Loyer loyer;

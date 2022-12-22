@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MensualiteDto {
-    private String locataireId;
+    private String loyerId;
 
     private Double montant;
 

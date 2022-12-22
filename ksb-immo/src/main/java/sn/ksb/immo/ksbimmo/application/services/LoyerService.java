@@ -34,12 +34,13 @@ public class LoyerService {
             calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
             Date dateFin = calendar.getTime();
             log.info("Récupération des loyers payés entre le {} et le {}", dateDebut, dateFin);
-            loyers = loyerRepository.findByDernierPaiementAfter(dateDebut);
+            loyers = loyerRepository.findByPaidForCurrentMonth(LocalDate.now().getMonthValue());
+            //log de la liste des loyers
         }catch (Exception e) {
             log.error("Erreur lors de la récupération des loyers : {}", e.getMessage());
         }
         if (loyers == null || loyers.isEmpty()) {
-            log.error("Erreur lors de la récupération des loyers");
+            log.warn("Erreur lors de la récupération des loyers");
         }
         log.info("Sortie dans la méthode getLoyers du service LoyerService");
         return loyers;

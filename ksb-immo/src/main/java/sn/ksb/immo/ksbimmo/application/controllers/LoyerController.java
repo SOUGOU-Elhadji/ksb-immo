@@ -32,7 +32,7 @@ public class LoyerController {
             log.error("Erreur lors la récupération des loyers payés : {}", e.getMessage());
         }
         if (loyers == null || loyers.isEmpty()) {
-            log.error("Erreur lors la récupération des loyers payés");
+            log.warn("Aucun loyer payé trouvé pour le mois en cours");
         }
         log.info("Sortie dans la méthode getloyerPayes du controller LoyerController");
         return loyers;
@@ -48,7 +48,7 @@ public class LoyerController {
             log.error("Erreur lors la récupération des loyers non payés : {}", e.getMessage());
         }
         if (loyers == null || loyers.isEmpty()) {
-            log.error("Erreur lors la récupération des loyers non payés");
+            log.warn("Aucun loyer non payé trouvé pour le mois en cours");
         }
         log.info("Sortie dans la méthode getloyerNonPayes du controller LoyerController");
         return loyers;

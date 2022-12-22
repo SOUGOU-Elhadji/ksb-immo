@@ -151,12 +151,16 @@ public class LocataireService {
                 loyer.setMontant(dto.getLoyer().getMensualite() * dto.getLoyer().getDureeBail());
                 //convertir le Date en LocalDate
                 LocalDate date = loyer.getDateDebut().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate date2 = loyer.getDateDebut().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 //ajouter la durée du bail
                 date = date.plusMonths(dto.getLoyer().getDureeBail());
                 //convertir le LocalDate en Date
                 Date dateFin = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
                 //ajouter la date de fin du bail
                 loyer.setDateFin(dateFin);
+                //specifier la date du prochain paiement au mois suivant
+                loyer.setDateProchainPaiement(Date.from(date2.plusMonths(1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                loyer.setDernierPaiement(loyer.getDateDebut());
                 loyer.setLocataire(loc);
                 propriete.getLoyer().add(loyer);
                 loc.setLoyer(loyer);

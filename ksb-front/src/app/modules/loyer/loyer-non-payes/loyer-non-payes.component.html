@@ -23,7 +23,7 @@
   <div class="col-md-12 col-sm-12">
       <div class="x_panel">
           <div class="x_title">
-              <h2>Loyers <small>Payés</small></h2>
+              <h2>Loyers <small>Impayés</small></h2>
               <ul class="nav navbar-right panel_toolbox">
                   <li><a class="collapse-link"><em class="fa fa-chevron-up"></em></a>
                   </li>
@@ -47,25 +47,56 @@
                                       <th scope="col">Fin Bail</th>
                                       <th scope="col">Mensualité</th>
                                       <th scope="col">Date Prochain Paiement</th>
-                                      <th scope="col">Date Dernier Paiement</th>
+                                      <th scope="col">Actions</th>
                                   </tr>
                               </thead>
                               <tbody>
 
-                                  <tr *ngFor="let loyer of loyers">
+                                  <tr *ngFor="let loyer of loyers | paginate: { itemsPerPage: 10, currentPage: p }">
                                       <td>{{loyer.locataire?.prenom}} {{loyer.locataire?.nom}}</td>
                                       <td>{{loyer.propriete?.adresse}}</td>
                                       <td>{{loyer.dateDebut | date:"dd-MM-yyy"}}</td>
                                       <td>{{loyer.dateFin | date:"dd-MM-yyy"}}</td>
-                                      <td>{{loyer.mensualite | currency:'XOF'}}</td>
+                                      <td>{{loyer.mensualite}} CFA</td>
                                       <td>{{loyer.dateProchainPaiement| date:"dd-MM-yyy"}}</td>
 
                                       <td>
-                                          {{ loyer.dernierPaiement | date:"dd-MM-yyy" }}
+                                          <button class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm">Payer</button>
                                       </td>
+                                      <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm">
+                                          <div class="modal-content">
+
+                                            <div class="modal-header">
+                                              <h4 class="modal-title" id="myModalLabel2">Modal title</h4>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <h4>Enregistrer paiement</h4>
+
+                                                <div class="form-group">
+                                                  <label for="montant">Montant</label>
+                                                  <input type="number" class="form-control" id="montant" value="{{loyer.mensualite}}" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                  <label for="nombre">Nombre de mois</label>
+                                                  <input type="number" min="1" class="form-control" id="nombre" value="1" [(ngModel)]="nombreDeMois">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                              <button type="submit" class="btn btn-primary" (click)="payer(loyer)" data-dismiss="modal">Enregistrer</button>
+                                            </div>
+
+                                          </div>
+                                        </div>
+                                      </div>
                                   </tr>
 
                               </tbody>
+                              <br><br>
+                              <pagination-controls class="page my-pagination" (pageChange)="p = $event"></pagination-controls>
                           </table>
                       </div>
                   </div>

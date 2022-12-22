@@ -74,7 +74,7 @@ function init_sidebar() {
 
     $('#sidebar-menu').find('a').on('click', function (ev) {
         var $li = $(this).parent();
-
+        //log the class of the clicked parent element
         if ($li.is('.active')) {
             $li.removeClass('active active-sm');
             $('ul:first', $li).slideUp(function () {

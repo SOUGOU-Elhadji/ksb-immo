@@ -1,3 +1,4 @@
+import { LoyerNonPayesComponent } from './modules/loyer/loyer-non-payes/loyer-non-payes.component';
 import { LoyerPayesComponent } from './modules/loyer/loyer-payes/loyer-payes.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,8 +23,10 @@ import { ListApporteurComponent } from './apporteur/list-apporteur/list-apporteu
 import { NewApporteurComponent } from './apporteur/new-apporteur/new-apporteur.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ToastrModule } from "ngx-toastr";
 
 import { NgxPaginationModule } from 'ngx-pagination';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FooterComponent,
     ListApporteurComponent,
     NewApporteurComponent,
-    LoyerPayesComponent
+    LoyerPayesComponent,
+    LoyerNonPayesComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatMenuModule,
     MatSlideToggleModule,
 
-    NgxPaginationModule
+    NgxPaginationModule,
+    ToastrModule.forRoot()
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
