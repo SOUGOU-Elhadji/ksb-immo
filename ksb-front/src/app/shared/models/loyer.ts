@@ -1,9 +1,11 @@
+import { Employee } from "./employee";
 import { Locataire } from "./locataire";
 import { Propriete } from "./propriete";
 
 export class Loyer {
+    UUID !: String;
     id !: string
-    mensualite !: number;
+    montant !: number;
     dateDebut !: Date
     dateFin !: Date
     dernierPaiement !: Date
@@ -12,4 +14,5 @@ export class Loyer {
     montant !: number
     propriete !: Propriete
     locataire !: Locataire
+    employee !: Employee
 }

@@ -1,3 +1,4 @@
+import { Loyer } from "./loyer";
 import { Utilisateur } from "./utilisateur";
 
 export class Locataire extends Utilisateur {
@@ -9,5 +10,7 @@ export class Locataire extends Utilisateur {
     email!: string;
     profession!: string;
     cni!: string;
-    conjoint!: Locataire;
+    garant!: Locataire;
+    numCompteBancaire !: String;
+    loyer !: Loyer;
 }
