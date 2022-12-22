@@ -9,6 +9,7 @@ export class Loyer {
     dateDebut !: Date
     dateFin !: Date
     dernierPaiement !: Date
+    mensualite !: number
     dateProchainPaiement !: Date
     caution !: number
     propriete !: Propriete
