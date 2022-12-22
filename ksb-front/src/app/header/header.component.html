@@ -14,10 +14,10 @@
           <ul class="nav side-menu">
             <li><a><i class="fa fa-home"></i> Home</a></li>
             <li><a routerLink="agences"><i class="fa fa-building"></i> Agence</a></li>
-            <li><a><i class="fa fa-users"></i> Employés</a></li>
-            <li><a><i class="fa fa-user"></i> Apporteurs d'Affaire</a></li>
-            <li><a><i class="fa fa-user"></i> Proprietaires</a></li>
-            <li><a><i class="fa fa-users"></i> Locataires</a></li>
+            <li><a routerLink="employes"><i class="fa fa-users"></i> Employés</a></li>
+            <li><a routerLink="apporteurs-affaires"><i class="fa fa-user"></i> Apporteurs d'Affaire</a></li>
+            <li><a routerLink="proprietaires"><i class="fa fa-user"></i> Proprietaires</a></li>
+            <li><a routerLink="locataires"><i class="fa fa-users"></i> Locataires</a></li>
             <li><a ><i class="fa fa-file"></i> Loyers <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                   <li><a routerLink="loyers/payes">Payés</a></li>
@@ -76,10 +76,6 @@
           </li>
 
           <li role="presentation" class="nav-item dropdown open">
-            <!-- <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-              <i class="fa fa-envelope-o"></i>
-              <span class="badge bg-green">6</span>
-            </a> -->
             <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
               <li class="nav-item">
                 <a class="dropdown-item">
