@@ -11,7 +11,6 @@ export class Loyer {
     dernierPaiement !: Date
     dateProchainPaiement !: Date
     caution !: number
-    montant !: number
     propriete !: Propriete
     locataire !: Locataire
     employee !: Employee
