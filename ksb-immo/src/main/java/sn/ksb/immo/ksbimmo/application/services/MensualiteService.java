@@ -24,16 +24,11 @@ public class MensualiteService {
 
     private final MensualiteRepo mensualiteRepository;
 
-    private final LocataireRepo locataireRepository;
-
-    private final ProprieteRepo proprieteRepository;
 
     private final LoyerRepo loyerRepository;
 
-    public MensualiteService(MensualiteRepo mensualiteRepository, LocataireRepo locataireRepository, ProprieteRepo proprieteRepository, LoyerRepo loyerRepository) {
+    public MensualiteService(MensualiteRepo mensualiteRepository, LoyerRepo loyerRepository) {
         this.mensualiteRepository = mensualiteRepository;
-        this.locataireRepository = locataireRepository;
-        this.proprieteRepository = proprieteRepository;
         this.loyerRepository = loyerRepository;
     }
 

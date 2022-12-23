@@ -26,7 +26,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ToastrModule } from "ngx-toastr";
 
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -55,6 +55,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BrowserAnimationsModule,
     MatMenuModule,
     MatSlideToggleModule,
+    Ng2SearchPipeModule,
 
     NgxPaginationModule,
     ToastrModule.forRoot()

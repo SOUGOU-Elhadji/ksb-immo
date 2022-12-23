@@ -1,3 +1,5 @@
+import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -8,6 +10,7 @@ import { CreateProprietaireComponent } from './create-proprietaire/create-propri
 import { AllProprietaireComponent } from './all-proprietaire/all-proprietaire.component';
 
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
   declarations: [
     DetailsProprietaireComponent,
@@ -17,7 +20,10 @@ import { AllProprietaireComponent } from './all-proprietaire/all-proprietaire.co
   ],
   imports: [
     CommonModule,
-    ProprietaireRoutingModule
+    ProprietaireRoutingModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
+    FormsModule
   ],
   exports: [
     DetailsProprietaireComponent,
