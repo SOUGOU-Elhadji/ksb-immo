@@ -32,18 +32,19 @@ export class AllProprietaireComponent implements OnInit {
     )
   }
 
-  public search(){
-    if (this.research != "") {
-      // filter the proprietaires by all proprietaire's attributes
-      this.proprietaires = this.proprietaires.filter(res => {
-        return res.nom.toLocaleLowerCase().match(this.research.toLocaleLowerCase()) ||
-        res.prenom.toLocaleLowerCase().match(this.research.toLocaleLowerCase()) ||
-        res.telephone.toLocaleLowerCase().match(this.research.toLocaleLowerCase()) ||
-        res.email.toLocaleLowerCase().match(this.research.toLocaleLowerCase()) ||
-        res.adresse.toLocaleLowerCase().match(this.research.toLocaleLowerCase()) ||
-        res.cni.toLocaleLowerCase().match(this.research.toLocaleLowerCase())
-      }
-      )
-    }
-  }
+  // public search(){
+  //   if (this.research != "") {
+  //     // filter the proprietaires by all proprietaire's attributes
+  //     this.proprietaires = this.proprietaires.filter(res => {
+  //       return res.nom.toLocaleLowerCase().includes(this.research)
+  //       || res.prenom.toLocaleLowerCase().includes(this.research)
+  //       || res.adresse.toLocaleLowerCase().includes(this.research)
+  //       || res.telephone.toLocaleLowerCase().includes(this.research)
+  //       || res.email.toLocaleLowerCase().includes(this.research)
+  //       || res.profession.toLocaleLowerCase().includes(this.research)
+  //     })
+  //   } else if (this.research == "") {
+  //     this.ngOnInit();
+  //   }
+  // }
 }

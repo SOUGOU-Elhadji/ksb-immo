@@ -8,7 +8,7 @@
     <div class="title_right">
       <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
         <div class="input-group">
-          <input type="text" class="form-control" [(ngModel)]="research" (input)="search()" placeholder="Rechercher">
+          <input type="text" class="form-control" [(ngModel)]="research"  placeholder="Rechercher">
           <span class="input-group-btn">
             <button class="btn btn-secondary" type="button">Go!</button>
           </span>
@@ -54,7 +54,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let proprio of proprietaires | paginate: { itemsPerPage: 10, currentPage: p }">
+                    <tr *ngFor="let proprio of proprietaires | filter:research| paginate: { itemsPerPage: 10, currentPage: p }">
                       <td>{{ proprio.nom }}</td>
                       <td>{{ proprio.prenom }}</td>
                       <td>{{ proprio.email}}</td>
@@ -63,7 +63,7 @@
                       <td>{{ proprio.profession }}</td>
                       <td >
                         <span *ngFor="let propriete of proprio.proprietes">
-                          {{ propriete.adresse }}, 
+                          {{ propriete.adresse }},
                         </span>
                       </td>
                       <td>
