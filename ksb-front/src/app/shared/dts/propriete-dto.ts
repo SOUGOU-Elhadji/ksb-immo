@@ -8,6 +8,7 @@ export class ProprieteDto{
     adresse!: string;
     prix!: number;
     surface!: number;
+    numeroLot !: string;
     nbrePiece!: number;
     nbreChambre!: number;
     nbreSalleDeBain!: number;
@@ -21,7 +22,6 @@ export class ProprieteDto{
     ascenseur!: boolean;
     apporteurAffaire!: ApporteurDto;
     agenceId!: string;
-
     dateDisponibilite!: string;
     proprietaireId!: string;
 

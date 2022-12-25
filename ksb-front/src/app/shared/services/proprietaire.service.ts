@@ -1,3 +1,4 @@
+import { ProprietaireDto } from './../dts/proprietaire-dto';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -25,8 +26,8 @@ export class ProprietaireService {
   constructor(private httpClient: HttpClient) { }
 
   // METHOD TO CREATE A NEW Proprietaire
-  public createProprietaire(proprietaire: Proprietaire): Observable<Object>{
-    const headers = { 'content-type': 'application/json'}  
+  public createProprietaire(proprietaire: ProprietaireDto): Observable<Object>{
+    const headers = { 'content-type': 'application/json'}
 
     const params = new HttpParams()
       .set('para1', "value1")
@@ -34,7 +35,7 @@ export class ProprietaireService {
 
     const body=JSON.stringify(Proprietaire);
     console.log(body)
-    return this.httpClient.post(this.Url, body, {'headers':headers, observe:'response', 
+    return this.httpClient.post(this.Url, body, {'headers':headers, observe:'response',
       reportProgress: true, 'params': params})
       .pipe(
         catchError((err) => {
@@ -45,13 +46,13 @@ export class ProprietaireService {
   }
 
   // METHOD TO GET ALL Proprietaires
-  public getAllProprietaires(): Observable<Proprietaire[]> {
+  public getAllProprietaires(): Observable<ProprietaireDto[]> {
     const params = new HttpParams()
       .set('sort',"description")
       .set('page',"2");
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    return this.httpClient.get<Proprietaire[]>(this.Url, {"params": params, 'headers': headers})
+    return this.httpClient.get<ProprietaireDto[]>(this.Url, {"params": params, 'headers': headers})
     // return this.httpClient.get<Agence[]>(`${this.Url}`, {'params': params})
     .pipe(
       map((response) => {
@@ -60,20 +61,20 @@ export class ProprietaireService {
       catchError((err, caught) => {
         console.log('error caught in service', err)
           console.error(err);
-          // return throwError(err);   
+          // return throwError(err);
           throw err;
       })
     );
   }
 
   // METHOD TO GET A Proprietaire BY ID
-  public getProprietaireById(id: string): Observable<Proprietaire>{
+  public getProprietaireById(id: string): Observable<ProprietaireDto>{
     const params = new HttpParams()
       .set('sort',"description")
       .set('page',"2");
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    return this.httpClient.get<Proprietaire>(`${this.Url}/${id}`, {"params": params, 'headers': headers})
+    return this.httpClient.get<ProprietaireDto>(`${this.Url}/id/${id}`, {"params": params, 'headers': headers})
     .pipe(
       map((response) => {
         return response;
@@ -93,7 +94,7 @@ export class ProprietaireService {
       .set('page',"2");
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    return this.httpClient.delete<Proprietaire>(`${this.Url}/${id}`, {"params": params, 'headers': headers})
+    return this.httpClient.delete<ProprietaireDto>(`${this.Url}/${id}`, {"params": params, 'headers': headers})
       .pipe(
         map((response) => {
           return response;
@@ -107,7 +108,7 @@ export class ProprietaireService {
   }
 
   // METHOD TO UPDATE A Proprietaire
-  public updateProprietaire(id: string, proprietaire: Proprietaire): Observable<Object>{
+  public updateProprietaire(id: string, proprietaire: ProprietaireDto): Observable<Object>{
     const params = new HttpParams()
       .set('sort', "description")
       .set('page', "2");
@@ -127,8 +128,8 @@ export class ProprietaireService {
   }
 
   public getProprietaire(nom: String) {
-    return this.httpClient.get<Proprietaire[]>(`${this.Url}/page-query=${nom}&_limit=10`, 
+    return this.httpClient.get<ProprietaireDto[]>(`${this.Url}/page-query=${nom}&_limit=10`,
     {observe: 'response'});
   }
-  
+
 }

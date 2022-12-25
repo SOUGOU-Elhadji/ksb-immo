@@ -38,7 +38,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ListApporteurComponent,
     NewApporteurComponent,
     LoyerPayesComponent,
-    LoyerNonPayesComponent
+    LoyerNonPayesComponent,
+    
   ],
   imports: [
     BrowserModule,

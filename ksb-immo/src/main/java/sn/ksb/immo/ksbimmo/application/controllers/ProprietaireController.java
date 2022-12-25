@@ -77,6 +77,32 @@ public class ProprietaireController {
         return proprietaire;
     }
 
+    @GetMapping("/id/{id}")
+    public ProprietaireDto getById(@PathVariable String id) {
+        //log the entry of the method
+        log.info("Entrée dans la méthode getById du controller ProprietaireController");
+        //initialize a proprietaire
+        ProprietaireDto proprietaire = null;
+        //log the id parameter
+        log.info("Paramètre id : " + id);
+        //try to get the proprietaire from the service
+        try {
+            proprietaire = service.findById(id);
+        } catch (Exception e) {
+            //log the error
+            log.error("Erreur lors de la récupération du proprietaire dans la base de données");
+        }
+        //if the proprietaire is null
+        if (proprietaire == null) {
+            //log the error
+            log.error("Aucun proprietaire n'a été trouvé dans la base de données");
+        }
+        //log the exit of the method
+        log.info("Sortie de la méthode getById du controller ProprietaireController");
+        //return the proprietaire
+        return proprietaire;
+    }
+
     //create proprietaire
     @PostMapping
     public ProprietaireDto create(@RequestBody ProprietaireDto proprietaire) {

@@ -1,3 +1,4 @@
+import { CreateProprieteComponent } from './modules/propriete/create-propriete/create-propriete.component';
 import { AllProprietaireComponent } from './modules/proprietaire/all-proprietaire/all-proprietaire.component';
 import { LoyerNonPayesComponent } from './modules/loyer/loyer-non-payes/loyer-non-payes.component';
 import { LoyerPayesComponent } from './modules/loyer/loyer-payes/loyer-payes.component';
@@ -41,6 +42,9 @@ const routes: Routes = [
 
       //Proprietaire Routes
       {path: 'proprietaires', component: AllProprietaireComponent},
+      {path: 'proprietaires/:id/new-propriete', component: CreateProprieteComponent},
+
+      //Proprietes Routes
 
     ]
   }

@@ -225,4 +225,29 @@ public class ProprietaireService {
 
     }
 
+    public ProprietaireDto findById(String id) {
+        //log the entry of the method
+        log.info("Entrée dans la méthode findById du service ProprietaireService");
+        //log the id parameter
+        log.info("Paramètre id : " + id);
+        ProprietaireDto proprietaireDto = null;
+        //try to retrieve the proprietaire from the database
+        try {
+            //retrieve the proprietaire from the database
+            Proprietaire proprietaire = proprietaireRepo.findById(UUID.fromString(id)).orElse(null);
+            //si le proprietaire est different de null
+            if (proprietaire != null) {
+                //map the proprietaire to proprietaireDto
+                proprietaireDto = modelMapper.map(proprietaire, ProprietaireDto.class);
+            }
+        } catch (Exception e) {
+            //log the error
+            log.error("Erreur lors de la récupération du proprietaire dans la base de données : {}", e.getMessage());
+        }
+        //log the exit of the method
+        log.info("Sortie de la méthode findById du service ProprietaireService");
+        //return the proprietaire
+        return proprietaireDto;
+    }
+
 }
