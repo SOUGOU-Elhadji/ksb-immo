@@ -8,50 +8,117 @@
   <div class="clearfix"></div>
 
   <div class="col-md-12 col-sm-12">
-    <div class="x-panel">
-      <div class="x-title">
-        <h2>Nouvelle Propriété <small>pour {{ proprietaire.prenom }} {{ proprietaire.nom }}</small></h2>
-        <div class="nav navbar-right panel_toolbox">
-          <a routerLink="/proprietaires">Annuler</a>
-        </div>
-        <div class="clearfix"></div>
-      </div>
-      <div class="x-content">
+    <div class="">
+      <div class="">
         <div class="row">
           <div class="col-sm-12">
-            <div class="card-box">
+            <div class="">
               <form [formGroup]="form">
                 <div class="row">
-                  <div class="col">
-                    <mat-form-field appearance="legacy">
-                      <mat-label>Type Propriété</mat-label>
-                      <mat-select>
-                        <mat-option *ngFor="let type of list" [value]="type">
-                          {{type | titlecase}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div class="col">
-                    <mat-form-field appearance="standard">
-                      <mat-label>Adresse</mat-label>
-                      <input matInput formControlName="adresse" placeholder="Adresse">
-                    </mat-form-field>
-                  </div>
-                  <div class="col">
-                    <mat-form-field appearance="standard">
-                      <mat-label for="numeroLot">Numéro Lot</mat-label>
-                      <input matInput formControlName="numeroLot" placeholder="Numéro Lot">
-                    </mat-form-field>
-                  </div>
-                  <div class="col">
-                    <mat-form-field appearance="standard">
-                      <mat-label>Description</mat-label>
-                      <input matInput formControlName="description" placeholder="Description">
-                    </mat-form-field>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="type">Type Propriété</label>
+                      <select class="form-control" formControlName="type" id="type" [(ngModel)]="propriete.type" >
+                        <option value="" disabled selected>Choisir le type</option>
+                        <option *ngFor="let type of list" value="{{type}}">{{type | titlecase}}</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="adresse">Adresse</label>
+                      <textarea class="form-control" formControlName="adresse" id="adresse" rows="2" [(ngModel)]="propriete.adresse"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      <textarea class="form-control" formControlName="description" id="description" rows="2" [(ngModel)]="propriete.description"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="numeroLot">Numero lot</label>
+                      <input type="text"
+                        class="form-control" formControlName="numeroLot" id="numeroLot" [(ngModel)]="propriete.numeroLot" />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="surface">Surface</label>
+                      <input type="number"
+                        class="form-control" formControlName="surface" id="surface" [(ngModel)]="propriete.surface">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="prix">Prix Souhaité</label>
+                      <input type="number"
+                        class="form-control" formControlName="prix" id="prix" [(ngModel)]="propriete.prix" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="nbreEtage">Nombre Etages</label>
+                      <input type="text"
+                        class="form-control" formControlName="nbreEtage" id="nbreEtage" [(ngModel)]="propriete.nbreEtage" />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="nbreAppartementParEtage">Nombre Appartement/Etage</label>
+                      <input type="number"
+                        class="form-control" formControlName="nbreAppartementParEtage" id="nbreAppartementParEtage" [(ngModel)]="propriete.nbreAppartementParEtage" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="nbreChambre">Nombre Chambres</label>
+                      <input type="number"
+                        class="form-control" formControlName="nbreChambre" id="nbreChambre" [(ngModel)]="propriete.nbreChambre" />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="nbreSalleDeBain">Nombre Salle de Bain</label>
+                      <input type="number"
+                        class="form-control" formControlName="nbreSalleDeBain" id="nbreSalleDeBain" [(ngModel)]="propriete.nbreSalleDeBain" />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="nbreToilette">Nombre Toilettes</label>
+                      <input type="number"
+                        class="form-control" formControlName="nbreToilette" id="nbreToilette" [(ngModel)]="propriete.nbreToilette" />
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <!-- <div class="row">
+                  <div class="col">
+                    <mat-slide-toggle [(ngModel)]="propriete.meuble">Meublé</mat-slide-toggle>
+                  </div>
+                  <div class="col">
+                    <mat-slide-toggle [(ngModel)]="propriete.garage">Garage</mat-slide-toggle>
+                  </div>
+                  <div class="col">
+                    <mat-slide-toggle [(ngModel)]="propriete.piscine">Piscine</mat-slide-toggle>
+                  </div>
+                  <div class="col">
+                    <mat-slide-toggle [(ngModel)]="propriete.ascenseur">Ascenseur</mat-slide-toggle>
+                  </div>
+                </div> -->
               </form>
+
+              <button type="submit" mat-raised-button color="primary" (click)="createPropriete()">Enregistrer</button>
             </div>
           </div>
         </div>

@@ -18,6 +18,7 @@ import { AllProprieteComponent } from './all-propriete/all-propriete.component';
 import { CreateProprieteComponent } from './create-propriete/create-propriete.component';
 import { UpdateProprieteComponent } from './update-propriete/update-propriete.component';
 import { DetailsProprieteComponent } from './details-propriete/details-propriete.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { DetailsProprieteComponent } from './details-propriete/details-propriete
     MatMenuModule,
     MatTooltipModule,
     MatDatepickerModule,
+    MatSlideToggleModule
 
   ],
   exports: [

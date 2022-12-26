@@ -15,7 +15,7 @@ export class CreateProprieteComponent implements OnInit {
 
   proprietaireId : string = this.activatedRoute.snapshot.params.id;
 
-  propriete !: ProprieteDto;
+  propriete : ProprieteDto = new ProprieteDto();
 
   proprietaire !: ProprietaireDto;
 
@@ -43,6 +43,7 @@ export class CreateProprieteComponent implements OnInit {
       nbreChambre: ['', [Validators.required]],
       nbreSalleDeBain: ['', [Validators.required]],
       nbreToilette: ['', [Validators.required]],
+      numeroLot: ['', [Validators.required]],
       nbreEtage: ['', [Validators.required]],
       nbreAppartementParEtage: ['', [Validators.required]],
       meuble: ['', [Validators.required]],
@@ -63,4 +64,9 @@ export class CreateProprieteComponent implements OnInit {
     )
   }
 
+  public createPropriete(){
+    this.propriete = this.form.value;
+    this.propriete.proprietaireId = this.proprietaireId;
+    console.log(this.propriete);
+  }
 }
