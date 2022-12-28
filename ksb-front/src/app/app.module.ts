@@ -23,8 +23,6 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { FooterComponent } from './footer/footer.component';
 import { ListApporteurComponent } from './apporteur/list-apporteur/list-apporteur.component';
 import { NewApporteurComponent } from './apporteur/new-apporteur/new-apporteur.component';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ToastrModule } from "ngx-toastr";
 
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -56,8 +54,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     UtilisateurModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatMenuModule,
-    MatSlideToggleModule,
     Ng2SearchPipeModule,
 
     NgxPaginationModule,
