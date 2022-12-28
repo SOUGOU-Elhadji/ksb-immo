@@ -49,24 +49,26 @@
 
 
 <div class="container" >
+  <h2>Locataire</h2>
+ &nbsp;
     <form >
       <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="inputEmail4">Nom</label>
           <input type="text" name="nom" [(ngModel)]="locataires.nom" class="form-control" id="inputEmail4" placeholder="Nom ">
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="inputPassword4">Prenom</label>
           <input type="text" name="prenom" [(ngModel)]="locataires.prenom" class="form-control" id="inputPassword4" placeholder="Prenom">
         </div>
-      </div>
-      <div class="form-row">
           <div class="form-group col-md-4">
               <label for="inputAddress">Adresse</label>
               <input type="text" name="Adresse" [(ngModel)]="locataires.adresse" class="form-control" id="inputAddress" placeholder="Adresse">
             </div>
+            </div>
+            <div class="form-row"></div>
             <div class="form-group col-md-4">
-              <label for="inputAddress2">Telephone</label>
+              <label for="inputTelephone4">Telephone</label>
               <input type="text" name="telephone" [(ngModel)]="locataires.telephone" class="form-control" id="inputAddress2" placeholder="Telephone">
             </div>
             <div class="form-group col-md-4">
@@ -74,18 +76,98 @@
                 <input type="text" name="email" [(ngModel)]="locataires.email" class="form-control" id="inputAddress2" placeholder="Email">
               </div>
             <div class="form-group col-md-4">
-              <label for="inputAddress">Profession</label>
-              <input type="text" name="profession" [(ngModel)]="locataires.profession" class="form-control" id="inputAddress" placeholder="Profession">
+              <!-- <label type="select" for="inputAddress">Profession</label> -->
+              &nbsp;&nbsp;&nbsp;
+              <input type="select" name="profession" [(ngModel)]="locataires.profession" class="form-control" id="inputAddress" placeholder="Profession">
+             <select> <option valeur="fr">Sans Emploi</option>
+              <option valeur="nl">Travailleur</option>  </select>
             </div>
-      </div>
-      <div class="form-group col-md-4">
-        <label for="inputAddress">CNI</label>
-        <input type="text" name="cni" [(ngModel)]="locataires.cni" class="form-control" id="inputAddress" placeholder="CNI">
-      </div>
+
+            
+
+  &nbsp;
+    <h2>Situation Professionnelle Locataire</h2>
+  &nbsp;
+
+
+            <div class="form-row">
             <div class="form-group col-md-4">
-              <label for="inputCity">Conjoint</label>
-              <!-- <input type="text" name="conjoint" [(ngModel)]="locataires.Locataire" class="form-control" id="inputCity" placeholder="Adresse"> -->
+              <label for="inputPassword4">Nom Employeur</label>
+              <input type="text" name="nom" [(ngModel)]="situationProfessionnelle.nomEmployeur" class="form-control" id="inputPassword4" placeholder="Nom Employeur">
             </div>
+              <div class="form-group col-md-4">
+                  <label for="inputAddress">Adresse Employeur</label>
+                  <input type="text" name="Adresse" [(ngModel)]="situationProfessionnelle.adresseEmployeur" class="form-control" id="inputAddress" placeholder="Adresse Employeur">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputAddress2">Telephone Employeur</label>
+                  <input type="text" name="telephone" [(ngModel)]="situationProfessionnelle.telephoneEmployeur" class="form-control" id="inputAddress2" placeholder="Telephone Employeur">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="inputAddress2">Email Employeur</label>
+                  <input type="text" name="email" [(ngModel)]="situationProfessionnelle.emailEmployeur" class="form-control" id="inputAddress2" placeholder="Email Employeur">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputAddress2">Poste Occupé Employeur</label>
+                  <input type="text" name="Poste" [(ngModel)]="situationProfessionnelle.posteOccupe" class="form-control" id="inputAddress2" placeholder="Poste Employeur">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputAddress2">Salaire Employeur</label>
+                  <input type="number" name="salaire" [(ngModel)]="situationProfessionnelle.salaire" class="form-control" id="inputAddress2" placeholder="Salaire Employeur">
+                </div>
+                </div>
+                <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputAddress2">Date Embauche</label>
+                  <input type="date" name="date" [(ngModel)]="situationProfessionnelle.dateEmbauche" class="form-control" id="inputAddress2" placeholder="Date Embauche">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputAddress2">Date Depart</label>
+                  <input type="date" name="date" [(ngModel)]="situationProfessionnelle.dateDepart" class="form-control" id="inputAddress2" placeholder="Date Depart">
+                </div>
+              </div>
+
+              &nbsp;
+              <h2>Information du Garant</h2>
+              &nbsp;
+
+            <!-- <div class="form-row"> -->
+            <div class="form-group col-md-4">
+              <label for="inputCity">CNI Garant</label>
+               <input type="text" name="conjoint" [(ngModel)]="garant.cni" class="form-control" id="inputCity" placeholder="CNI Garant"> -->
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputCity">Date Delivrance CNI Garant</label>
+               <input type="date" name="conjoint" [(ngModel)]="garant.dateDelivranceCni" class="form-control" id="inputCity" placeholder="dateDelivranceCni Garant"> -->
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Nom Garant</label>
+              <input type="text" name="nom" [(ngModel)]="garant.nom" class="form-control" id="inputEmail4" placeholder="Nom Garant">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Prenom Garant</label>
+              <input type="text" name="prenom" [(ngModel)]="garant.prenom" class="form-control" id="inputPassword4" placeholder="Prenom Garant">
+            </div>
+          <div class="form-row">
+              <div class="form-group col-md-4">
+                  <label for="inputAddress">Adresse Garant</label>
+                  <input type="text" name="Adresse" [(ngModel)]="garant.adresse" class="form-control" id="inputAddress" placeholder="Adresse Garant">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputAddress2">Telephone Garant</label>
+                  <input type="text" name="telephone" [(ngModel)]="garant.telephone" class="form-control" id="inputAddress2" placeholder="Telephone Garant">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputAddress2">Email Garant</label>
+                    <input type="text" name="email" [(ngModel)]="garant.email" class="form-control" id="inputAddress2" placeholder="Email Garant">
+                  </div>
+                <div class="form-group col-md-4">
+                  <label for="inputAddress">Profession Garant</label>
+                  <input type="text" name="profession" [(ngModel)]="garant.profession" class="form-control" id="inputAddress" placeholder="Profession Garant">
+                </div>
+                </div>
       <button class="btn btn-primary" type="submit" (click)="onSubmit()">Save Data</button>
     </form>
   </div>

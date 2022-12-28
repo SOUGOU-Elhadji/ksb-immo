@@ -1,107 +1,125 @@
 <div role="main">
-    <div class="">
-      <div class="page-title">
-        <div class="title_left">
-          <h3>Modifier l'Agence</h3>
-        </div>
-  
-        <div class="title_right">
-          <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Go!</button>
-              </span>
-            </div>
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Modifier l'Agence</h3>
+      </div>
+
+      <div class="title_right">
+        <div class="col-md-5 col-sm-5  form-group pull-right top_search">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Go!</button>
+            </span>
           </div>
         </div>
       </div>
-      <div class="clearfix"></div>
-      <div class="row">
-        <div class="col-md-12 col-sm-12 ">
-          <div class="x_panel">
-            <div class="x_title">
-              <h2> Agence <small>different form elements</small></h2>
-              <ul class="nav navbar-right panel_toolbox">
-                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                </li>
-                <!-- <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                    aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a class="dropdown-item" href="#">Settings 1</a>
-                    </li>
-                    <li><a class="dropdown-item" href="#">Settings 2</a>
-                    </li>
-                  </ul>
-                </li> -->
-                <li><a class="close-link"><i class="fa fa-close"></i></a>
-                </li>
-              </ul>
-              <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-              <br />
-  
-  
-  
-  
-  
-              <form [formGroup]="form">
-                <mat-form-field>
-                  <mat-label for="nomId">Nom Agence</mat-label>
-                  <input matInput placeholder="Nom agence" id="nom" [(ngModel)]="agence.nom"  formControlName="nom"
-                    placeholder="Nom* (obligatoire)" [ngClass]="{ 'is-invalid': formErrors.nom }">
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2> Agence <small>different form elements</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              <!-- <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a class="dropdown-item" href="#">Settings 1</a>
+                  </li>
+                  <li><a class="dropdown-item" href="#">Settings 2</a>
+                  </li>
+                </ul>
+              </li> -->
+              <li><a class="close-link" routerLink="/agences"><i class="fa fa-close"></i></a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <br />
+            
+            <form [formGroup]="form" #agenceForm="ngForm">
+              <div class="form-row">
+                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                  <input type="text" class="form-control has-feedback-left" id="nom" [(ngModel)]="agence.nom" formControlName="nom"
+                  placeholder="Nom de l'agence*" [ngClass]="{ 'is-invalid': formErrors.nom }">
+                  <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                   <span class="invalid-feedback">
                     {{ formErrors.nom }}
                   </span>
-                </mat-form-field> &nbsp; &nbsp;
-  
-                <mat-form-field>
-                  <mat-label>Adresse</mat-label>
-                  <input matInput placeholder="Adresse"  id="adresse" [(ngModel)]="agence.adresse" formControlName="adresse"
-                    placeholder="Adresse* (obligatoire)" [ngClass]="{ 'is-invalid': formErrors.adresse }">
-                </mat-form-field> &nbsp; &nbsp;
-  
-                <mat-form-field>
-                  <mat-label>Region</mat-label>
-                  <input matInput placeholder="Region" id="region" [(ngModel)]="agence.region" formControlName="region"
-                    placeholder="Region* (obligatoire)" [ngClass]="{ 'is-invalid': formErrors.region }">
-                </mat-form-field> &nbsp; &nbsp;
-  
-                <mat-form-field>
-                  <mat-label>Departement</mat-label>
-                  <input matInput placeholder="departement" id="departement" [(ngModel)]="agence.departement" formControlName="departement"
-                    placeholder="departement* (obligatoire)" [ngClass]="{ 'is-invalid': formErrors.departement }">
-                </mat-form-field> &nbsp; &nbsp;
-  
-                <mat-form-field>
-                  <mat-label>Telephone</mat-label>
-                  <input matInput placeholder="telephone" id="telephone" [(ngModel)]="agence.telephone" formControlName="telephone"
-                    placeholder="Telephone* (obligatoire)" [ngClass]="{ 'is-invalid': formErrors.telephone }">
-                </mat-form-field> &nbsp; &nbsp;
+                </div>
 
-
-
-            </form>
-            {{ agence | json }}
-                <div class="ln_solid"></div>
-                <button type="submit" mat-raised-button color="primary" (click)="updateAgence()" >Submit</button>
-    
+                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                  <input type="text" class="form-control has-feedback-left" id="adresse" [(ngModel)]="agence.adresse" formControlName="adresse"
+                  placeholder="Adresse de l'agence*" [ngClass]="{ 'is-invalid': formErrors.adresse }">
+                  <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
+                  <span class="invalid-feedback">
+                    {{ formErrors.adresse }}
+                  </span>
+                </div>
+                
               </div>
+              <div class="form-row">
+
+                <div class="col-md-4 col-sm-4  form-group has-feedback">
+                  <input type="text" class="form-control has-feedback-left" id="region" [(ngModel)]="agence.region" formControlName="region"
+                  placeholder="Region*" [ngClass]="{ 'is-invalid': formErrors.region }">
+                  <span class="fa fa-location-arrow form-control-feedback left" aria-hidden="true"></span>
+                  <span class="invalid-feedback">
+                    {{ formErrors.region }}
+                  </span>
+                </div>
+
+                <div class="col-md-4 col-sm-4  form-group has-feedback">
+                  <input type="text" class="form-control has-feedback-left" id="departement" [(ngModel)]="agence.departement" formControlName="departement"
+                  placeholder="Departement*" [ngClass]="{ 'is-invalid': formErrors.departement }">
+                  <span class="fa fa-location-arrow form-control-feedback left" aria-hidden="true"></span>
+                  <span class="invalid-feedback">
+                    {{ formErrors.departement }}
+                  </span>
+                </div>
+
+                <div class="col-md-4 col-sm-6  form-group has-feedback">
+                  <input type="text" class="form-control has-feedback-left" id="telephone" [(ngModel)]="agence.telephone" formControlName="telephone"
+                  placeholder="Telephone de l'agence*" [ngClass]="{ 'is-invalid': formErrors.telephone }">
+                  <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                  <span class="invalid-feedback">
+                    {{ formErrors.telephone }}
+                  </span>
+                </div>
+
+              </div>
+              <div class="ln_solid"></div>
+              
+            </form>
+             {{ agence | json }}
+              <div class="ln_solid"></div>
+  
+              <button class="btn" style="background-color: #2A3F54; color: white;" type="submit" [disabled]="!agenceForm.form.valid" (click)="updateAgence()">
+                Modifier
+              </button>&nbsp;
+              <button class="btn" style="background-color: #2A3F54; color: white;" routerLink="/agences">
+                Annuler
+              </button>
             </div>
           </div>
-    
-    
         </div>
+  
+  
       </div>
-    
-    
-    
-    
-    
-    
-    
     </div>
+  
+  
+  
+  
+  
+  
+  
+  </div>
 
 

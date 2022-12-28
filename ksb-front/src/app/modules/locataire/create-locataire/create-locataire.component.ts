@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Garant } from 'src/app/shared/models/garant';
 import { Locataire } from 'src/app/shared/models/locataire';
+import { SituationProfessionnelle } from 'src/app/shared/models/situation-professionnelle';
 import { LocataireService } from 'src/app/shared/services/locataire.service';
 
 @Component({
@@ -12,7 +14,11 @@ export class CreateLocataireComponent implements OnInit {
 
   locataires: Locataire = new Locataire();
 
-locatair: Locataire[]=[];
+  garant: Garant = new Garant();
+
+  situationProfessionnelle: SituationProfessionnelle = new SituationProfessionnelle();
+
+  locatair: Locataire[]=[];
 
 @Input() inputFormGroup = this.fb.group({});
 

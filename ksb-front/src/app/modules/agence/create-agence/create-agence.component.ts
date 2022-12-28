@@ -94,10 +94,6 @@ export class CreateAgenceComponent implements OnInit {
     this.employeeArray.removeAt(i);
   }
 
-  // reload() {
-  //   window.location.reload();
-  // }
-
 
 
   public registEmpl() {

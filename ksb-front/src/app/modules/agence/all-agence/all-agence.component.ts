@@ -23,6 +23,10 @@ export class AllAgenceComponent implements OnInit {
     this.getAllAgence();
   }
 
+  // update(id: string){
+  //   this.router.navigate(['agences', id, 'edit'])
+  // }
+
   public getAllAgence() {
     return this.serviceAgence.getAllAgences().subscribe((response) => {
       try {
