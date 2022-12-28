@@ -1,15 +1,16 @@
 package sn.ksb.immo.ksbimmo.application.dtos;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Data
 @Builder
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class LoyerDto {
-    private String id;
-    private Double montant;
-    private String debut;
+    private Double mensualite;
+    private Double caution;
+    private String dateDebut;
     private Integer dureeBail;
-    private String proprieteId;
-    private String locataireId;
+
 }

@@ -57,6 +57,8 @@ public class Propriete {
     private Boolean jardin;
 
     private Boolean ascenseur;
+    
+    private String numeroLot;
 
     @Column(columnDefinition = "boolean default false")
     private Boolean status;
@@ -91,6 +93,11 @@ public class Propriete {
 
     @Column(columnDefinition = "boolean default false")
     private Boolean deleted;
+
+    @OneToMany(mappedBy = "propriete", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @JsonIgnore
+    private List<Image> images;
 
 
 }

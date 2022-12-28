@@ -20,13 +20,8 @@ export class Propriete {
     piscine!: Boolean;
     jardin!: Boolean;
     ascenseur!: Boolean;
+    numeroLot!: string;
     apporteurAffaire!: string;
     proprietaire!: Proprietaire;
-    agence!: Agence;
     dateDisponibilite!: Date;
-    dateCreation!: Date;
-    dateModification!: Date;
-    createdBy!: string;
-    modifiedBy!: string;
-    deleted!: Boolean;
 }

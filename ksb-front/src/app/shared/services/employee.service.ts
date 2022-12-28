@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { EmployeeDto } from '../dts/employee-dto';
 import { Employee } from '../models/employee';
 
 @Injectable({
@@ -24,24 +25,25 @@ export class EmployeeService {
       telephone: [' '],
       email: [' '],
       cni: [' '],
+      dateDelivranceCni: [' '],
       adresse: [' '],
       numCompteBancaire: [' '],
-      manager: true,
+      manager: [null, Validators.required],
       agence: [' ']
     });
   }
 
 
 
-  // METHOD TO CREATE A NEW Employee
-  public createEmployee(employee: Employee): Observable<Object>{
+  //METHOD TO CREATE A NEW Employee
+  public createEmployee(employee: EmployeeDto): Observable<Object>{
     const headers = { 'content-type': 'application/json'}  
 
     const params = new HttpParams()
       .set('para1', "value1")
       .set('para2',"value2");
 
-    const body=JSON.stringify(Employee);
+    const body=JSON.stringify(employee);
     console.log(body)
     return this.httpClient.post(this.Url, body, {'headers':headers, observe:'response', 
       reportProgress: true, 'params': params})
@@ -53,9 +55,17 @@ export class EmployeeService {
       );
   }
 
+  // public createEmployee(employee: EmployeeDto): Observable<Object>{
+  //   return this.httpClient.post(`${this.Url}`, employee)
+  // }
+
+
+
+
+
   // METHOD TO GET ALL Employee
 
-  test_url = "http://localhost:8080/api/employee/all";
+  test_url = "http://localhost:8080/api/employee";
   public getAllEmployee(): Observable<Employee[]> {
     const params = new HttpParams()
       .set('sort',"description")
@@ -98,7 +108,7 @@ export class EmployeeService {
   }
 
   // METHOD TO DELETE A Employee
-  public deleteEmployee(id: string): Observable<Object>{
+  public deleteEmployee(id: string): Observable<Employee>{
     const params = new HttpParams()
       .set('sort',"description")
       .set('page',"2");

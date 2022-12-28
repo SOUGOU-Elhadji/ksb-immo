@@ -1,1 +1,135 @@
-<p>create-propriete works!</p>
+<div>
+  <div class="page-title">
+    <div class="title_left">
+      <h3>Ajouter Propriete <small style="font-size:medium;">Some examples to get you started</small></h3>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="col-md-12 col-sm-12">
+    <div class="">
+      <div class="">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="">
+              <form [formGroup]="form">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="type">Type Propriété</label>
+                      <select class="form-control" formControlName="type" id="type" [(ngModel)]="propriete.type" >
+                        <option value="" disabled selected>Choisir le type</option>
+                        <option *ngFor="let type of list" value="{{type}}">{{type | titlecase}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="adresse">Adresse</label>
+                      <textarea class="form-control" formControlName="adresse" id="adresse" rows="2" [(ngModel)]="propriete.adresse"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      <textarea class="form-control" formControlName="description" id="description" rows="2" [(ngModel)]="propriete.description"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="numeroLot">Numero lot</label>
+                      <input type="text"
+                        class="form-control" formControlName="numeroLot" id="numeroLot" [(ngModel)]="propriete.numeroLot" />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="surface">Surface</label>
+                      <input type="number"
+                        class="form-control" formControlName="surface" id="surface" [(ngModel)]="propriete.surface">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="prix">Prix Souhaité</label>
+                      <input type="number"
+                        class="form-control" formControlName="prix" id="prix" [(ngModel)]="propriete.prix" />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="dateDisponibilite">Date disponibilité</label>
+                      <input type="date"
+                        class="form-control" formControlName="dateDisponibilite" [(ngModel)]="propriete.dateDisponibilite" id="dateDisponibilite" placeholder="">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="nbreEtage">Nombre Etages</label>
+                      <input type="text"
+                        class="form-control" formControlName="nbreEtage" id="nbreEtage" [(ngModel)]="propriete.nbreEtage" />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="nbreAppartementParEtage">Nombre Appartement/Etage</label>
+                      <input type="number"
+                        class="form-control" formControlName="nbreAppartementParEtage" id="nbreAppartementParEtage" [(ngModel)]="propriete.nbreAppartementParEtage" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="nbreChambre">Nombre Chambres</label>
+                      <input type="number"
+                        class="form-control" formControlName="nbreChambre" id="nbreChambre" [(ngModel)]="propriete.nbreChambre" />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="nbreSalleDeBain">Nombre Salle de Bain</label>
+                      <input type="number"
+                        class="form-control" formControlName="nbreSalleDeBain" id="nbreSalleDeBain" [(ngModel)]="propriete.nbreSalleDeBain" />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="nbreToilette">Nombre Toilettes</label>
+                      <input type="number"
+                        class="form-control" formControlName="nbreToilette" id="nbreToilette" [(ngModel)]="propriete.nbreToilette" />
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <!-- <div class="row">
+                  <div class="col">
+                    <mat-slide-toggle [(ngModel)]="propriete.meuble">Meublé</mat-slide-toggle>
+                  </div>
+                  <div class="col">
+                    <mat-slide-toggle [(ngModel)]="propriete.garage">Garage</mat-slide-toggle>
+                  </div>
+                  <div class="col">
+                    <mat-slide-toggle [(ngModel)]="propriete.piscine">Piscine</mat-slide-toggle>
+                  </div>
+                  <div class="col">
+                    <mat-slide-toggle [(ngModel)]="propriete.ascenseur">Ascenseur</mat-slide-toggle>
+                  </div>
+                </div> -->
+              </form>
+
+              <button type="submit" mat-raised-button color="primary" (click)="createPropriete()">Enregistrer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

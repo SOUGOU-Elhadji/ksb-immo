@@ -15,6 +15,7 @@ import java.util.List;
 @Slf4j
 @OpenAPIDefinition(tags = {@Tag(name = "Propriete", description = "Propriete API")})
 @RequestMapping("/api/proprietes")
+@CrossOrigin
 public class ProprieteController {
 
     private final ProprieteService proprieteService;
@@ -25,10 +26,10 @@ public class ProprieteController {
 
     //récupérer les propriétés d'une agence
     @GetMapping("/agence/{agenceId}")
-    public List<Propriete> getProprietesByAgence(@PathVariable String agenceId) {
+    public List<ProprieteDto> getProprietesByAgence(@PathVariable String agenceId) {
         //log entrée dans la méthode getProprietesByAgence du controller ProprieteController
         log.info("Entrée dans la méthode getProprietesByAgence du controller ProprieteController");
-        List<Propriete> proprietes = new ArrayList<>();
+        List<ProprieteDto> proprietes = new ArrayList<>();
         //try catch pour récupérer les propriétés
         try {
             //récupération des propriétés
@@ -47,10 +48,10 @@ public class ProprieteController {
 
     //récupérer les propriétés d'un client
     @GetMapping("/client/{clientId}")
-    public List<Propriete> getProprietesByClient(@PathVariable String clientId) {
+    public List<ProprieteDto> getProprietesByClient(@PathVariable String clientId) {
         //log entrée dans la méthode getProprietesByClient du controller ProprieteController
         log.info("Entrée dans la méthode getProprietesByClient du controller ProprieteController");
-        List<Propriete> proprietes = new ArrayList<>();
+        List<ProprieteDto> proprietes = new ArrayList<>();
         //try catch pour récupérer les propriétés
         try {
             //récupération des propriétés
@@ -69,13 +70,14 @@ public class ProprieteController {
 
     //creer une propriété pour un client
     @PostMapping
-    public Propriete createPropriete(@RequestBody ProprieteDto dto) {
+    public ProprieteDto createPropriete(@RequestBody ProprieteDto dto) {
         //log entrée dans la méthode createPropriete du controller ProprieteController
         log.info("Entrée dans la méthode createPropriete du controller ProprieteController");
-        Propriete propriete = null;
+        ProprieteDto propriete = null;
         //try catch pour créer une propriété
         try {
             //création de la propriété
+            log.info(dto.toString());
             propriete = proprieteService.addPropriete(dto);
             //log création de la propriété
             log.info("Création de la propriété");
@@ -91,10 +93,10 @@ public class ProprieteController {
 
     //modifier une propriété
     @PutMapping
-    public Propriete updatePropriete(@RequestBody ProprieteDto dto) {
+    public ProprieteDto updatePropriete(@RequestBody ProprieteDto dto) {
         //log entrée dans la méthode updatePropriete du controller ProprieteController
         log.info("Entrée dans la méthode updatePropriete du controller ProprieteController");
-        Propriete propriete = null;
+        ProprieteDto propriete = null;
         //try catch pour modifier une propriété
         try {
             //modification de la propriété
@@ -132,10 +134,10 @@ public class ProprieteController {
 
     //réserver une propriété par son id
     @GetMapping("/{proprieteId}")
-    public Propriete getProprieteById(@PathVariable String proprieteId) {
+    public ProprieteDto getProprieteById(@PathVariable String proprieteId) {
         //log entrée dans la méthode getProprieteById du controller ProprieteController
         log.info("Entrée dans la méthode getProprieteById du controller ProprieteController");
-        Propriete propriete = null;
+        ProprieteDto propriete = null;
         //try catch pour récupérer une propriété
         try {
             //récupération de la propriété
@@ -154,10 +156,10 @@ public class ProprieteController {
 
     //récupérer les propriétés qui sont louées
     @GetMapping("/louees")
-    public List<Propriete> getProprietesLouees() {
+    public List<ProprieteDto> getProprietesLouees() {
         //log entrée dans la méthode getProprietesLouees du controller ProprieteController
         log.info("Entrée dans la méthode getProprietesLouees du controller ProprieteController");
-        List<Propriete> proprietes = new ArrayList<>();
+        List<ProprieteDto> proprietes = new ArrayList<>();
         //try catch pour récupérer les propriétés
         try {
             //récupération des propriétés
@@ -176,10 +178,10 @@ public class ProprieteController {
 
     //récupérer les propriétés qui sont disponibles
     @GetMapping("/disponibles")
-    public List<Propriete> getProprietesDisponibles() {
+    public List<ProprieteDto> getProprietesDisponibles() {
         //log entrée dans la méthode getProprietesDisponibles du controller ProprieteController
         log.info("Entrée dans la méthode getProprietesDisponibles du controller ProprieteController");
-        List<Propriete> proprietes = new ArrayList<>();
+        List<ProprieteDto> proprietes = new ArrayList<>();
         //try catch pour récupérer les propriétés
         try {
             //récupération des propriétés
@@ -198,10 +200,10 @@ public class ProprieteController {
 
     //récupérer les propriétés par adresse
     @GetMapping("/adresse/{adresse}")
-    public List<Propriete> getProprietesByAdresse(@PathVariable String adresse) {
+    public List<ProprieteDto> getProprietesByAdresse(@PathVariable String adresse) {
         //log entrée dans la méthode getProprietesByAdresse du controller ProprieteController
         log.info("Entrée dans la méthode getProprietesByAdresse du controller ProprieteController");
-        List<Propriete> proprietes = new ArrayList<>();
+        List<ProprieteDto> proprietes = new ArrayList<>();
         //try catch pour récupérer les propriétés
         try {
             //récupération des propriétés

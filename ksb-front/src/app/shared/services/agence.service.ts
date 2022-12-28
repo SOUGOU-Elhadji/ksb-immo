@@ -19,7 +19,7 @@ export class AgenceService {
 
   // Add Test
   public createTheAgence(agence: AgenceDto): Observable<AgenceDto> {
-    return this.httpClient.post<AgenceDto>(this.Url, agence).pipe(
+    return this.httpClient.post<AgenceDto>(`${this.Url}`, agence).pipe(
       catchError(this.handleHttpError)
     )
   }
@@ -34,7 +34,7 @@ export class AgenceService {
   }
 
   // METHOD TO CREATE A NEW AGENCE
-  public createAgence(agence: Agence): Observable<Object>{
+  public createAgence(agence: AgenceDto): Observable<Object>{
     const headers = { 'content-type': 'application/json'}  
 
     const params = new HttpParams()
@@ -58,35 +58,46 @@ export class AgenceService {
   }
 
   // METHOD TO GET ALL AGENCES
+  // public getAllAgences(): Observable<Agence[]> {
+  //   const params = new HttpParams()
+  //     .set('sort',"description")
+  //     .set('page',"2");
+  //   const headers = new HttpHeaders()
+  //     .set('Content-Type', 'application/json');
+  //   return this.httpClient.get<Agence[]>(this.Url, {"params": params, 'headers': headers})
+  //   // return this.httpClient.get<Agence[]>(`${this.Url}`, {'params': params})
+  //   .pipe(
+  //     map((response) => {
+  //       return response;
+  //     }),
+  //     catchError((err, caught) => {
+  //       console.log('error caught in service', err)
+  //         console.error(err);
+  //         // return throwError(err);   
+  //         throw err;
+  //     })
+  //   );
+  // }
+
   public getAllAgences(): Observable<Agence[]> {
-    const params = new HttpParams()
-      .set('sort',"description")
-      .set('page',"2");
-    const headers = new HttpHeaders()
-      .set('Content-Type', 'application/json');
-    return this.httpClient.get<Agence[]>(this.Url, {"params": params, 'headers': headers})
-    // return this.httpClient.get<Agence[]>(`${this.Url}`, {'params': params})
-    .pipe(
-      map((response) => {
-        return response;
-      }),
-      catchError((err, caught) => {
-        console.log('error caught in service', err)
-          console.error(err);
-          // return throwError(err);   
-          throw err;
-      })
-    );
+    return this.httpClient.get<Agence[]>(`${this.Url}`);
   }
 
+
+
+
+
+
+
+
   // METHOD TO GET A AGENCE BY ID
-  public getAgenceById(id: string): Observable<Agence>{
+  public getAgenceById(id: string): Observable<AgenceDto>{
     const params = new HttpParams()
       .set('sort',"description")
       .set('page',"2");
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    return this.httpClient.get<Agence>(`${this.Url}/${id}`, {"params": params, 'headers': headers})
+    return this.httpClient.get<AgenceDto>(`${this.Url}/${id}`, {"params": params, 'headers': headers})
     .pipe(
       map((response) => {
         return response;
@@ -100,7 +111,7 @@ export class AgenceService {
   }
 
   // METHOD TO DELETE A AGENCE
-  public deleteAgence(id: string): Observable<Object>{
+  public deleteAgence(id: string): Observable<Agence>{
     const params = new HttpParams()
       .set('sort',"description")
       .set('page',"2");
@@ -120,13 +131,13 @@ export class AgenceService {
   }
 
   // METHOD TO UPDATE A AGENCE
-  public updateAgence(id: string, agence: Agence): Observable<Object>{
+  public updateAgence(agence: AgenceDto): Observable<Object>{
     const params = new HttpParams()
       .set('sort', "description")
       .set('page', "2");
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    return this.httpClient.put<Agence>(`${this.Url}/${id}`, agence, {'params': params, 'headers': headers})
+    return this.httpClient.put(`${this.Url}`, agence, {'params': params, 'headers': headers})
       .pipe(
         map((response) => {
           return response;

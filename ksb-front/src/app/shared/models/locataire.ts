@@ -1,3 +1,6 @@
+import { Garant } from "./garant";
+import { Loyer } from "./loyer";
+import { SituationProfessionnelle } from "./situation-professionnelle";
 import { Utilisateur } from "./utilisateur";
 
 export class Locataire extends Utilisateur {
@@ -8,6 +11,8 @@ export class Locataire extends Utilisateur {
     telephone!: string;
     email!: string;
     profession!: string;
-    cni!: string;
-    conjoint!: Locataire;
+    numCompteBancaire !: String;
+    situationProfessionnelle !: SituationProfessionnelle;
+    garant!: Garant;
+    loyer !: Loyer;
 }

@@ -1,5 +1,6 @@
 package sn.ksb.immo.ksbimmo.application.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -24,6 +25,9 @@ public class Mensualite {
 
     private Date datePaiement;
 
+    private Double montant;
+
     @ManyToOne(cascade = CascadeType.MERGE)
+    @JsonIgnore
     private Loyer loyer;
 }

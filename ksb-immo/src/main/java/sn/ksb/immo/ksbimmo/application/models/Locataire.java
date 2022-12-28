@@ -1,5 +1,6 @@
 package sn.ksb.immo.ksbimmo.application.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,20 +29,13 @@ public class Locataire extends Utilisateur{
     @Embedded
     private SituationProfessionnelle situationProfessionnelle;
 
-    @OneToOne
-    private Locataire garant;
-
-    @ManyToMany
-    @JoinColumn(table = "locataire_agence")
-    private List<Agence> agences;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Garant garant;
 
     private String numCompteBancaire;
 
-    @ManyToMany
-    @JoinColumn(table = "locataire_propriete")
-    private List<Propriete> proprietes;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Loyer> loyers;
+    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "locataire")
+    @JsonIgnore
+    private Loyer loyer;
 
 }

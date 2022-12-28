@@ -9,48 +9,41 @@ import { DetailsAgenceComponent } from './details-agence/details-agence.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // material modules
-import {MatIconModule} from '@angular/material/icon';
-import {MatSelectModule} from '@angular/material/select';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar'
-import {MatDividerModule} from '@angular/material/divider';
-import {MatInputModule} from '@angular/material/input';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatTableModule} from '@angular/material/table';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatDividerModule } from '@angular/material/divider';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTableModule } from '@angular/material/table';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
+
+import { FormatDatePipe } from 'src/app/shared/pipe/format-date.pipe';
+import { MatNativeDateModule } from '@angular/material/core';
+
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
-    
     AllAgenceComponent,
     CreateAgenceComponent,
     UpdateAgenceComponent,
-    DetailsAgenceComponent
+    DetailsAgenceComponent,
   ],
   imports: [
     CommonModule,
-    
     AgenceRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule
 
-    MatExpansionModule,
-    MatIconModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatDividerModule,
-    MatInputModule,
-    MatMenuModule,
-    MatTooltipModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatTableModule,
-    MatRadioModule
+    // MatMomentDateModule,
   ],
   exports: [
     AllAgenceComponent,
@@ -70,7 +63,9 @@ import {MatRadioModule} from '@angular/material/radio';
     MatFormFieldModule,
     MatDatepickerModule,
     MatTableModule,
-    MatRadioModule
+    MatRadioModule,
+
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

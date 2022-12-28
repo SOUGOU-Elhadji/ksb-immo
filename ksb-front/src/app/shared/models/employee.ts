@@ -8,8 +8,9 @@ export class Employee {
     telephone!: string;
     email!: string;
     cni!: string;
+    dateDelivranceCni!: string;
     adresse!: string;
     numCompteBancaire!: string;
     manager!: Boolean;
-    // agence!: Agence;
+    agence!: Agence;
 }

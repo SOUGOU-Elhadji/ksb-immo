@@ -34,7 +34,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     EmployeeRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-
+    
+    
     MatExpansionModule,
     MatIconModule,
     MatSelectModule,
@@ -46,6 +47,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatTooltipModule,
     MatFormFieldModule,
     MatDatepickerModule,
+
   ],
   exports: [
     DetailsEmployeeComponent,

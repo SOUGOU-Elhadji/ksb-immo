@@ -1,4 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+table th,
+table td {
+  /* center the content */
+  text-align: left;
+  vertical-align: middle;
+
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: rgba(97, 123, 150, 0.4);
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: rgb(42,63,84);
+}
+
+.page{
+  right: 0;
+  position: absolute;
+  /* position: relative; */
+  bottom: -20px;
+  /*padding-right: 10px;*/
+
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+    background:rgb(42,63,84);
+    border-radius: 5px;
+
+  }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

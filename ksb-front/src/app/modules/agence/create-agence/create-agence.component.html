@@ -1,180 +1,303 @@
-<div class="container">
-
-  <pre>{{ agences | json }}</pre>
-
-  <hr>
-
-
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-    <mat-form-field>
-      <mat-label for="nomId">Nom Agence</mat-label>
-      <input matInput placeholder="Nom agence" id="nomId" formControlName="nom" placeholder="Nom* (obligatoire)"
-      [ngClass]="{ 'is-invalid': formErrors.nom }" >
-      <span class="invalid-feedback">
-        {{ formErrors.nom }}
-      </span>
-    </mat-form-field> &nbsp; &nbsp;
-
-    <mat-form-field>
-      <mat-label>Adresse</mat-label>
-      <input matInput placeholder="Adresse" formControlName="adresse" placeholder="Adresse* (obligatoire)"
-      [ngClass]="{ 'is-invalid': formErrors.adresse }" >
-    </mat-form-field> &nbsp; &nbsp;
-
-    <mat-form-field>
-      <mat-label>Region</mat-label>
-      <input matInput placeholder="Region" formControlName="region" placeholder="Region* (obligatoire)"
-      [ngClass]="{ 'is-invalid': formErrors.region }" >
-    </mat-form-field> &nbsp; &nbsp;
-
-    <mat-form-field>
-      <mat-label>Departement</mat-label>
-      <input matInput placeholder="departement" formControlName="departement" placeholder="departement* (obligatoire)"
-      [ngClass]="{ 'is-invalid': formErrors.departement }" >
-    </mat-form-field> &nbsp; &nbsp;
-
-    <mat-form-field>
-      <mat-label>Telephone</mat-label>
-      <input matInput placeholder="telephone" formControlName="telephone" placeholder="Telephone* (obligatoire)"
-      [ngClass]="{ 'is-invalid': formErrors.telephone }" >
-    </mat-form-field> &nbsp; &nbsp;
-
-    <mat-form-field>
-      <mat-label>Date de Creation</mat-label>
-      <input matInput type="date" placeholder="Date Creation" formControlName="dateCreation"
-      [ngClass]="{ 'is-invalid': formErrors.date }" >
-    </mat-form-field> &nbsp; &nbsp;
-
-    <!-- <mat-form-field>
-      <mat-label>Ville</mat-label>
-      <input matInput placeholder="Ville" formControlName="ville">
-    </mat-form-field> &nbsp; &nbsp; -->
-
-    Add a new employee &nbsp; &nbsp;
-    <button type="button" mat-raised-button (click)="addEmployee()">
-      <mat-icon matTooltip="Add a new Employee">add</mat-icon>
-    </button>
-    <br>
-    <hr>
-
-    <div formArrayName="employees" *ngFor="let u of employeeArray.controls; index as i" id="click">
-
-      <span>Employee {{ i + 1 }}</span> &nbsp; &nbsp;
-
-      <!-- <app-create-employee [inputFormGroup]="$any(u)"></app-create-employee> &nbsp; &nbsp; -->
-
-      
-
-     
-        <div [formGroupName]="i">
-
-          <mat-form-field>
-            <mat-label attr.for="{{ 'matriculeId' + i }}" >Matricule</mat-label>
-            <input matInput placeholder="Matricule" formControlName="matricule" id="{{ 'matriculeId' + i }}">
-          </mat-form-field> &nbsp; &nbsp;
-  
-          <mat-form-field>
-            <mat-label attr.for="{{ 'nomId' + i }}" >Nom</mat-label>
-            <input matInput placeholder="Nom" formControlName="nom" id="{{ 'nomId' + i }}">
-          </mat-form-field> &nbsp; &nbsp;
-
-          <mat-form-field>
-            <mat-label attr.for="{{ 'prenomId' + i }}" >Prenom</mat-label>
-            <input matInput placeholder="Prenom" formControlName="prenom" id="{{ 'prenomId' + i }}">
-          </mat-form-field> &nbsp; &nbsp;
-
-          <mat-form-field>
-            <mat-label attr.for="{{ 'telephoneId' + i }}" >Telephone</mat-label>
-            <input matInput placeholder="Telephone" formControlName="telephone" id="{{ 'telephoneId' + i }}">
-          </mat-form-field> &nbsp; &nbsp;
-
-          <mat-form-field>
-            <mat-label attr.for="{{ 'emailId' + i }}" >Email</mat-label>
-            <input matInput placeholder="Email" type="email" formControlName="email" id="{{ 'emailId' + i }}">
-          </mat-form-field> &nbsp; &nbsp;
-
-          <mat-form-field>
-            <mat-label attr.for="{{ 'cniId' + i }}" >CNI</mat-label>
-            <input matInput placeholder="Cni" formControlName="cni" id="{{ 'cniId' + i }}">
-          </mat-form-field> &nbsp; &nbsp;
-
-          <mat-form-field>
-            <mat-label attr.for="{{ 'adresseId' + i }}" >Adreesse</mat-label>
-            <input matInput placeholder="adresse" formControlName="adresse" id="{{ 'adresseId' + i }}">
-          </mat-form-field> &nbsp; &nbsp;
-
-          <mat-form-field>
-            <mat-label attr.for="{{ 'numCompteBancaireId' + i }}" >Numero Compte Bancaire</mat-label>
-            <input matInput placeholder="Numero Compte Bancaire" formControlName="numCompteBancaire" id="{{ 'numCompteBancaireId' + i }}">
-          </mat-form-field> &nbsp; &nbsp;
-
-         
-          <label class="example-margin" attr.for="{{ 'managerId' + i }}">Manager:</label>
-          <mat-radio-group aria-label="Select an option" formControlName="manager" id="{{ 'managerId' + i }}">
-            <mat-radio-button class="example-margin" value="true">True</mat-radio-button>
-            <mat-radio-button class="example-margin" value="false">False</mat-radio-button>
-          </mat-radio-group>&nbsp; &nbsp;
-
-          <!-- <mat-form-field>
-            <mat-label attr.for="{{ 'agenceId' + i }}" >Agence</mat-label>
-            <select matNativeControl formControlName="agence" id="{{ 'agenceId' + i }}">
-              <option value="" selected></option>
-              <option *ngFor="let a of agences" ngValue="a.id" >{{ a.nom }}</option>
-            </select>
-          </mat-form-field> &nbsp; &nbsp;
-   -->
-          <br>
-          <button mat-raised-button color="warn" (click)="removeEmployee(i)">
-            <mat-icon>delete</mat-icon>
-          </button>&nbsp;
-          <button type="button" mat-raised-button (click)="addEmployee()">
-            <mat-icon matTooltip="Add a new Employee">save</mat-icon>
-          </button>
-      </div><br>
+<div role="main">
+  <div class="">
+    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Agence <small>different form elements</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a class="dropdown-item" href="#">Settings 1</a></li>
+                  <li><a class="dropdown-item" href="#">Settings 2</a></li>
+                </ul>
+              </li>
+              <li>
+                <a class="close-link"><i class="fa fa-close"></i></a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <br />
 
 
-      <!-- <button mat-raised-button color="accent" (click)="removeEmployee(i)">
-        <mat-icon>delete</mat-icon>
-      </button> -->
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-      
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let element"> {{element.matricule}} </td>
-        </ng-container>
-      
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-      
-        <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef> Weight </th>
-          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-        </ng-container>
-      
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef> Symbol </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-      
-      <hr>
+
+
+            <div class="container">
+              <form [formGroup]="form" #agenceForm="ngForm">
+                <div class="form-row">
+
+                  <div class="col-md-3 col-sm-6  form-group has-feedback">
+                    <input type="text" class="form-control has-feedback-left" id="nom" [(ngModel)]="agence.nom" formControlName="nom"
+                     placeholder="Nom de l'agence*" [ngClass]="{ 'is-invalid': formErrors.nom }">
+                    <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                    <span class="invalid-feedback">
+                      {{ formErrors.nom }}
+                    </span>
+                  </div>
+
+                  <div class="col-md-3 col-sm-6  form-group has-feedback">
+                    <input type="text" class="form-control has-feedback-left" id="adresse" [(ngModel)]="agence.adresse" formControlName="adresse"
+                    placeholder="Adresse*" [ngClass]="{ 'is-invalid': formErrors.adresse }">
+                    <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
+                    <span class="invalid-feedback">
+                      {{ formErrors.adresse }}
+                    </span>
+                  </div>
+
+                  <div class="col-md-2 col-sm-6  form-group has-feedback">
+                    <input type="text" class="form-control has-feedback-left" id="region" [(ngModel)]="agence.region" formControlName="region"
+                     placeholder="Region*" [ngClass]="{ 'is-invalid': formErrors.region }">
+                    <span class="fa fa-location-arrow form-control-feedback left" aria-hidden="true"></span>
+                    <span class="invalid-feedback">
+                      {{ formErrors.region }}
+                    </span>
+                  </div>
+
+                  <div class="col-md-2 col-sm-6  form-group has-feedback">
+                    <input type="text" class="form-control has-feedback-left" id="departement" [(ngModel)]="agence.departement" formControlName="departement"
+                    placeholder="Departement*" [ngClass]="{ 'is-invalid': formErrors.departement }">
+                    <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
+                    <span class="invalid-feedback">
+                      {{ formErrors.departement }}
+                    </span>
+                  </div>
+
+                  <div class="col-md-2 col-sm-6  form-group has-feedback">
+                    <input type="text" class="form-control has-feedback-left" id="telephone" [(ngModel)]="agence.telephone" formControlName="telephone"
+                    placeholder="Telephone*" [ngClass]="{ 'is-invalid': formErrors.telephone }">
+                    <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                    <span class="invalid-feedback">
+                      {{ formErrors.telephone }}
+                    </span>
+                  </div>
+
+                  <!-- <div class="form-group col-md-6">
+                    <label for="inputEmail4">Nom Agence</label>
+                    <input placeholder="Nom agence" id="nom" [(ngModel)]="agence.nom" formControlName="nom"
+                      placeholder="Nom* (obligatoire)" class="form-control" [ngClass]="{ 'is-invalid': formErrors.nom }">
+                    <span class="invalid-feedback">
+                      {{ formErrors.nom }}
+                    </span>
+                  </div> -->
+                  <!-- <div class="form-group col-md-6">
+                    <label for="inputPassword4">Adresse</label>
+                    <input placeholder="Adresse" id="adresse" [(ngModel)]="agence.adresse" formControlName="adresse"
+                      placeholder="Adresse* (obligatoire)" class="form-control" [ngClass]="{ 'is-invalid': formErrors.adresse }">
+                    <span class="invalid-feedback">
+                      {{ formErrors.adresse }}
+                    </span>
+                  </div> -->
+                </div>
+                <div class="form-row">
+                  <!-- <div class="form-group col-md-4">
+                    <label for="inputAddress">Region</label>
+                    <input placeholder="Region" id="region" [(ngModel)]="agence.region" formControlName="region"
+                      placeholder="Region* (obligatoire)" class="form-control" [ngClass]="{ 'is-invalid': formErrors.region }">
+                    <span class="invalid-feedback">
+                      {{ formErrors.region }}
+                    </span>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="inputAddress2">Departement</label>
+                    <input placeholder="Departement" id="nom" [(ngModel)]="agence.departement" formControlName="departement"
+                    placeholder="Departement* (obligatoire)" class="form-control" [ngClass]="{ 'is-invalid': formErrors.departement }">
+                  <span class="invalid-feedback">
+                    {{ formErrors.departement }}
+                  </span>
+                  </div> -->
+                  <!-- <div class="form-group col-md-4">
+                    <label for="inputAddress">Telephone</label>
+                    <input placeholder="Telephone de l'agence" id="telephone" [(ngModel)]="agence.telephone" formControlName="telephone"
+                      placeholder="Telephone* (obligatoire)" class="form-control" [ngClass]="{ 'is-invalid': formErrors.telephone }">
+                    <span class="invalid-feedback">
+                      {{ formErrors.telephone }}
+                    </span>
+                  </div> -->
+                </div>
+
+                Add a new employee &nbsp; &nbsp;
+                <span  mat-raised-button (click)="addEmployee()">
+                  <img src="https://img.icons8.com/ios-filled/30/000000/add--v1.png"/>
+                  <!-- <mat-icon matTooltip="Add a new Employee">add</mat-icon> -->
+                </span>
+
+
+                <div formArrayName="employees" *ngFor="let u of employeeArray.controls; index as i" id="click">
+                  <hr>
+
+                  <h2>Employee</h2>
+                  <div>
+                    <div [formGroupName]="i">
+                      <div class="form-row">
+
+                        <div class="col-md-4 col-sm-6  form-group has-feedback">
+                          <input type="text" class="form-control has-feedback-left" id="nom" [(ngModel)]="em.nom" formControlName="nom"
+                          placeholder="Nom*" [ngClass]="{ 'is-invalid': formErrors.nom }">
+                          <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                          <span class="invalid-feedback">
+                            {{ formErrors.nom }}
+                          </span>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6  form-group has-feedback">
+                          <input type="text" class="form-control has-feedback-left" id="prenom" [(ngModel)]="em.prenom" formControlName="prenom"
+                          placeholder="Prenom*" [ngClass]="{ 'is-invalid': formErrors.prenom }">
+                          <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                          <span class="invalid-feedback">
+                            {{ formErrors.prenom }}
+                          </span>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6  form-group has-feedback">
+                          <input type="text" class="form-control has-feedback-left" id="adresse" [(ngModel)]="em.adresse" formControlName="adresse"
+                          placeholder="Adresse*" [ngClass]="{ 'is-invalid': formErrors.adresse }">
+                          <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
+                          <span class="invalid-feedback">
+                            {{ formErrors.adresse }}
+                          </span>
+                        </div>
+
+
+                      </div>
+                      <div class="form-row">
+
+                        <div class="col-md-4 col-sm-6  form-group has-feedback">
+                          <input type="text" class="form-control has-feedback-left" id="telephone" [(ngModel)]="em.telephone" formControlName="telephone"
+                          placeholder="Telephone*" [ngClass]="{ 'is-invalid': formErrors.telephone }">
+                          <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                          <span class="invalid-feedback">
+                            {{ formErrors.telephone }}
+                          </span>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6  form-group has-feedback">
+                          <input type="email" class="form-control has-feedback-left" id="email" [(ngModel)]="em.email" formControlName="email"
+                          placeholder="Email*" [ngClass]="{ 'is-invalid': formErrors.email }">
+                          <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                          <span class="invalid-feedback">
+                            {{ formErrors.email }}
+                          </span>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6  form-group has-feedback">
+                          <input type="text" class="form-control has-feedback-left" id="numCompteBancaire" [(ngModel)]="em.numCompteBancaire" formControlName="numCompteBancaire"
+                          placeholder="Numero Compte bancaire*" [ngClass]="{ 'is-invalid': formErrors.numCompteBancaire }">
+                          <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
+                          <span class="invalid-feedback">
+                            {{ formErrors.numCompteBancaire }}
+                          </span>
+                        </div>
+
+                      </div>
+
+                      <div class="form-row">
+
+                        <div class="col-md-4 col-sm-6  form-group has-feedback">
+                          <input type="text" class="form-control has-feedback-left" id="cni" [(ngModel)]="em.cni" formControlName="cni"
+                          placeholder="Cni*" [ngClass]="{ 'is-invalid': formErrors.cni }">
+                          <span class="fa fa-newspaper-o form-control-feedback left" aria-hidden="true"></span>
+                          <span class="invalid-feedback">
+                            {{ formErrors.cni }}
+                          </span>
+                        </div>
+
+
+                        <div class="col-md-4 col-sm-6  form-group has-feedback">
+                          <input type="date" class="form-control has-feedback-left" id="dateDelivranceCni" [(ngModel)]="em.dateDelivranceCni" formControlName="dateDelivranceCni"
+                          placeholder="Date de delivrance CNI*" [ngClass]="{ 'is-invalid': formErrors.dateDelivranceCni }">
+                          <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                          <span class="invalid-feedback">
+                            {{ formErrors.dateDelivranceCni }}
+                          </span>
+                        </div>
+
+
+                        <div class="form-group col-md-2">
+
+
+                          <div class="slider">
+
+                            <input type="checkbox" id="manager" class="form-control" name="manager" formControlName="manager" [(ngModel)]="em.manager"  name="slider" class="slider-checkbox" id="sliderSwitch">
+                            <label class="slider-label" for="sliderSwitch">
+                              <span class="slider-inner"></span>
+                              <span class="slider-circle"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="form-row">
+
+                      </div>
+
+                    </div>
+
+
+                    <hr>
+
+                    &nbsp; &nbsp;
+
+
+                    <br>
+                    <button type="button" class="btn btn-danger" (click)="removeEmployee(i)">
+                      Supprimer <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>&nbsp;
+                    <button type="button" class="btn btn-info" (click)="registEmpl()" [disabled]="!agenceForm.form.valid">
+                      Ajouter <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                    </button>
+                  </div><br>
+                  <hr>
+                  <table class="table table-striped" *ngIf="employeeList.length == 0">
+                    <thead style="background-color:rgb(84, 115, 146) ; color: white;">
+                      <tr>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prenom</th>
+                        <th scope="col">Telephone</th>
+                        <th scope="col">Email</th>
+                        <th scope="col-2">CNI</th>
+                        <th scope="col">Adresse</th>
+                        <th scope="col-2">Manager</th>
+                        <th scope="col-2">Action</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of listdata">
+                        <th scope="row">{{item.nom}}</th>
+                        <td>{{item.prenom}}</td>
+                        <td>{{ item.telephone }}</td>
+                        <td>{{ item.email }}</td>
+                        <td>{{ item.cni}}</td>
+                        <td>{{ item.adresse }}</td>
+                        <td>{{ item.manager}}</td>
+
+
+                        <td><button type="button" mat-raised-button color="#2A3F54" (click)="deleteEmpl(item)"><mat-icon
+                              color="warn">delete</mat-icon></button></td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+                <div class="ln_solid"></div>
+                <button class="btn" style="background-color: #2A3F54; color: white;" type="submit" (click)="onSubmit()">
+                  Enregistrer
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-   
-    
-
-    <button type="submit" mat-raised-button color="primary">Submit</button>
-  </form>
-
+  </div>
 </div>
+
