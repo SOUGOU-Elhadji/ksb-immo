@@ -12,7 +12,15 @@ export class ProprieteService {
 
   constructor(private http: HttpClient) { }
 
-  public ajouterProprieteAuProprietaire(propriete: ProprieteDto) {
+  public createPropriete(propriete: ProprieteDto){
     return this.http.post(this._url, propriete);
+  }
+
+  public getProprieteLouees() {
+    return this.http.get<ProprieteDto[]>(this._url + '/louees');
+  }
+
+  public getProprieteDisponibles() {
+    return this.http.get<ProprieteDto[]>(this._url + '/disponibles');
   }
 }

@@ -1,3 +1,5 @@
+import { ProprieteDisponiblesComponent } from './modules/propriete/propriete-disponibles/propriete-disponibles.component';
+import { ProprieteLoueesComponent } from './modules/propriete/propriete-louees/propriete-louees.component';
 import { LoyerNonPayesComponent } from './modules/loyer/loyer-non-payes/loyer-non-payes.component';
 import { LoyerPayesComponent } from './modules/loyer/loyer-payes/loyer-payes.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
@@ -39,7 +41,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     NewApporteurComponent,
     LoyerPayesComponent,
     LoyerNonPayesComponent,
-    
+
   ],
   imports: [
     BrowserModule,

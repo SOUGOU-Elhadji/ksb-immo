@@ -1,3 +1,4 @@
+import { NgxPaginationModule } from 'ngx-pagination';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
@@ -19,6 +20,8 @@ import { CreateProprieteComponent } from './create-propriete/create-propriete.co
 import { UpdateProprieteComponent } from './update-propriete/update-propriete.component';
 import { DetailsProprieteComponent } from './details-propriete/details-propriete.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ProprieteLoueesComponent } from './propriete-louees/propriete-louees.component';
+import { ProprieteDisponiblesComponent } from './propriete-disponibles/propriete-disponibles.component';
 
 
 @NgModule({
@@ -27,6 +30,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     CreateProprieteComponent,
     UpdateProprieteComponent,
     DetailsProprieteComponent,
+    ProprieteLoueesComponent,
+    ProprieteDisponiblesComponent,
   ],
   imports: [
     CommonModule,
@@ -44,13 +49,16 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatMenuModule,
     MatTooltipModule,
     MatDatepickerModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    NgxPaginationModule
 
   ],
   exports: [
     AllProprieteComponent,
     CreateProprieteComponent,
     UpdateProprieteComponent,
+    ProprieteLoueesComponent,
+    ProprieteDisponiblesComponent,
     DetailsProprieteComponent
   ]
 })
