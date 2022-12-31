@@ -14,6 +14,10 @@ import { ListApporteurComponent } from './apporteur/list-apporteur/list-apporteu
 import { CreateEmployeeComponent } from './modules/employee/create-employee/create-employee.component';
 import { AllEmployeeComponent } from './modules/employee/all-employee/all-employee.component';
 import { CreateLocataireComponent } from './modules/locataire/create-locataire/create-locataire.component';
+import { UpdateProprietaireComponent } from './modules/proprietaire/update-proprietaire/update-proprietaire.component';
+import { CreateProprietaireComponent } from './modules/proprietaire/create-proprietaire/create-proprietaire.component';
+import { DetailsProprieteComponent } from './modules/propriete/details-propriete/details-propriete.component';
+import { UpdateProprieteComponent } from './modules/propriete/update-propriete/update-propriete.component';
 
 const routes: Routes = [
   // {path: 'home', component: HomeComponent},
@@ -42,10 +46,15 @@ const routes: Routes = [
 
       //Proprietaire Routes
       {path: 'proprietaires', component: AllProprietaireComponent},
+      {path: 'proprietaires/new', component: CreateProprietaireComponent},
       {path: 'proprietaires/:id/new-propriete', component: CreateProprieteComponent},
+      {path: 'proprietaires/:id/edit', component: UpdateProprietaireComponent},
 
       //Proprietes Routes
-
+      {path: 'proprietes/:id/details', component: DetailsProprieteComponent},
+      {path: 'proprietes/:id/edit', component: UpdateProprieteComponent},
+      // {path: 'proprietes/rent', component: ProprieteLoueesComponent},
+      // {path:'proprietes/free', component: ProprieteDisponiblesComponent}
     ]
   }
 ];
