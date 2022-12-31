@@ -1,10 +1,8 @@
 <div>
-
   <div class="page-title">
     <div class="title_left">
       <h3>Nouvelle Agence <small style="font-size:medium;">Some examples to get you started</small></h3>
     </div>
-
     <div class="title_right">
       <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
         <div class="input-group">
@@ -16,163 +14,6 @@
       </div>
     </div>
   </div>
-
-  <!-- <br><br><br> -->
-  <!-- <hr> -->
-  <!-- <form [formGroup]="form" #agenceForm="ngForm">
-    <mat-form-field>
-      <mat-label for="nomId">Nom Agence</mat-label>
-      <input matInput placeholder="Nom agence" id="nom" [(ngModel)]="agence.nom" formControlName="nom"
-        placeholder="Nom* (obligatoire)" [ngClass]="{ 'is-invalid': formErrors.nom }">
-      <span class="invalid-feedback">
-        {{ formErrors.nom }}
-      </span>
-    </mat-form-field> &nbsp; &nbsp;
-
-    <mat-form-field>
-      <mat-label>Adresse</mat-label>
-      <input matInput placeholder="Adresse" [(ngModel)]="agence.adresse" formControlName="adresse"
-        placeholder="Adresse* (obligatoire)" [ngClass]="{ 'is-invalid': formErrors.adresse }">
-    </mat-form-field> &nbsp; &nbsp;
-
-    <mat-form-field>
-      <mat-label>Region</mat-label>
-      <input matInput placeholder="Region" [(ngModel)]="agence.region" formControlName="region"
-        placeholder="Region* (obligatoire)" [ngClass]="{ 'is-invalid': formErrors.region }">
-    </mat-form-field> &nbsp; &nbsp;
-
-    <mat-form-field>
-      <mat-label>Departement</mat-label>
-      <input matInput placeholder="departement" [(ngModel)]="agence.departement" formControlName="departement"
-        placeholder="departement* (obligatoire)" [ngClass]="{ 'is-invalid': formErrors.departement }">
-    </mat-form-field> &nbsp; &nbsp;
-
-    <mat-form-field>
-      <mat-label>Telephone</mat-label>
-      <input matInput placeholder="telephone" [(ngModel)]="agence.telephone" formControlName="telephone"
-        placeholder="Telephone* (obligatoire)" [ngClass]="{ 'is-invalid': formErrors.telephone }">
-    </mat-form-field> &nbsp; &nbsp;
-    <br>
-    Add a new employee &nbsp; &nbsp;
-    <button type="button" mat-raised-button (click)="addEmployee()">
-      <mat-icon matTooltip="Add a new Employee">add</mat-icon>
-    </button>
-    <br>
-    <hr> -->
-
-    <!-- <div formArrayName="employees" *ngFor="let u of employeeArray.controls; index as i" id="click">
-
-      <span>Employee {{ i + 1 }}</span> &nbsp; &nbsp;
-      <div>
-
-        <mat-form-field>
-          <mat-label>Nom</mat-label>
-          <input matInput placeholder="Nom" formControlName="nom" [(ngModel)]="em.nom">
-        </mat-form-field> &nbsp; &nbsp;
-
-        <mat-form-field>
-          <mat-label>Prenom</mat-label>
-          <input matInput placeholder="Prenom" formControlName="prenom" [(ngModel)]="em.prenom">
-        </mat-form-field> &nbsp; &nbsp;
-
-        <mat-form-field>
-          <mat-label>Telephone</mat-label>
-          <input matInput placeholder="Telephone" formControlName="telephone" [(ngModel)]="em.telephone">
-        </mat-form-field> &nbsp; &nbsp;
-
-        <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input matInput placeholder="Email" type="email" formControlName="email" [(ngModel)]="em.email">
-        </mat-form-field> &nbsp; &nbsp;
-
-        <mat-form-field>
-          <mat-label>CNI</mat-label>
-          <input matInput placeholder="Cni" formControlName="cni" [(ngModel)]="em.cni">
-        </mat-form-field> &nbsp; &nbsp;
-
-        <mat-form-field>
-          <mat-label>Date Delivrance CNI</mat-label>
-          <input type="date" matInput placeholder="dateDelivranceCni" formControlName="dateDelivranceCni"
-            [(ngModel)]="em.dateDelivranceCni">
-        </mat-form-field> &nbsp; &nbsp;
-
-        <mat-form-field>
-          <mat-label>Adreesse</mat-label>
-          <input matInput placeholder="adresse" formControlName="adresse" [(ngModel)]="em.adresse">
-        </mat-form-field> &nbsp; &nbsp;
-
-        <mat-form-field>
-          <mat-label>Numero Compte Bancaire</mat-label>
-          <input matInput placeholder="Numero Compte Bancaire" formControlName="numCompteBancaire"
-            [(ngModel)]="em.numCompteBancaire">
-        </mat-form-field> &nbsp; &nbsp;
-
-        <mat-slide-toggle [color]="color" name="manager" formControlName="manager" [(ngModel)]="em.manager">Manager
-        </mat-slide-toggle>
-
-        &nbsp; &nbsp;
-
-   
-        <br>
-        <button mat-raised-button color="#2A3F54" (click)="removeEmployee(i)">
-          <mat-icon color="warn">delete</mat-icon>
-        </button>&nbsp;
-        <button type="button" mat-raised-button (click)="registEmpl()" [disabled]="!agenceForm.form.valid">
-          <mat-icon matTooltip="Add a new Employee">save</mat-icon>
-        </button>
-      </div><br>
-      <hr>
-      <table class="table table-striped" *ngIf="employeeList.length == 0">
-        <thead style="background-color:rgb(84, 115, 146) ; color: white;">
-          <tr>
-            <th scope="col">Nom</th>
-            <th scope="col">Prenom</th>
-            <th scope="col">Telephone</th>
-            <th scope="col">Email</th>
-            <th scope="col-2">CNI</th>
-            <th scope="col">Adresse</th>
-            <th scope="col-2">Manager</th>
-            <th scope="col-2">Action</th>
-
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of listdata">
-            <th scope="row">{{item.nom}}</th>
-            <td>{{item.prenom}}</td>
-            <td>{{ item.telephone }}</td>
-            <td>{{ item.email }}</td>
-            <td>{{ item.cni}}</td>
-            <td>{{ item.adresse }}</td>
-            <td>{{ item.manager}}</td>
-
-
-            <td><button type="button" mat-raised-button color="#2A3F54" (click)="deleteEmpl(item)"><mat-icon
-                  color="warn">delete</mat-icon></button></td>
-          </tr>
-
-        </tbody>
-      </table>
-    </div> -->
-
-
-
-
-  <!-- </form> -->
-
-  <!-- <button type="submit" mat-raised-button style="background-color: rgb(42,63,84); color: white;"
-    (click)="onSubmit()">Submit</button>
- -->
-
-
-
-
-
-
-
-
-
-
 </div>
 
 
@@ -180,22 +21,6 @@
 
 <div role="main">
   <div class="">
-    <!-- <div class="page-title">
-      <div class="title_left">
-        <h3>Nouveau Employé</h3>
-      </div>
-
-      <div class="title_right">
-        <div class="col-md-5 col-sm-5 form-group pull-right top_search">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for..." />
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go!</button>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <div class="clearfix"></div>
     <div class="row">
       <div class="col-md-12 col-sm-12">
@@ -238,6 +63,9 @@
                     <span class="invalid-feedback">
                       {{ formErrors.nom }}
                     </span>
+                    <!-- <div *ngIf="form.get('nom')?.invalid && form.get('nom')?.touched" class="error">
+                      Please enter your address.
+                    </div> -->
                   </div>
 
                   <div class="col-md-3 col-sm-6  form-group has-feedback">
@@ -276,65 +104,21 @@
                     </span>
                   </div>
 
-                  <!-- <div class="form-group col-md-6">
-                    <label for="inputEmail4">Nom Agence</label>
-                    <input placeholder="Nom agence" id="nom" [(ngModel)]="agence.nom" formControlName="nom"
-                      placeholder="Nom* (obligatoire)" class="form-control" [ngClass]="{ 'is-invalid': formErrors.nom }">
-                    <span class="invalid-feedback">
-                      {{ formErrors.nom }}
-                    </span>
-                  </div> -->
-                  <!-- <div class="form-group col-md-6">
-                    <label for="inputPassword4">Adresse</label>
-                    <input placeholder="Adresse" id="adresse" [(ngModel)]="agence.adresse" formControlName="adresse"
-                      placeholder="Adresse* (obligatoire)" class="form-control" [ngClass]="{ 'is-invalid': formErrors.adresse }">
-                    <span class="invalid-feedback">
-                      {{ formErrors.adresse }}
-                    </span>
-                  </div> -->
                 </div>
-                <div class="form-row">
-                  <!-- <div class="form-group col-md-4">
-                    <label for="inputAddress">Region</label>
-                    <input placeholder="Region" id="region" [(ngModel)]="agence.region" formControlName="region"
-                      placeholder="Region* (obligatoire)" class="form-control" [ngClass]="{ 'is-invalid': formErrors.region }">
-                    <span class="invalid-feedback">
-                      {{ formErrors.region }}
-                    </span>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="inputAddress2">Departement</label>
-                    <input placeholder="Departement" id="nom" [(ngModel)]="agence.departement" formControlName="departement"
-                    placeholder="Departement* (obligatoire)" class="form-control" [ngClass]="{ 'is-invalid': formErrors.departement }">
-                  <span class="invalid-feedback">
-                    {{ formErrors.departement }}
-                  </span>
-                  </div> -->
-                  <!-- <div class="form-group col-md-4">
-                    <label for="inputAddress">Telephone</label>
-                    <input placeholder="Telephone de l'agence" id="telephone" [(ngModel)]="agence.telephone" formControlName="telephone"
-                      placeholder="Telephone* (obligatoire)" class="form-control" [ngClass]="{ 'is-invalid': formErrors.telephone }">
-                    <span class="invalid-feedback">
-                      {{ formErrors.telephone }}
-                    </span>
-                  </div> -->
-                </div>
-                
-                Add a new employee &nbsp; &nbsp;
-                <span  mat-raised-button (click)="addEmployee()">
-                  <img src="https://img.icons8.com/ios-filled/30/000000/add--v1.png"/>
-                  <!-- <mat-icon matTooltip="Add a new Employee">add</mat-icon> -->
-                </span>
+               
+                <!-- Add a new employee &nbsp; &nbsp; -->
+                <!-- <button type="button" style="border: none;" (click)="addEmployee()" *ngIf="employeeArray.length < 1">Ajouter un employer -->
+                <button type="button" style="border: none;" (click)="addEmployee()" *ngIf="employeeArray.length == 0">Ajouter un employer
+                  <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                </button>
 
 
                 <div formArrayName="employees" *ngFor="let u of employeeArray.controls; index as i" id="click">
                   <hr>
-                 
                   <h2>Employee</h2>
                   <div>
                     <div [formGroupName]="i">
                       <div class="form-row">
-                      
                         <div class="col-md-4 col-sm-6  form-group has-feedback">
                           <input type="text" class="form-control has-feedback-left" id="nom" [(ngModel)]="em.nom" formControlName="nom"
                           placeholder="Nom*" [ngClass]="{ 'is-invalid': formErrors.nom }">
@@ -361,8 +145,6 @@
                             {{ formErrors.adresse }}
                           </span>
                         </div>
-
-                        
                       </div>
                       <div class="form-row">
 
@@ -418,23 +200,15 @@
                         
                         
                         <div class="form-group col-md-2">
-                          
-                        
                           <div class="slider">
-                            
-                            <input type="checkbox" id="manager" class="form-control" name="manager" formControlName="manager" [(ngModel)]="em.manager"  name="slider" class="slider-checkbox" id="sliderSwitch">
+                            <input type="checkbox" id="manager" (select)="em.manager === false" class="form-control" name="manager" formControlName="manager" [(ngModel)]="em.manager"  name="slider" class="slider-checkbox" id="sliderSwitch">
                             <label class="slider-label" for="sliderSwitch">
                               <span class="slider-inner"></span>
                               <span class="slider-circle"></span>
                             </label>
                           </div>
                         </div>
-                       
                       </div>
-                      <div class="form-row">
-                        
-                      </div>
-              
                     </div>
 
                     
@@ -448,6 +222,7 @@
                       Supprimer <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>&nbsp;
                     <button type="button" class="btn btn-info" (click)="registEmpl()" [disabled]="!agenceForm.form.valid">
+                    <!-- <button type="button" class="btn btn-info" (click)="registEmpl()"> -->
                       Ajouter <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                     </button>
                   </div><br>
@@ -475,12 +250,12 @@
                         <td>{{ item.cni}}</td>
                         <td>{{ item.adresse }}</td>
                         <td>{{ item.manager}}</td>
-            
-            
-                        <td><button type="button" mat-raised-button color="#2A3F54" (click)="deleteEmpl(item)"><mat-icon
-                              color="warn">delete</mat-icon></button></td>
+                        <td>
+                            <button type="button" style="background-color: crimson; color: white; border: none;border-radius: 5px;" (click)="deleteEmpl(item)">
+                              Supprimer <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </td>
                       </tr>
-            
                     </tbody>
                   </table>
                 </div>

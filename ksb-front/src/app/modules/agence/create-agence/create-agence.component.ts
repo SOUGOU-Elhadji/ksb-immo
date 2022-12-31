@@ -41,15 +41,7 @@ export class CreateAgenceComponent implements OnInit {
     private serviceEmployee: EmployeeService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    // this.serviceEmployee.getAllEmployee().subscribe((response) => {
-    //   this.employeeList = response;
-    // });
-
-    // this.serviceAgence.getAllAgences().subscribe((response) => {
-    //   this.agences = response;
-    // });
-
-
+   
     this.listdata = [];
 
     this.form = this.fb.group({
@@ -61,7 +53,6 @@ export class CreateAgenceComponent implements OnInit {
       employees: new FormArray([])
 
     });
-
 
   }
 
