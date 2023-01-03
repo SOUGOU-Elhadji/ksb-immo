@@ -11,7 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 
+
 import { NgxMaskModule } from 'ngx-mask';
+
 
 
 // export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
@@ -37,7 +39,6 @@ import { NgxMaskModule } from 'ngx-mask';
     UpdateAgenceComponent,
     DetailsAgenceComponent,
 
-    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

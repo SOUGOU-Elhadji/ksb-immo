@@ -139,12 +139,12 @@ public class ProprieteService {
             //mapper la propriété
             Propriete proprieteEntity = mapper.map(propriete, Propriete.class);
             //récupérer l'agence
-            Agence agence = agenceRepo.findById(UUID.fromString(propriete.getAgenceId())).orElse(null);
-            if (agence == null) {
+            //Agence agence = agenceRepo.findById(UUID.fromString(propriete.getAgenceId())).orElse(null);
+            //if (agence == null) {
                 //log aucune agence trouvée dans la base de données
-                log.error("Aucune agence trouvée dans la base de données pour l'id : {}" , propriete.getAgenceId());
-                return null;
-            }
+                //log.error("Aucune agence trouvée dans la base de données pour l'id : {}" , propriete.getAgenceId());
+               // return null;
+            //}
             //récupérer le propriétaire
             Proprietaire proprietaire = proprietaireRepo.findById(UUID.fromString(propriete.getProprietaireId())).orElse(null);
             if (proprietaire == null) {
@@ -152,13 +152,15 @@ public class ProprieteService {
                 log.error("Aucun propriétaire trouvé dans la base de données pour l'id : {}" , propriete.getProprietaireId());
                 return null;
             }
-            proprieteEntity.setAgence(agence);
+            //proprieteEntity.setAgence(agence);
             proprieteEntity.setProprietaire(proprietaire);
+            log.info(proprieteEntity.toString());
             //ajouter la propriété
             proprieteToSave = mapper.map(proprieteRepo.save(proprieteEntity), ProprieteDto.class);
         } catch (Exception e) {
             //log erreur ajout de la propriété
-            log.error("Erreur lors de l'ajout de la propriété");
+            log.error("Erreur lors de l'ajout de la propriété : {}", e.getMessage());
+            e.printStackTrace();
         }
         if (proprieteToSave != null && proprieteToSave.getId() != null) {
             //log enregistrement de la propriété avec l'id
@@ -247,7 +249,11 @@ public class ProprieteService {
             List<Propriete> proprieteEntityList = proprieteRepo.findByStatus(status);
             //si la liste des propriétés n'est pas null la mapper
             if (proprieteEntityList != null) {
-                proprieteList = proprieteEntityList.stream().map(propriete -> mapper.map(propriete, ProprieteDto.class)).collect(Collectors.toList());
+                proprieteList = proprieteEntityList.stream().map(propriete -> {
+                    ProprieteDto proprieteDto = mapper.map(propriete, ProprieteDto.class);
+                    proprieteDto.setNomProprietaire(propriete.getProprietaire().getPrenom() + " " + propriete.getProprietaire().getNom());
+                    return proprieteDto;
+                }).collect(Collectors.toList());
             }
         } catch (Exception e) {
             //log erreur récupération de la liste des propriétés par status

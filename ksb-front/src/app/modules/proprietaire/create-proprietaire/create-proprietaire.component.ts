@@ -1,3 +1,9 @@
+import { TypePropriete } from './../../../shared/enums/type-propriete';
+import { ToastrService } from 'ngx-toastr';
+import { ProprietaireService } from './../../../shared/services/proprietaire.service';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { ProprieteDto } from './../../../shared/dts/propriete-dto';
+import { ProprietaireDto } from './../../../shared/dts/proprietaire-dto';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,6 +21,7 @@ import { ProprietaireService } from 'src/app/shared/services/proprietaire.servic
 export class CreateProprietaireComponent implements OnInit {
 
   proprietaire !: ProprietaireDto;
+
   listProprietes : ProprieteDto[] = [];
   propriete !: ProprieteDto;
 
@@ -28,6 +35,7 @@ export class CreateProprietaireComponent implements OnInit {
 
   constructor(private service : ProprietaireService,
             private toastr : ToastrService,
+
             private builder : FormBuilder,
             private router : Router) {
 
@@ -53,6 +61,7 @@ export class CreateProprietaireComponent implements OnInit {
 
   public selectType(type : string){
     this.propriete.type = type;
+
   }
 
   public addPropriete(){

@@ -77,6 +77,7 @@ public class ProprieteController {
         //try catch pour créer une propriété
         try {
             //création de la propriété
+            log.info(dto.toString());
             propriete = proprieteService.addPropriete(dto);
             //log création de la propriété
             log.info("Création de la propriété");

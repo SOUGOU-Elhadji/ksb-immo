@@ -10,7 +10,7 @@ export const environment = {
   apiLoyer: 'http://localhost:8080/api/loyer',
   apiLocataire: 'http://localhost:8080/api/locataires',
   apiMensualite: 'http://localhost:8080/api/mensualite',
-  apiPropriete: 'http://localhost:8080/api/propriete',
+  apiPropriete: 'http://localhost:8080/api/proprietes',
 };
 
 /*

@@ -1,15 +1,15 @@
 package sn.ksb.immo.ksbimmo.application.dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.validation.constraints.Null;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class ProprieteDto {
     private String id;
 
@@ -30,11 +30,11 @@ public class ProprieteDto {
     private Boolean jardin;
     private Boolean ascenseur;
     private String numeroLot;
-    private ApporteurDto apporteurAffaire;
 
     private MultipartFile[] images;
     private String agenceId;
 
+    private String nomProprietaire;
     private String dateDisponibilite;
     private String proprietaireId;
 }

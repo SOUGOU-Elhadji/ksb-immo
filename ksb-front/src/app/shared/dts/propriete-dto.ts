@@ -2,7 +2,7 @@ import { ApporteurDto } from "./apporteur-dto";
 
 
 export class ProprieteDto{
-
+    id!: string;
     type!: string;
     description!: string;
     adresse!: string;
@@ -25,5 +25,6 @@ export class ProprieteDto{
     dateDisponibilite!: string;
     proprietaireId!: string;
 
+    nomProprietaire!: string;
 
 }

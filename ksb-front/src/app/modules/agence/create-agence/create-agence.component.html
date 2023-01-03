@@ -1,3 +1,4 @@
+
 <div>
   <div class="page-title">
     <div class="title_left">
@@ -113,12 +114,15 @@
                 </button>
 
 
+
                 <div formArrayName="employees" *ngFor="let u of employeeArray.controls; index as i" id="click">
                   <hr>
+
                   <h2>Employee</h2>
                   <div>
                     <div [formGroupName]="i">
                       <div class="form-row">
+
                         <div class="col-md-4 col-sm-6  form-group has-feedback">
                           <input type="text" class="form-control has-feedback-left" id="nom" [(ngModel)]="em.nom" formControlName="nom"
                           placeholder="Nom*" [ngClass]="{ 'is-invalid': formErrors.nom }">
@@ -145,6 +149,7 @@
                             {{ formErrors.adresse }}
                           </span>
                         </div>
+
                       </div>
                       <div class="form-row">
 
@@ -174,9 +179,9 @@
                             {{ formErrors.numCompteBancaire }}
                           </span>
                         </div>
-                        
+
                       </div>
-  
+
                       <div class="form-row">
 
                         <div class="col-md-4 col-sm-6  form-group has-feedback">
@@ -187,7 +192,7 @@
                             {{ formErrors.cni }}
                           </span>
                         </div>
-                        
+
 
                         <div class="col-md-4 col-sm-6  form-group has-feedback">
                           <input type="text" class="form-control has-feedback-left" #dateDelivranceCni (focus)="dateDelivranceCni.type='date'" (blur)="dateDelivranceCni.type='text'" id="dateDelivranceCni" [(ngModel)]="em.dateDelivranceCni" formControlName="dateDelivranceCni"
@@ -197,10 +202,10 @@
                             {{ formErrors.dateDelivranceCni }}
                           </span>
                         </div>
-                        
-                        
+
+
                         <div class="form-group col-md-2">
-                          <div class="slider">
+
                             <input type="checkbox" id="manager" class="form-control" name="manager" formControlName="manager" [(ngModel)]="em.manager"  name="slider" class="slider-checkbox" id="sliderSwitch">
                             <label class="slider-label" for="sliderSwitch">
                               <span class="slider-inner"></span>
@@ -208,15 +213,17 @@
                             </label>
                           </div>
                         </div>
+
                       </div>
+
                     </div>
 
-                    
+
                     <hr>
-            
+
                     &nbsp; &nbsp;
-            
-               
+
+
                     <br>
                     <button type="button" class="btn btn-danger" (click)="removeEmployee(i)">
                       Supprimer <i class="fa fa-trash" aria-hidden="true"></i>
@@ -238,7 +245,7 @@
                         <th scope="col">Adresse</th>
                         <th scope="col-2">Manager</th>
                         <th scope="col-2">Action</th>
-            
+
                       </tr>
                     </thead>
                     <tbody>
@@ -250,12 +257,14 @@
                         <td>{{ item.cni}}</td>
                         <td>{{ item.adresse }}</td>
                         <td>{{ item.manager}}</td>
+
                         <td>
                             <button type="button" style="background-color: crimson; color: white; border: none;border-radius: 5px;" (click)="deleteEmpl(item)">
                               Supprimer <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                         </td>
                       </tr>
+
                     </tbody>
                   </table>
                 </div>

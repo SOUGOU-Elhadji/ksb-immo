@@ -12,16 +12,22 @@
         <div class="menu_section">
           <h3>General</h3>
           <ul class="nav side-menu">
-            <li><a><i class="fa fa-home"></i> Home</a></li>
-            <li><a routerLink="agences"><i class="fa fa-building"></i> Agence</a></li>
+            <li><a routerLink="home"><i class="fa fa-home"></i> Home</a></li>
+            <li><a routerLink="agences"><i class="fa fa-map-marker"></i> Agence</a></li>
             <li><a routerLink="employes"><i class="fa fa-users"></i> Employés</a></li>
             <li><a routerLink="apporteurs-affaires"><i class="fa fa-user"></i> Apporteurs d'Affaire</a></li>
             <li><a routerLink="proprietaires"><i class="fa fa-user"></i> Proprietaires</a></li>
+            <li><a ><i class="fa fa-building"></i> Propriétés <span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a routerLink="proprietes/rent"> En Location</a></li>
+                <li><a routerLink="proprietes/free"> Disponibles</a></li>
+              </ul>
+          </li>
             <li><a routerLink="locataires"><i class="fa fa-users"></i> Locataires</a></li>
             <li><a ><i class="fa fa-file"></i> Loyers <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                  <li><a routerLink="loyers/payes">Payés</a></li>
-                  <li><a routerLink="loyers/non-payes">Impayés</a></li>
+                  <li><a routerLink="loyers/payes"> Payés</a></li>
+                  <li><a routerLink="loyers/non-payes"> Impayés</a></li>
                 </ul>
             </li>
 
