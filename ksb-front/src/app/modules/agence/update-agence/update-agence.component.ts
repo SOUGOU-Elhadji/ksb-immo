@@ -47,7 +47,7 @@ export class UpdateAgenceComponent implements OnInit {
 
 updateAgence(){
   return this.serviceAgence.updateAgence(this.agence).subscribe(data =>{
-    this.router.navigate(['/agences'])
+    this.router.navigate(['/agences']);
     console.log(data);
   }, error => console.log(error));
 }

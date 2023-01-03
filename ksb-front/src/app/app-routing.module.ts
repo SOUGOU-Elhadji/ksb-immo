@@ -18,6 +18,8 @@ import { UpdateProprietaireComponent } from './modules/proprietaire/update-propr
 import { CreateProprietaireComponent } from './modules/proprietaire/create-proprietaire/create-proprietaire.component';
 import { DetailsProprieteComponent } from './modules/propriete/details-propriete/details-propriete.component';
 import { UpdateProprieteComponent } from './modules/propriete/update-propriete/update-propriete.component';
+import { UpdateEmployeeComponent } from './modules/employee/update-employee/update-employee.component';
+import { DetailsEmployeeComponent } from './modules/employee/details-employee/details-employee.component';
 
 const routes: Routes = [
   // {path: 'home', component: HomeComponent},
@@ -33,6 +35,8 @@ const routes: Routes = [
       //Employee Routes
       {path: 'employes', component: AllEmployeeComponent},
       {path: 'employes/new', component: CreateEmployeeComponent},
+      {path: 'employes/:matricule/edit', component: UpdateEmployeeComponent},
+      {path: 'employes/:matricule/details', component: DetailsEmployeeComponent},
       //Agence Routes
       {path: 'agences', component : AllAgenceComponent},
       {path: 'agences/:id/details', component: DetailsAgenceComponent},

@@ -108,13 +108,13 @@ export class ProprietaireService {
   }
 
   // METHOD TO UPDATE A Proprietaire
-  public updateProprietaire(id: string, proprietaire: ProprietaireDto): Observable<Object>{
+  public updateProprietaire(proprietaire: ProprietaireDto): Observable<Object>{
     const params = new HttpParams()
       .set('sort', "description")
       .set('page', "2");
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    return this.httpClient.put<Proprietaire>(`${this.Url}/${id}`, proprietaire, {'params': params, 'headers': headers})
+    return this.httpClient.put(`${this.Url}`, proprietaire, {'params': params, 'headers': headers})
       .pipe(
         map((response) => {
           return response;

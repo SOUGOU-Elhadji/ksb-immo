@@ -2,7 +2,7 @@
     <!-- page content -->
     <div class="page-title">
         <div class="title_left">
-            <h3>Employées  <small style="font-size:medium;">Some examples to get you started</small></h3>
+            <h3>Employées <small style="font-size:medium;">Some examples to get you started</small></h3>
         </div>
 
         <div class="title_right">
@@ -25,13 +25,13 @@
             <div class="x_title">
                 <h2>Datas <small>Employee</small></h2>
                 <ul class="nav navbar-right panel_toolbox">
-                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                  </li>
-                  <li>
-                    <a href="employes/new" style="color: #5A738E;"><i class="fa fa-plus"></i></a>
-                  </li>
-                  <li><a class="close-link"><i class="fa fa-close"></i></a>
-                  </li>
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li>
+                        <a routerLink="new" style="color: #5A738E;"><i class="fa fa-plus"></i></a>
+                    </li>
+                    <li><a class=""><i class="fa fa-close"></i></a>
+                    </li>
                 </ul>
                 <div class="clearfix"></div>
             </div>
@@ -50,18 +50,20 @@
                                         <th scope="col">Email</th>
                                         <th scope="col">Adresse</th>
                                         <th scope="col">Agence</th>
+                                        <th></th>
                                         <!-- <th scope="col">Agence</th> -->
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let e of employ">
-                                      <td>{{e.cni}}</td>
-                                      <td>{{e.nom}}</td>
+                                    <tr *ngFor="let e of employ | paginate: { itemsPerPage: 10, currentPage: p }">
+                                        <td>{{e.cni}}</td>
+                                        <td>{{e.nom}}</td>
                                         <td>{{e.prenom}}</td>
                                         <td>{{e.telephone}}</td>
                                         <td>{{e.email}}</td>
                                         <td>{{e.adresse}}</td>
+                                        <!-- <td>{{e.manager}}</td> -->
                                         <td>{{e.agence?.nom}}</td>
                                         <!-- <td>{{e.agence?.nom}}</td> -->
                                         <td>
@@ -69,18 +71,20 @@
                                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                                     aria-expanded="false"></a>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#"><i class="fa fa-eye"></i>
-                                                        Afficher</a>
-                                                    <a class="dropdown-item" href="#"><i class="fa fa-edit"></i>
-                                                        Modifier</a>
-                                                    <a class="dropdown-item" (click)="deleteEmployee(e.id)" ><i class="fa fa-trash"></i>
-                                                        Supprimer</a>
+                                                    <!-- <a class="dropdown-item" [routerLink]="[e.matricule, 'details']"><i class="fa fa-eye"></i> Afficher</a> -->
+                                                    <a class="dropdown-item" (click)="employerDetails(e.matricule)"><i class="fa fa-eye"></i> Afficher</a>
+                                                    <a class="dropdown-item" [routerLink]="[e.matricule, 'edit']"><i class="fa fa-edit"></i> Modifier</a>
+                                                    <a class="dropdown-item" (click)="deleteEmployee(e)"><i class="fa fa-trash"></i>Supprimer</a>
                                                 </div>
                                             </span>
                                         </td>
                                     </tr>
 
                                 </tbody>
+                                <br>
+                                <br>
+                                <pagination-controls class="page my-pagination" (pageChange)="p = $event"></pagination-controls>
+
                             </table>
                         </div>
                     </div>
@@ -94,10 +98,3 @@
     <!-- page content -->
 
 </div>
-
-
-
-
-
-
-

@@ -8,27 +8,13 @@ import { UpdateAgenceComponent } from './update-agence/update-agence.component';
 import { DetailsAgenceComponent } from './details-agence/details-agence.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-// material modules
-import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar'
-import { MatDividerModule } from '@angular/material/divider';
-import { MatInputModule } from '@angular/material/input';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatTableModule } from '@angular/material/table';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
-
-import { FormatDatePipe } from 'src/app/shared/pipe/format-date.pipe';
-import { MatNativeDateModule } from '@angular/material/core';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+
+import { NgxMaskModule } from 'ngx-mask';
+
+
+// export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 @NgModule({
   declarations: [
     AllAgenceComponent,
@@ -41,9 +27,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AgenceRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
 
-    // MatMomentDateModule,
+    NgxMaskModule.forRoot(),
   ],
   exports: [
     AllAgenceComponent,
@@ -51,21 +37,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     UpdateAgenceComponent,
     DetailsAgenceComponent,
 
-    MatExpansionModule,
-    MatIconModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatDividerModule,
-    MatInputModule,
-    MatMenuModule,
-    MatTooltipModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatTableModule,
-    MatRadioModule,
-
-
+    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

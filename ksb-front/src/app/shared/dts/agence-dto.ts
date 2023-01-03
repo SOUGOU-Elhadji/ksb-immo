@@ -7,5 +7,6 @@ export class AgenceDto {
     region!: string;
     departement!: string;
     telephone!: string;
+    dateCreation!: string;
     employees!: EmployeeDto[];
 }

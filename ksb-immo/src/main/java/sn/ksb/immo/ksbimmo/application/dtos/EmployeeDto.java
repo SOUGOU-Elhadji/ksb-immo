@@ -25,6 +25,10 @@ public class EmployeeDto {
 
     @NotNull
     @NotEmpty
+    private String matricule;
+
+    @NotNull
+    @NotEmpty
     private String prenom;
 
     @NotNull

@@ -1,1 +1,146 @@
-<p>update-employee works!</p>
+<div role="main">
+    <div class="">
+      <div class="page-title">
+        <div class="title_left">
+          <h3>Nouveau Employé</h3>
+        </div>
+  
+        <div class="title_right">
+          <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for..." />
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Employé <small>different form elements</small></h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li>
+                  <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                    aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a class="dropdown-item" href="#">Settings 1</a></li>
+                    <li><a class="dropdown-item" href="#">Settings 2</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <br />
+  
+  
+              <div class="container">
+                <form>
+                  <div class="form-row">
+  
+                    <div class="col-md-4 col-sm-6  form-group has-feedback">
+                      <input type="text" class="form-control has-feedback-left" name="nom" [(ngModel)]="employee.nom"
+                        placeholder="Nom*">
+                      <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+  
+                    <div class="col-md-4 col-sm-6  form-group has-feedback">
+                      <input type="text" class="form-control has-feedback-left" name="prenom"
+                        [(ngModel)]="employee.prenom" placeholder="Prenom*">
+                      <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+  
+                    <div class="col-md-4 col-sm-6  form-group has-feedback">
+                      <input type="text" class="form-control has-feedback-left" name="telephone"
+                        [(ngModel)]="employee.telephone" placeholder="Telephone*">
+                      <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+  
+                  </div>
+                  <div class="form-row">
+  
+                    <div class="col-md-4 col-sm-6  form-group has-feedback">
+                      <input type="email" class="form-control has-feedback-left" name="email" [(ngModel)]="employee.email"
+                        placeholder="email*">
+                      <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+  
+                    <div class="col-md-4 col-sm-6  form-group has-feedback">
+                      <input type="text" class="form-control has-feedback-left" name="cni" [(ngModel)]="employee.cni"
+                        placeholder="CNI*">
+                      <span class="fa fa-newspaper-o form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+  
+                    <div class="col-md-4 col-sm-6  form-group has-feedback">
+                      <input type="text" class="form-control has-feedback-left" name="dateDelivranceCni"
+                        [(ngModel)]="employee.dateDelivranceCni" placeholder="Date Delivrance CNI*" #dateDelivranceCni
+                        (focus)="dateDelivranceCni.type='date'" (blur)="dateDelivranceCni.type='text'">
+                      <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+  
+                  </div>
+                  <div class="form-row">
+  
+                    
+  
+                    <div class="col-md-4 col-sm-6  form-group has-feedback">
+                      <input type="text" class="form-control has-feedback-left" name="adresse"
+                        [(ngModel)]="employee.adresse" placeholder="Adresse*">
+                      <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+  
+                    <div class="col-md-4 col-sm-6  form-group has-feedback">
+                      <input type="text" class="form-control has-feedback-left" name="numCompteBancaire"
+                        [(ngModel)]="employee.numCompteBancaire" placeholder="Numero Compte bancaire*">
+                      <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+  
+                    <div class="col-md-2 col-sm-4 form-group has-feedback">
+                      <select class="form-control has-feedback-left" name="agence" [(ngModel)]="employee.agenceId">
+                        <option selected disabled>Choisir l'agence</option>
+                        <option *ngFor="let a of agences" [ngValue]="a.id">{{ a.nom }}</option>
+                      </select>
+                      <span class="fa fa-list form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+  
+                
+                    <div class="form-group col-md-2">
+                      <div class="slider">
+                        <input type="checkbox" class="form-control" name="manager" [(ngModel)]="employee.manager" 
+                        name="slider" class="slider-checkbox" id="sliderSwitch">
+                        <label class="slider-label" for="sliderSwitch">
+                          <span class="slider-inner"></span>
+                          <span class="slider-circle"></span>
+                        </label>
+                      </div>
+                    </div>
+  
+                    
+  
+  
+                  </div>
+                  <div class="ln_solid"></div>
+                  <button class="btn btn-success" type="submit" (click)="updateEmployee()"><i class="fa fa-download" aria-hidden="true"></i>
+                    Modifier
+                  </button>
+                  <button class="btn btn-info" type="button" routerLink="/employes" ><i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    Annuler
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

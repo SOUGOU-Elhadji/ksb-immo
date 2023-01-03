@@ -97,7 +97,7 @@
 
                   <div class="col-md-2 col-sm-6  form-group has-feedback">
                     <input type="text" class="form-control has-feedback-left" id="telephone" [(ngModel)]="agence.telephone" formControlName="telephone"
-                    placeholder="Telephone*" [ngClass]="{ 'is-invalid': formErrors.telephone }">
+                    placeholder="Telephone*" mask="00 000-00-00" [dropSpecialCharacters]="false" [showMaskTyped]="true" [ngClass]="{ 'is-invalid': formErrors.telephone }">
                     <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
                     <span class="invalid-feedback">
                       {{ formErrors.telephone }}
@@ -150,7 +150,7 @@
 
                         <div class="col-md-4 col-sm-6  form-group has-feedback">
                           <input type="text" class="form-control has-feedback-left" id="telephone" [(ngModel)]="em.telephone" formControlName="telephone"
-                          placeholder="Telephone*" [ngClass]="{ 'is-invalid': formErrors.telephone }">
+                          placeholder="Telephone*" mask="00 000-00-00" [dropSpecialCharacters]="false" [showMaskTyped]="true" [ngClass]="{ 'is-invalid': formErrors.telephone }">
                           <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
                           <span class="invalid-feedback">
                             {{ formErrors.telephone }}
@@ -168,7 +168,7 @@
 
                         <div class="col-md-4 col-sm-6  form-group has-feedback">
                           <input type="text" class="form-control has-feedback-left" id="numCompteBancaire" [(ngModel)]="em.numCompteBancaire" formControlName="numCompteBancaire"
-                          placeholder="Numero Compte bancaire*" [ngClass]="{ 'is-invalid': formErrors.numCompteBancaire }">
+                          placeholder="Numero Compte bancaire*" mask="00 00 00 00 00 00 00 00"  [dropSpecialCharacters]="false" [showMaskTyped]="true" [ngClass]="{ 'is-invalid': formErrors.numCompteBancaire }">
                           <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
                           <span class="invalid-feedback">
                             {{ formErrors.numCompteBancaire }}
@@ -190,7 +190,7 @@
                         
 
                         <div class="col-md-4 col-sm-6  form-group has-feedback">
-                          <input type="date" class="form-control has-feedback-left" id="dateDelivranceCni" [(ngModel)]="em.dateDelivranceCni" formControlName="dateDelivranceCni"
+                          <input type="text" class="form-control has-feedback-left" #dateDelivranceCni (focus)="dateDelivranceCni.type='date'" (blur)="dateDelivranceCni.type='text'" id="dateDelivranceCni" [(ngModel)]="em.dateDelivranceCni" formControlName="dateDelivranceCni"
                           placeholder="Date de delivrance CNI*" [ngClass]="{ 'is-invalid': formErrors.dateDelivranceCni }">
                           <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
                           <span class="invalid-feedback">
@@ -201,7 +201,7 @@
                         
                         <div class="form-group col-md-2">
                           <div class="slider">
-                            <input type="checkbox" id="manager" (select)="em.manager === false" class="form-control" name="manager" formControlName="manager" [(ngModel)]="em.manager"  name="slider" class="slider-checkbox" id="sliderSwitch">
+                            <input type="checkbox" id="manager" class="form-control" name="manager" formControlName="manager" [(ngModel)]="em.manager"  name="slider" class="slider-checkbox" id="sliderSwitch">
                             <label class="slider-label" for="sliderSwitch">
                               <span class="slider-inner"></span>
                               <span class="slider-circle"></span>
@@ -262,6 +262,10 @@
                 <div class="ln_solid"></div>
                 <button class="btn" style="background-color: #2A3F54; color: white;" type="submit" (click)="onSubmit()">
                   Enregistrer
+                </button>
+                <button class="btn btn-info" style="color: white;" type="submit" routerLink="/agences">
+                  <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                  Annuler
                 </button>
               </form>
             </div>

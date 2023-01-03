@@ -55,25 +55,15 @@ export class EmployeeService {
       );
   }
 
-  // public createEmployee(employee: EmployeeDto): Observable<Object>{
-  //   return this.httpClient.post(`${this.Url}`, employee)
-  // }
 
-
-
-
-
-  // METHOD TO GET ALL Employee
-
-  test_url = "http://localhost:8080/api/employee";
+  // METHOD TO GET ALL Employees
   public getAllEmployee(): Observable<Employee[]> {
     const params = new HttpParams()
       .set('sort',"description")
       .set('page',"2");
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    return this.httpClient.get<Employee[]>(this.test_url, {"params": params, 'headers': headers})
-    // return this.httpClient.get<Agence[]>(`${this.Url}`, {'params': params})
+    return this.httpClient.get<Employee[]>(this.Url, {"params": params, 'headers': headers})
     .pipe(
       map((response) => {
         return response;
@@ -88,13 +78,33 @@ export class EmployeeService {
   }
 
   // METHOD TO GET A Employee BY ID
-  public getEmployeeById(id: string): Observable<Employee>{
+  // public getEmployeeById(id: string): Observable<Employee>{
+  //   const params = new HttpParams()
+  //     .set('sort',"description")
+  //     .set('page',"2");
+  //   const headers = new HttpHeaders()
+  //     .set('Content-Type', 'application/json');
+  //   return this.httpClient.get<Employee>(`${this.Url}/${id}`, {"params": params, 'headers': headers})
+  //   .pipe(
+  //     map((response) => {
+  //       return response;
+  //     }),
+  //     catchError((error) => {
+  //       console.log('Error caught in service by getting id')
+  //       console.error(error);
+  //       throw error;
+  //     })
+  //   );
+  // }
+
+  // METHOD TO GET A Employee BY MATRICULE
+  public getEmployeeByMatricule(matricule: string): Observable<EmployeeDto>{
     const params = new HttpParams()
       .set('sort',"description")
       .set('page',"2");
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    return this.httpClient.get<Employee>(`${this.Url}/${id}`, {"params": params, 'headers': headers})
+    return this.httpClient.get<EmployeeDto>(`${this.Url}/${matricule}`, {"params": params, 'headers': headers})
     .pipe(
       map((response) => {
         return response;
@@ -108,13 +118,13 @@ export class EmployeeService {
   }
 
   // METHOD TO DELETE A Employee
-  public deleteEmployee(id: string): Observable<Employee>{
+  public deleteEmployee(matricule: string): Observable<Employee>{
     const params = new HttpParams()
       .set('sort',"description")
       .set('page',"2");
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    return this.httpClient.delete<Employee>(`${this.Url}/${id}`, {"params": params, 'headers': headers})
+    return this.httpClient.delete<Employee>(`${this.Url}/${matricule}`, {"params": params, 'headers': headers})
       .pipe(
         map((response) => {
           return response;
@@ -127,14 +137,14 @@ export class EmployeeService {
       );
   }
 
-  // METHOD TO UPDATE A Employee
-  public updateEmployee(id: string, employee: Employee): Observable<Object>{
+  // METHOD TO UPDATE AN Employee
+  public updateEmployee(employee: EmployeeDto): Observable<Object>{
     const params = new HttpParams()
       .set('sort', "description")
       .set('page', "2");
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    return this.httpClient.put<Employee>(`${this.Url}/${id}`, employee, {'params': params, 'headers': headers})
+    return this.httpClient.put(`${this.Url}`, employee, {'params': params, 'headers': headers})
       .pipe(
         map((response) => {
           return response;

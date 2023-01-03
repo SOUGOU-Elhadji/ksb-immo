@@ -14,7 +14,7 @@ export class UpdateProprietaireComponent implements OnInit {
 
   public proprietaireForm !: FormGroup;
 
-  proprietaire !: ProprietaireDto;
+  proprietaire: ProprietaireDto = new ProprietaireDto();
 
   id !: string
 
@@ -51,29 +51,27 @@ export class UpdateProprietaireComponent implements OnInit {
 
   }
 
-  public updateProprietaire(){
-    this.service.updateProprietaire(this.id, this.proprietaire).subscribe(
-      (data) => {
-        this.router.navigate(['/proprietaires']);
-        this.showSuccess();
-      },
-      (error) => {
-        this.showError();
-      }
-    );
+  updateProprietaire(){
+    return this.service.updateProprietaire(this.proprietaire).subscribe(data =>{
+      this.router.navigate(['/proprietaires'])
+      console.log(data);
+      this.showSuccess();
+    }, (error) => {
+      this.showError();
+    });
   }
 
-  public getProprietaireById(id: string) {
-    this.service.getProprietaireById(id).subscribe(
-      (data) => {
-        this.proprietaire = data;
-        console.log(data)
-      },
-      (error) => {
-        this.showError();
-      }
-    );
-  }
+  // public getProprietaireById(id: string) {
+  //   this.service.getProprietaireById(id).subscribe(
+  //     (data) => {
+  //       this.proprietaire = data;
+  //       console.log(data)
+  //     },
+  //     (error) => {
+  //       this.showError();
+  //     }
+  //   );
+  // }
 
   private showSuccess() {
     this.toastr.success('Proprietaire modifié avec succès',

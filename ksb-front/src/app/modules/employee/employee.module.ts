@@ -21,6 +21,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatTooltipModule,
     MatFormFieldModule,
     MatDatepickerModule,
+
+    NgxPaginationModule
 
   ],
   exports: [

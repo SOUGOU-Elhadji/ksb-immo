@@ -131,6 +131,7 @@ public class ProprietaireController {
     }
 
     //update Proprietaire
+    @PutMapping
     public ProprietaireDto update(@RequestBody ProprietaireDto proprietaire) {
         //log the entry of the method
         log.info("Entrée dans la méthode update du controller ProprietaireController");

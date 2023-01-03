@@ -47,7 +47,7 @@ table {
 }
 
 .slider-label {
-  border: 2px solid #666;
+  border: 0.1px solid #666;
   border-radius: 20px;
   cursor: pointer;
   display: block;
