@@ -141,7 +141,7 @@ public class InitDatas implements CommandLineRunner {
                                 .ascenseur(false)
                                 .build(),
                         ProprieteDto.builder()
-                                .adresse("Dakar")
+                                .adresse("Medina")
                                 .description("Appartement de 4 pieces")
                                 .prix(250000.0)
                                 .agenceId(String.valueOf(agence1.getId()))
@@ -196,7 +196,7 @@ public class InitDatas implements CommandLineRunner {
                                 .ascenseur(false)
                                 .build(),
                         ProprieteDto.builder()
-                                .adresse("Thies")
+                                .adresse("Mbour")
                                 .description("Appartement de 4 pieces")
                                 .prix(250000.0)
                                 .agenceId(String.valueOf(agence2.getId()))

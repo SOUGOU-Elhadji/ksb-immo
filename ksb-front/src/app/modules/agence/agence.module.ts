@@ -9,10 +9,14 @@ import { DetailsAgenceComponent } from './details-agence/details-agence.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
-
-import { FormatDatePipe } from 'src/app/shared/pipe/format-date.pipe';
-
 import { NgxPaginationModule } from 'ngx-pagination';
+
+
+import { NgxMaskModule } from 'ngx-mask';
+
+
+
+// export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 @NgModule({
   declarations: [
     AllAgenceComponent,
@@ -25,15 +29,16 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AgenceRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
 
-    // MatMomentDateModule,
+    NgxMaskModule.forRoot(),
   ],
   exports: [
     AllAgenceComponent,
     CreateAgenceComponent,
     UpdateAgenceComponent,
     DetailsAgenceComponent,
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

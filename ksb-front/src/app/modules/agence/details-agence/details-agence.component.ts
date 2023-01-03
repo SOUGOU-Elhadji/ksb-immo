@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AgenceDto } from 'src/app/shared/dts/agence-dto';
+import { Agence } from 'src/app/shared/models/agence';
+import { Employee } from 'src/app/shared/models/employee';
+import { AgenceService } from 'src/app/shared/services/agence.service';
 
 @Component({
   selector: 'app-details-agence',
@@ -7,9 +12,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsAgenceComponent implements OnInit {
 
-  constructor() { }
+  agence: AgenceDto = new AgenceDto();
+  id!: string;
+
+  constructor(private service: AgenceService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.service.getAgenceById(this.id).subscribe(data => {
+      this.agence = data;
+    })
   }
 
 }

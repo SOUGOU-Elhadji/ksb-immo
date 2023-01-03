@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AgenceDto } from 'src/app/shared/dts/agence-dto';
 import { EmployeeDto } from 'src/app/shared/dts/employee-dto';
 import { Agence } from 'src/app/shared/models/agence';
@@ -17,43 +19,66 @@ export class CreateEmployeeComponent implements OnInit {
   employee: EmployeeDto = new EmployeeDto();
   agences: Agence[] = [];
 
-employ: Employee[]=[];
-  
+  employ: Employee[] = [];
 
-  @Input() inputFormGroup = this.fb.group({});
-
+  // public form!: FormGroup;
 
 
-  constructor(private fb: FormBuilder, private employeeService: EmployeeService, private agenceService: AgenceService) { }
+  // @Input() inputFormGroup = this.fb.group({});
+
+
+
+  constructor(private fb: FormBuilder,
+    private employeeService: EmployeeService,
+    private agenceService: AgenceService,
+    private route: Router,
+    private toastr: ToastrService,) { }
 
   ngOnInit(): void {
-   this.getAgences();
+    this.getAgences();
 
-   this.employeeService.getAllEmployee().subscribe(response => {
-    this.employ = response;
-   })
+    this.employeeService.getAllEmployee().subscribe(response => {
+      this.employ = response;
+    })
 
   }
 
-  public onSubmit(){
-    try{
+  public onSubmit() {
+    try {
       this.employeeService.createEmployee(this.employee).subscribe(data => {
         console.log(data);
-        // window.location.reload();
+        this.showSuccess();
+        this.route.navigate(['/employes']);
       });
-    }catch(error){
-      throw error;
+    } catch (error) {
+      this.showError();
     }
   }
 
-public getAgences(){
-  this.agenceService.getAllAgences().subscribe((response) => {
-    this.agences = response;
-    console.log(response);
-  })
-}
+  public getAgences() {
+    this.agenceService.getAllAgences().subscribe((response) => {
+      this.agences = response;
+      console.log(response);
+    })
+  }
 
+  public showSuccess() {
+    this.toastr.success('Employee enregistré avec succès', 'Success', {
+      timeOut: 5000,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      positionClass: 'toast-bottom-right'
+    });
+  }
 
+  public showError() {
+    this.toastr.error('Erreur lors de l\'enregistrement de l\'employer', 'Error', {
+      timeOut: 5000,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      positionClass: 'toast-bottom-right'
+    });
+  }
 
 
 }

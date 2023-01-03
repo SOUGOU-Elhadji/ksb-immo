@@ -1,90 +1,250 @@
 <div>
-  <!-- page content -->
-  <div class="page-title">
-    <div class="title_left">
-      <h3>Nouveau Proprietaire</h3>
-    </div>
 
-    <div class="title_right">
-      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-        <div class="input-group">
-          <input type="text" class="form-control" [(ngModel)]="term"  placeholder="Rechercher">
-          <span class="input-group-btn">
-            <button class="btn btn-secondary" type="button">Go!</button>
-          </span>
+    <!-- page content -->
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Nouveau Proprietaire</h3>
+      </div>
+  
+      <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+          <div class="input-group">
+            <input type="text" class="form-control" [(ngModel)]="term"  placeholder="Rechercher">
+            <span class="input-group-btn">
+              <button class="btn btn-secondary" type="button">Go!</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="clearfix"></div>
+  
+    <div class="col-sm-12 col-md-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Ajouter un nouveau proprietaire</h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <br />
+          <form class="form-horizontal form-label-left" [formGroup]="proprietaireForm">
+            <div class="row">
+              <div class="col-md-4 col-sm-4 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Nom" name="nom" formControlName="nom" >
+                <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+              </div>
+              <div class="col-md-4 col-sm-4 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess3" placeholder="Prenom" formControlName="prenom">
+                <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+              </div>
+              <div class="col-md-4 col-sm-4 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess7" placeholder="CNI/Passport" formControlName="cni" >
+                <span class="fa fa-newspaper-o form-control-feedback left" aria-hidden="true"></span>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4 col-sm-4 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Adresse" formControlName="adresse">
+                <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
+              </div>
+              <div class="col-md-4 col-sm-4 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess9" placeholder="Date Delivrance CNI/Passport " formControlName="dateDelivranceCni" #date (focus)="date.type='date'" (blur)="date.type='text'">
+                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+              </div>
+              <div class="col-md-4 col-sm-4 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess10" placeholder="Date de Naissance" formControlName="dateNaissance" #dateNaiss (focus)="dateNaiss.type='date'" (blur)="dateNaiss.type='text'" >
+                <span class="fa fa-calendar-check-o form-control-feedback left" aria-hidden="true"></span>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-3 col-sm-3 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess5" placeholder="Telephone" formControlName="telephone">
+                <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+              </div>
+              <div class="col-md-3 col-sm-3 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess6" placeholder="Email" formControlName="email">
+                <span class="fa fa-envelope-o form-control-feedback left" aria-hidden="true"></span>
+              </div>
+              <div class="col-md-3 col-sm-3 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess8" placeholder="Profession" formControlName="profession">
+                <span class="fa fa-briefcase form-control-feedback left" aria-hidden="true"></span>
+              </div>
+              <div class="col-md-3 col-sm-3 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess11" placeholder="Numero Compte Bancaire" formControlName="numCompteBancaire">
+                <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
+              </div>
+            </div>
+  
+            <hr/>
+  
+            <div class="x_title">
+              <h2>Propriété</h2>
+              <div class="clearfix"></div>
+            </div>
+  
+            <div class="col-md-4 col-sm-4 form-group has-feedback">
+              <!-- <select class="form-control has-feedback-left" id="type" #type (change)="selectType(type.value)" > -->
+              <select class="form-control has-feedback-left" id="type" #type (change)="selectType(type.value)">
+                <option selected disabled >Choisir le type</option>
+                <option [value]="typePropriete.APPARTEMENT">{{typePropriete.APPARTEMENT}}</option>
+                <option [value]="typePropriete.BUREAU">{{typePropriete.BUREAU}}</option>
+                <option [value]="typePropriete.ENTREPOT">{{typePropriete.ENTREPOT}}</option>
+                <option [value]="typePropriete.IMMEUBLE">{{typePropriete.IMMEUBLE}}</option>
+                <option [value]="typePropriete.MAGASIN">{{typePropriete.MAGASIN}}</option>
+                <option [value]="typePropriete.MAISON">{{typePropriete.MAISON}}</option>
+                <option [value]="typePropriete.TERRAIN">{{typePropriete.TERRAIN}}</option>
+              </select>
+              <span class="fa fa-list form-control-feedback left" aria-hidden="true"></span>
+            </div>
+            <div class="col-md-4 col-sm-4 form-group has-feedback">
+              <input type="text" class="form-control has-feedback-left" #adresse id="adresse" placeholder="Adresse Propriété" [(ngModel)]="propriete.adresse" [ngModelOptions]="{standalone : true}">
+              <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
+            </div>
+  
+            <div class="col-md-4 col-sm-4 form-group has-feedback">
+              <input type="text" class="form-control has-feedback-left" id="numeroLot" placeholder="Numero Lot" [(ngModel)]="propriete.numeroLot" [ngModelOptions]="{standalone : true}">
+              <span class="fa fa-map form-control-feedback left" aria-hidden="true"></span>
+            </div>
+  
+            <div class="col-md-4 col-sm-4 form-group has-feedback">
+              <input type="number" class="form-control has-feedback-left" id="superficie" placeholder="Superficie" [(ngModel)]="propriete.surface" [ngModelOptions]="{standalone : true}">
+              <span class="fa fa-square form-control-feedback left" aria-hidden="true"></span>
+            </div>
+  
+            <div class="col-md-4 col-sm-4 form-group has-feedback">
+              <input type="number" class="form-control has-feedback-left" id="prix" placeholder="Prix" [(ngModel)]="propriete.prix" [ngModelOptions]="{standalone : true}">
+              <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
+            </div>
+  
+            <div class="col-md-4 col-sm-4 form-group has-feedback">
+              <input type="text" #dateDisponibilite (focus)="dateDisponibilite.type='date'" (blur)="dateDisponibilite.type='text'" class="form-control has-feedback-left" id="dateDisponibilite" placeholder="Date Disponibilite" [(ngModel)]="propriete.dateDisponibilite" [ngModelOptions]="{standalone : true}">
+              <span class="fa fa-calendar-check-o form-control-feedback left" aria-hidden="true"></span>
+            </div>
+  
+            <div class="col-md-6 col-sm-6 form-group has-feedback">
+              <input type="text" name="description" id="description" placeholder="Description" class="form-control has-feedback-left" [(ngModel)]="propriete.description" [ngModelOptions]="{standalone : true}">
+              <span class="fa fa-pencil form-control-feedback left" aria-hidden="true"></span>
+            </div>
+  
+            <div class="col-md-3 col-sm-3 form-group has-feedback">
+              <input type="number" name="nbreEtage" id="nbreEtage" placeholder="Nombre Etage" class="form-control has-feedback-left" [(ngModel)]="propriete.nbreEtage" [ngModelOptions]="{standalone : true}">
+              <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+            </div>
+  
+            <div class="col-md-3 col-sm-3 form-group has-feedback">
+              <input type="number" name="nbreAppartementParEtage" id="nbreAppartementParEtage" placeholder="Nombre Appartment par Etage" class="form-control has-feedback-left" [(ngModel)]="propriete.nbreAppartementParEtage" [ngModelOptions]="{standalone : true}">
+              <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+            </div>
+  
+            <div class="col-sm-3 col-md-3 form-group has-feedback">
+              <input type="number" name="nbrePiece" id="nbrePiece" class="form-control has-feedback-left" placeholder="Nombre Pieces" [(ngModel)]="propriete.nbrePiece" [ngModelOptions]="{standalone : true}">
+              <span class="fa fa-home form-control-feedback left" aria-hidden="true"></span>
+            </div>
+  
+            <div class="col-sm-3 col-md-3 form-group has-feedback">
+              <input type="number" name="nbreChambre" id="nbreChambre" class="form-control has-feedback-left" placeholder="Nombre Chambres" [(ngModel)]="propriete.nbreChambre" [ngModelOptions]="{standalone : true}">
+              <span class="fa fa-home form-control-feedback left" aria-hidden="true"></span>
+            </div>
+  
+            <div class="col-sm-3 col-md-3 form-group has-feedback">
+              <input type="number" name="nbreSalleBain" id="nbreSalleBain" class="form-control has-feedback-left" placeholder="Nombre Salle de Bain" [(ngModel)]="propriete.nbreSalleDeBain" [ngModelOptions]="{standalone : true}">
+              <span class="fa fa-home form-control-feedback left" aria-hidden="true"></span>
+            </div>
+  
+            <div class="col-sm-3 col-md-3 form-group has-feedback">
+              <input type="number" name="nbreToilette" id="nbreToilette" class="form-control has-feedback-left" placeholder="Nombre Toilettes" [(ngModel)]="propriete.nbreToilette" [ngModelOptions]="{standalone : true}">
+              <span class="fa fa-home form-control-feedback left" aria-hidden="true"></span>
+            </div>
+  
+            <div class="x_title">
+              <h2></h2>
+              <div class="clearfix"></div>
+            </div>
+  
+            <div class="col-sm-2 col-md-2">
+              <div class="checkbox-toggle">
+                <label>
+                  <input type="checkbox" class="js-switch" [(ngModel)]="propriete.meuble" [ngModelOptions]="{standalone : true}" >
+                  Meublé
+                </label>
+              </div>
+            </div>
+            <div class="col-sm-2 col-md-2">
+              <div class="checkbox-toggle">
+                <label>
+                  <input type="checkbox" class="js-switch" [(ngModel)]="propriete.garage" [ngModelOptions]="{standalone : true}" >
+                  Garage
+                </label>
+              </div>
+            </div>
+  
+            <div class="col-sm-2 col-md-2">
+              <div class="checkbox-toggle">
+                <label>
+                  <input type="checkbox" class="js-switch" [(ngModel)]="propriete.piscine" [ngModelOptions]="{standalone : true}" >
+                  Piscine
+                </label>
+              </div>
+            </div>
+  
+            <div class="col-sm-2 col-md-2">
+              <div class="checkbox-toggle">
+                <label>
+                  <input type="checkbox" class="js-switch" [(ngModel)]="propriete.jardin" [ngModelOptions]="{standalone : true}" >
+                  Jardin
+                </label>
+              </div>
+            </div>
+  
+            <div class="col-sm-2 col-md-2">
+              <div class="checkbox-toggle">
+                <label>
+                  <input type="checkbox" class="js-switch" [(ngModel)]="propriete.ascenseur" [ngModelOptions]="{standalone : true}" >
+                  Ascenseur
+                </label>
+              </div>
+            </div>
+            <button type="button" class="btn" (click)="addPropriete()"> <i class="fa fa-plus" aria-hidden="true"></i> Ajouter Propriété</button>
+          </form>
+          <table *ngIf="listProprietes.length > 0" class="table table-responsive nowrap dt-reponsive">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Adresse</th>
+                <th>Superficie</th>
+                <th>Prix Souhaité</th>
+                <th>Meuble</th>
+                <th>Garage</th>
+                <th>Piscine</th>
+                <th>Jardin</th>
+                <th>Ascenseur</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let propriete of listProprietes">
+                <td>{{propriete.type}}</td>
+                <td>{{propriete.adresse}}</td>
+                <td>{{propriete.surface}}</td>
+                <td>{{propriete.prix}}</td>
+                <td>{{propriete.meuble ? "Oui" : "Non"}}</td>
+                <td>{{propriete.garage ? "Oui" : "Non"}}</td>
+                <td>{{propriete.piscine ? "Oui" : "Non"}}</td>
+                <td>{{propriete.jardin ? "Oui" : "Non"}}</td>
+                <td>{{propriete.ascenseur ? "Oui" : "Non"}}</td>
+              </tr>
+            </tbody>
+          </table>
+  
+          <div class="x_title">
+            <h2></h2>
+            <div class="clearfix"></div>
+          </div>
+          <button type="submit" class="btn btn-success" (click)="enregistrer()"> <i class="fa fa-download" aria-hidden="true"></i> Enregistrer Propriétaire</button>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="clearfix"></div>
-
-  <div class="col-sm-12 col-md-12">
-    <div class="x_panel">
-      <div class="x_title">
-        <h2>Ajouter un nouveau proprietaire</h2>
-        <div class="clearfix"></div>
-      </div>
-      <div class="x_content">
-        <br />
-        <form class="form-horizontal form-label-left" [formGroup]="proprietaireForm">
-          <div class="col-md-4 col-sm-4 form-group has-feedback">
-            <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Nom" name="nom" formControlName="nom" >
-            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-          </div>
-          <div class="col-md-4 col-sm-4 form-group has-feedback">
-            <input type="text" class="form-control has-feedback-left" id="inputSuccess3" placeholder="Prenom" formControlName="prenom">
-            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-          </div>
-          <div class="col-md-4 col-sm-4 form-group has-feedback">
-            <input type="text" class="form-control has-feedback-left" id="inputSuccess7" placeholder="CNI/Passport" formControlName="cni" >
-            <span class="fa fa-newspaper-o form-control-feedback left" aria-hidden="true"></span>
-          </div>
-          <div class="col-md-4 col-sm-4 form-group has-feedback">
-            <input type="text" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Adresse" formControlName="adresse">
-            <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
-          </div>
-          <div class="col-md-4 col-sm-4 form-group has-feedback">
-            <input type="text" class="form-control has-feedback-left" id="inputSuccess9" placeholder="Date Delivrance CNI/Passport " formControlName="dateDelivranceCni">
-            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-          </div>
-          <div class="col-md-4 col-sm-4 form-group has-feedback">
-            <input type="text" class="form-control has-feedback-left" id="inputSuccess10" placeholder="Date de Naissance" formControlName="dateNaissance">
-            <span class="fa fa-calendar-check-o form-control-feedback left" aria-hidden="true"></span>
-          </div>
-          <div class="col-md-3 col-sm-3 form-group has-feedback">
-            <input type="text" class="form-control has-feedback-left" id="inputSuccess5" placeholder="Telephone" formControlName="telephone">
-            <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
-          </div>
-          <div class="col-md-3 col-sm-3 form-group has-feedback">
-            <input type="text" class="form-control has-feedback-left" id="inputSuccess6" placeholder="Email" formControlName="email">
-            <span class="fa fa-envelope-o form-control-feedback left" aria-hidden="true"></span>
-          </div>
-          <div class="col-md-3 col-sm-3 form-group has-feedback">
-            <input type="text" class="form-control has-feedback-left" id="inputSuccess8" placeholder="Profession" formControlName="profession">
-            <span class="fa fa-briefcase form-control-feedback left" aria-hidden="true"></span>
-          </div>
-          <div class="col-md-3 col-sm-3 form-group has-feedback">
-            <input type="text" class="form-control has-feedback-left" id="inputSuccess11" placeholder="Numero Compte Bancaire" formControlName="numCompteBancaire">
-            <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
-          </div>
-
-          <hr/>
-
-          <div class="x_title">
-            <h2>Propriété</h2>
-            <div class="clearfix"></div>
-          </div>
-
-          <div class="col-md-4 col-sm-4 form-group has-feedback">
-            <select class="form-control has-feedback-left" id="type" formControlName="proprietes">
-              <option *ngFor="let item of list" value="{{item}}">{{ item | titlecase }}</option>
-            </select>
-            <span class="fa fa-list-alt form-control-feedback left" aria-hidden="true"></span>
-          </div>
-
-        </form>
-      </div>
-    </div>
-  </div>
-</div>

@@ -86,7 +86,7 @@
 
                 <div class="col-md-4 col-sm-6  form-group has-feedback">
                   <input type="text" class="form-control has-feedback-left" id="telephone" [(ngModel)]="agence.telephone" formControlName="telephone"
-                  placeholder="Telephone de l'agence*" [ngClass]="{ 'is-invalid': formErrors.telephone }">
+                  placeholder="Telephone de l'agence*" mask="00 000-00-00" [dropSpecialCharacters]="false" [showMaskTyped]="true" [ngClass]="{ 'is-invalid': formErrors.telephone }">
                   <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
                   <span class="invalid-feedback">
                     {{ formErrors.telephone }}

@@ -1,1 +1,80 @@
-<p>update-proprietaire works!</p>
+<div>
+    <!-- page content -->
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Nouveau Proprietaire</h3>
+      </div>
+  
+    </div>
+  
+    <div class="clearfix"></div>
+  
+    <div class="col-sm-12 col-md-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Modifier Proprietaire</h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <br />
+          <form class="form-horizontal form-label-left" [formGroup]="proprietaireForm">
+            <div class="row">
+              <div class="col-md-4 col-sm-4 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess2" [(ngModel)]="proprietaire.nom" placeholder="Nom" formControlName="nom" >
+                <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+              </div>
+              <div class="col-md-4 col-sm-4 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess3" [(ngModel)]="proprietaire.prenom" placeholder="Prenom" formControlName="prenom">
+                <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+              </div>
+              <div class="col-md-4 col-sm-4 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess7" [(ngModel)]="proprietaire.cni" placeholder="CNI/Passport" formControlName="cni" >
+                <span class="fa fa-newspaper-o form-control-feedback left" aria-hidden="true"></span>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4 col-sm-4 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess4" [(ngModel)]="proprietaire.adresse" placeholder="Adresse" formControlName="adresse">
+                <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
+              </div>
+              <div class="col-md-4 col-sm-4 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess9" [(ngModel)]="proprietaire.dateDelivranceCni" placeholder="Date Delivrance CNI/Passport " formControlName="dateDelivranceCni" #date (focus)="date.type='date'" (blur)="date.type='text'">
+                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+              </div>
+              <div class="col-md-4 col-sm-4 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess10" [(ngModel)]="proprietaire.dateNaissance" placeholder="Date de Naissance" formControlName="dateNaissance" #dateNaiss (focus)="dateNaiss.type='date'" (blur)="dateNaiss.type='text'" >
+                <span class="fa fa-calendar-check-o form-control-feedback left" aria-hidden="true"></span>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-3 col-sm-3 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" [(ngModel)]="proprietaire.telephone" id="inputSuccess5" placeholder="Telephone" formControlName="telephone">
+                <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+              </div>
+              <div class="col-md-3 col-sm-3 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" [(ngModel)]="proprietaire.email" id="inputSuccess6" placeholder="Email" formControlName="email">
+                <span class="fa fa-envelope-o form-control-feedback left" aria-hidden="true"></span>
+              </div>
+              <div class="col-md-3 col-sm-3 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" [(ngModel)]="proprietaire.profession " id="inputSuccess8" placeholder="Profession" formControlName="profession">
+                <span class="fa fa-briefcase form-control-feedback left" aria-hidden="true"></span>
+              </div>
+              <div class="col-md-3 col-sm-3 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" [(ngModel)]="proprietaire.numCompteBancaire" id="inputSuccess11" placeholder="Numero Compte Bancaire" formControlName="numCompteBancaire">
+                <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
+              </div>
+            </div>
+  
+          </form>
+  
+          <div class="x_title">
+            <h2></h2>
+            <div class="clearfix"></div>
+          </div>
+          <button type="submit" class="btn btn-success" (click)="updateProprietaire()"> <i class="fa fa-download" aria-hidden="true"></i> Enregistrer Propriétaire</button>
+        </div>
+      </div>
+    </div>
+  </div>

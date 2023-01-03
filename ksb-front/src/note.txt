@@ -6,3 +6,5 @@ Create component in the module folder
 ng g c guess/createGuess --module=guess/guess.module.ts
 
 http://localhost:8080/swagger-ui/index.html#/agence-controller/getAllAgence
+
+npm i ngx-mask@13.1.15
