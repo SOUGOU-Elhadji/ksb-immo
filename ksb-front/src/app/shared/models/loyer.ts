@@ -3,7 +3,6 @@ import { Locataire } from "./locataire";
 import { Propriete } from "./propriete";
 
 export class Loyer {
-    UUID !: String;
     id !: string
     montant !: number;
     dateDebut !: Date

@@ -1,1 +1,92 @@
-<p>all-locataire works!</p>
+<div>
+  <!-- page content -->
+  <div class="page-title">
+    <div class="title_left">
+      <h3>Locataires <small style="font-size:medium;">Some examples to get you started</small></h3>
+    </div>
+
+    <div class="title_right">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+        <div class="input-group">
+          <input type="text" class="form-control" [(ngModel)]="term" (input)="search()" placeholder="Rechercher">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button">Go!</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <!-- table content -->
+    <div class="col-md-12 col-sm-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Data <small>Liste des Locataires</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              <li>
+                <a routerLink="new"><i class="fa fa-plus"></i></a>
+              </li>
+              <li><a class="close-link"><i class="fa fa-close"></i></a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="x_content">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box table-responsive">
+                <table class="table table-striped dt-responsive nowrap" aria-label="Liste locataires">
+                  <thead>
+                    <tr>
+                      <th>Nom</th>
+                      <th>Prénom</th>
+                      <th>Adresse</th>
+                      <th>Contact</th>
+                      <th>email</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let locataire of locataires | paginate: { itemsPerPage: 10, currentPage: p }">
+                    <!-- <tr *ngFor="let locataire of locataires"> -->
+                      <td>{{ locataire.nom }}</td>
+                      <td>{{ locataire.prenom }}</td>
+                      <td>{{ locataire.loyer?.propriete?.adresse }}</td>
+                      <td>{{ locataire.telephone }}</td>
+                      <td>{{ locataire.email }}</td>
+                      <td>
+                        <span class="dropdown table-dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"></a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" [routerLink]="[locataire.id, 'details']"><i class="fa fa-eye"></i> Afficher</a>
+                              <a class="dropdown-item" [routerLink]="[locataire.id, 'edit']"><i class="fa fa-edit"></i> Modifier</a>
+                              <!-- <a class="dropdown-item" (click)="update(locataire.id)"><i class="fa fa-edit"></i> Modifier</a> -->
+                              <a class="dropdown-item" (click)="deleteLocataire(locataire)"><i class="fa fa-trash"></i> Supprimer</a>
+                            </div>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                 <br>
+                 <br>
+                  <pagination-controls class="page my-pagination" (pageChange)="p = $event"></pagination-controls>
+
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  <!-- table content -->
+
+  <!-- page content -->
+
+</div>

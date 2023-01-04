@@ -1,219 +1,98 @@
-<div role="main">
-  <div class="">
-    <div class="page-title">
-      <div class="title_left">
-        <h3>Create New Locataire</h3>
+<div>
+  <div class="page-title">
+    <div class="title_left">
+      <h3>Nouveau Locataire <small style="font-size:medium;">Some examples to get you started</small></h3>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="col-sm-12 col-md-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>New <small>Locataires</small></h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li style="opacity: 0; cursor: default;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li style="opacity: 0; cursor: default;">
+              <a><i class="fa fa-plus"></i></a>
+            </li>
+            <li><a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
       </div>
 
-      <div class="title_right">
-        <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go!</button>
-            </span>
+      <div class="x_content">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card-box">
+              <form [formGroup]="locataireForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="col-md-4 col-sm-6 form-group has-feedback">
+                    <input type="text" name="cni" mask="_ ___ ____ _____" [dropSpecialCharacters]="false" [showMaskTyped]="true" formControlName="cni" id="cni" class="form-control has-feedback-left">
+                    <span class="fa fa-newspaper-o form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                  <div class="col-md-3 col-sm-6 form-group has-feedback">
+                    <input type="text" name="dateDelivranceCni" formControlName="dateDelivranceCni" id="dateDelivranceCni" placeholder="Date Delivrance Cni" class="form-control has-feedback-left" #dateDelivrance (focus)="dateDelivrance.type = 'date'" (blur)="dateDelivrance.type = 'date'">
+                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                  <div class="col-md-5 col-sm-6 form-group has-feedback">
+                    <input type="text" name="adresse" formControlName="adresse" id="adresse" placeholder="Adresse" class="form-control has-feedback-left">
+                    <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                  <div class="col-md-3 col-sm-6 form-group has-feedback">
+                    <input type="text" name="nom" formControlName="nom" id="nom" placeholder="Nom" class="form-control has-feedback-left">
+                    <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                  <div class="col-md-3 col-sm-6 form-group has-feedback">
+                    <input type="text" name="prenom" formControlName="prenom" id="prenom" placeholder="Prénom" class="form-control has-feedback-left">
+                    <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                  <div class="col-md-3 col-sm-6 form-group has-feedback">
+                    <input type="text" name="telephone" mask="0 (000) 000-0000" [dropSpecialCharacters]="false" [showMaskTyped]="true" formControlName="telephone" id="telephone" placeholder="Téléphone" class="form-control has-feedback-left">
+                    <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                  <div class="col-md-3 col-sm-6 form-group has-feedback">
+                    <input type="text" name="email" formControlName="email" id="email" placeholder="Email" class="form-control has-feedback-left">
+                    <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                  <div class="col-md-5 col-sm-6 form-group has-feedback">
+                    <input type="text" name="numCompteBancaire" formControlName="numCompteBancaire" id="numCompteBancaire" placeholder="Numero Compte Bancaire" class="form-control has-feedback-left">
+                    <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class="x_title">
+                  <h2>Situation Professionnelle</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-sm-6 form-group has-feedback">
+                    <input type="text" name="nomEntreprise" formControlName="nomEntreprise" id="nomEntreprise" placeholder="Nom Entreprise" class="form-control has-feedback-left">
+                    <span class="fa fa-building form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                  <div class="col-md-3 col-sm-6 form-group has-feedback">
+                    <input type="text" name="adresseEntreprise" formControlName="adresseEntreprise" id="adresseEntreprise" placeholder="Adresse Entreprise" class="form-control has-feedback-left">
+                    <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                  <div class="col-md-3 col-sm-6 form-group has-feedback">
+                    <input type="text" name="telephoneEntreprise" mask="0 (000) 000-0000" [dropSpecialCharacters]="false" [showMaskTyped]="true" formControlName="telephoneEntreprise" id="telephoneEntreprise" placeholder="Téléphone Entreprise" class="form-control has-feedback-left">
+                    <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                  <div class="col-md-3 col-sm-6 form-group has-feedback">
+                    <input type="text" name="emailEntreprise" formControlName="emailEntreprise" id="emailEntreprise" placeholder="Email Entreprise" class="form-control has-feedback-left">
+                    <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                  <div class="col-md-5 col-sm-6 form-group has-feedback">
+                    <input type="text" name="posteOccupe" formControlName="posteOccupe" id="posteOccupe" placeholder="Poste Occupé" class="form-control has-feedback-left">
+                    <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                  
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
       </div>
     </div>
-    <div class="clearfix"></div>
-    <div class="row">
-      <div class="col-md-12 col-sm-12 ">
-        <div class="x_panel">
-          <div class="x_title">
-            <h2> Locataire <small>different form elements</small></h2>
-            <ul class="nav navbar-right panel_toolbox">
-              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a class="dropdown-item" href="#">Settings 1</a>
-                  </li>
-                  <li><a class="dropdown-item" href="#">Settings 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li><a class="close-link"><i class="fa fa-close"></i></a>
-              </li>
-            </ul>
-            <div class="clearfix"></div>
-          </div>
-          <div class="x_content">
-            <br />
-
-
-
-
-
-
-<div class="container" >
-  <h2>Locataire</h2>
- &nbsp;
-    <form >
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="inputEmail4">Nom</label>
-          <input type="text" name="nom" [(ngModel)]="locataires.nom" class="form-control" id="inputEmail4" placeholder="Nom ">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="inputPassword4">Prenom</label>
-          <input type="text" name="prenom" [(ngModel)]="locataires.prenom" class="form-control" id="inputPassword4" placeholder="Prenom">
-        </div>
-          <div class="form-group col-md-4">
-              <label for="inputAddress">Adresse</label>
-              <input type="text" name="Adresse" [(ngModel)]="locataires.adresse" class="form-control" id="inputAddress" placeholder="Adresse">
-            </div>
-            </div>
-            <div class="form-row"></div>
-            <div class="form-group col-md-4">
-              <label for="inputTelephone4">Telephone</label>
-              <input type="text" name="telephone" [(ngModel)]="locataires.telephone" class="form-control" id="inputAddress2" placeholder="Telephone">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="inputAddress2">Email</label>
-                <input type="text" name="email" [(ngModel)]="locataires.email" class="form-control" id="inputAddress2" placeholder="Email">
-              </div>
-            <div class="form-group col-md-4">
-              <!-- <label type="select" for="inputAddress">Profession</label> -->
-              &nbsp;&nbsp;&nbsp;
-              <input type="select" name="profession" [(ngModel)]="locataires.profession" class="form-control" id="inputAddress" placeholder="Profession">
-             <select> <option valeur="fr">Sans Emploi</option>
-              <option valeur="nl">Travailleur</option>  </select>
-            </div>
-
-            
-
-  &nbsp;
-    <h2>Situation Professionnelle Locataire</h2>
-  &nbsp;
-
-
-            <div class="form-row">
-            <div class="form-group col-md-4">
-              <label for="inputPassword4">Nom Employeur</label>
-              <input type="text" name="nom" [(ngModel)]="situationProfessionnelle.nomEmployeur" class="form-control" id="inputPassword4" placeholder="Nom Employeur">
-            </div>
-              <div class="form-group col-md-4">
-                  <label for="inputAddress">Adresse Employeur</label>
-                  <input type="text" name="Adresse" [(ngModel)]="situationProfessionnelle.adresseEmployeur" class="form-control" id="inputAddress" placeholder="Adresse Employeur">
-                </div>
-                <div class="form-group col-md-4">
-                  <label for="inputAddress2">Telephone Employeur</label>
-                  <input type="text" name="telephone" [(ngModel)]="situationProfessionnelle.telephoneEmployeur" class="form-control" id="inputAddress2" placeholder="Telephone Employeur">
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-4">
-                  <label for="inputAddress2">Email Employeur</label>
-                  <input type="text" name="email" [(ngModel)]="situationProfessionnelle.emailEmployeur" class="form-control" id="inputAddress2" placeholder="Email Employeur">
-                </div>
-                <div class="form-group col-md-4">
-                  <label for="inputAddress2">Poste Occupé Employeur</label>
-                  <input type="text" name="Poste" [(ngModel)]="situationProfessionnelle.posteOccupe" class="form-control" id="inputAddress2" placeholder="Poste Employeur">
-                </div>
-                <div class="form-group col-md-4">
-                  <label for="inputAddress2">Salaire Employeur</label>
-                  <input type="number" name="salaire" [(ngModel)]="situationProfessionnelle.salaire" class="form-control" id="inputAddress2" placeholder="Salaire Employeur">
-                </div>
-                </div>
-                <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="inputAddress2">Date Embauche</label>
-                  <input type="date" name="date" [(ngModel)]="situationProfessionnelle.dateEmbauche" class="form-control" id="inputAddress2" placeholder="Date Embauche">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="inputAddress2">Date Depart</label>
-                  <input type="date" name="date" [(ngModel)]="situationProfessionnelle.dateDepart" class="form-control" id="inputAddress2" placeholder="Date Depart">
-                </div>
-              </div>
-
-              &nbsp;
-              <h2>Information du Garant</h2>
-              &nbsp;
-
-            <!-- <div class="form-row"> -->
-            <div class="form-group col-md-4">
-              <label for="inputCity">CNI Garant</label>
-               <input type="text" name="conjoint" [(ngModel)]="garant.cni" class="form-control" id="inputCity" placeholder="CNI Garant"> -->
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputCity">Date Delivrance CNI Garant</label>
-               <input type="date" name="conjoint" [(ngModel)]="garant.dateDelivranceCni" class="form-control" id="inputCity" placeholder="dateDelivranceCni Garant"> -->
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputEmail4">Nom Garant</label>
-              <input type="text" name="nom" [(ngModel)]="garant.nom" class="form-control" id="inputEmail4" placeholder="Nom Garant">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputPassword4">Prenom Garant</label>
-              <input type="text" name="prenom" [(ngModel)]="garant.prenom" class="form-control" id="inputPassword4" placeholder="Prenom Garant">
-            </div>
-          <div class="form-row">
-              <div class="form-group col-md-4">
-                  <label for="inputAddress">Adresse Garant</label>
-                  <input type="text" name="Adresse" [(ngModel)]="garant.adresse" class="form-control" id="inputAddress" placeholder="Adresse Garant">
-                </div>
-                <div class="form-group col-md-4">
-                  <label for="inputAddress2">Telephone Garant</label>
-                  <input type="text" name="telephone" [(ngModel)]="garant.telephone" class="form-control" id="inputAddress2" placeholder="Telephone Garant">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="inputAddress2">Email Garant</label>
-                    <input type="text" name="email" [(ngModel)]="garant.email" class="form-control" id="inputAddress2" placeholder="Email Garant">
-                  </div>
-                <div class="form-group col-md-4">
-                  <label for="inputAddress">Profession Garant</label>
-                  <input type="text" name="profession" [(ngModel)]="garant.profession" class="form-control" id="inputAddress" placeholder="Profession Garant">
-                </div>
-                </div>
-      <button class="btn btn-primary" type="submit" (click)="onSubmit()">Save Data</button>
-    </form>
   </div>
-     
-  <!-- <mat-form-field appearance="outline">
-    <mat-label>Matricule</mat-label>
-    <input matInput placeholder="Matricule" [formControl]="$any(inputFormGroup.controls.matricule)">
-  </mat-form-field> &nbsp; &nbsp;
-
-  <mat-form-field appearance="outline">
-      <mat-label>Nom</mat-label>
-      <input matInput placeholder="Nom" [formControl]="$any(inputFormGroup.controls.nom)">
-  </mat-form-field>&nbsp; &nbsp;
-
-  <mat-form-field appearance="outline">
-    <mat-label>Prenom</mat-label>
-    <input matInput placeholder="Prenom" [formControl]="$any(inputFormGroup.controls.prenom)">
-</mat-form-field>&nbsp; &nbsp;
-
-<mat-form-field appearance="outline">
-  <mat-label>Email</mat-label>
-  <input matInput placeholder="Email" [formControl]="$any(inputFormGroup.controls.email)">
-</mat-form-field>&nbsp; &nbsp;
-
-<mat-form-field appearance="outline">
-  <mat-label>Telephone</mat-label>
-  <input matInput placeholder="Telephone" [formControl]="$any(inputFormGroup.controls.telephone)">
-</mat-form-field>&nbsp; &nbsp;
-
-<mat-form-field appearance="outline">
-  <mat-label>Cni</mat-label>
-  <input matInput placeholder="Cni" [formControl]="$any(inputFormGroup.controls.cni)">
-</mat-form-field>&nbsp; &nbsp;
-
-<mat-form-field appearance="outline">
-  <mat-label>Adresse</mat-label>
-  <input matInput placeholder="Adresse" [formControl]="$any(inputFormGroup.controls.adresse)">
-</mat-form-field>&nbsp; &nbsp;
-
-<mat-form-field appearance="outline">
-  <mat-label>Numero Compte Bancaire</mat-label>
-  <input matInput placeholder="Numero compte bancaire" [formControl]="$any(inputFormGroup.controls.numCompteBancaire)">
-</mat-form-field>&nbsp; &nbsp;
-
-<mat-form-field appearance="outline">
-  <mat-label>Manager</mat-label>
-  <input matInput placeholder="Manager" [formControl]="$any(inputFormGroup.controls.manager)">
-</mat-form-field>&nbsp; &nbsp; -->
-
+</div>

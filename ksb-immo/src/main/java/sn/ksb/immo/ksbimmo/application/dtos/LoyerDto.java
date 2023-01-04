@@ -13,4 +13,6 @@ public class LoyerDto {
     private String dateDebut;
     private Integer dureeBail;
 
+    private ProprieteDto propriete;
+
 }

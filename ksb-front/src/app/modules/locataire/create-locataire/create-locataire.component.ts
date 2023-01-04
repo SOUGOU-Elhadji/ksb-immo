@@ -1,3 +1,4 @@
+import { LocataireDto } from './../../../shared/dts/locataire-dto';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Garant } from 'src/app/shared/models/garant';
@@ -12,7 +13,7 @@ import { LocataireService } from 'src/app/shared/services/locataire.service';
 })
 export class CreateLocataireComponent implements OnInit {
 
-  locataires: Locataire = new Locataire();
+  locataires: LocataireDto = new LocataireDto();
 
   garant: Garant = new Garant();
 
@@ -20,10 +21,21 @@ export class CreateLocataireComponent implements OnInit {
 
   locatair: Locataire[]=[];
 
-@Input() inputFormGroup = this.fb.group({});
+  locataireForm!: FormGroup;
 
 
-  constructor(private fb: FormBuilder, private locataireService: LocataireService) { }
+  constructor(private fb: FormBuilder, private locataireService: LocataireService) {
+    this.locataireForm = this.fb.group({
+      nom: ['', Validators.required],
+      prenom: ['', Validators.required],
+      telephone: ['', Validators.required],
+      email: ['', Validators.required],
+      adresse: ['', Validators.required],
+      cni: ['', Validators.required],
+      dateDelivranceCni: ['', Validators.required],
+      numCompteBancaire: [''],
+    });
+  }
 
   ngOnInit(): void {
   }
@@ -38,4 +50,5 @@ export class CreateLocataireComponent implements OnInit {
       throw error;
     }
   }
+
 }

@@ -38,9 +38,6 @@ public class LocataireDto {
     @ValidEmail
     private String email;
 
-    @NotNull
-    @NotEmpty
-    private String profession;
 
     @NotNull
     @NotEmpty
@@ -58,9 +55,6 @@ public class LocataireDto {
     @NotEmpty
     private String numCompteBancaire;
 
-    @NotNull
-    @NotEmpty
-    private String proprieteId;
 
     @NotNull
     @NotEmpty

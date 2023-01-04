@@ -1,3 +1,4 @@
+import { LocataireDto } from './../dts/locataire-dto';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -16,7 +17,11 @@ export class LocataireService {
   constructor(private fb: FormBuilder ,private httpClient: HttpClient) { }
 
 
-  public createLocataire(locataire: Locataire): Observable<Locataire>{
-    return this.httpClient.post<Locataire>(`${this.Url}`, locataire)
+  public createLocataire(locataire: LocataireDto): Observable<LocataireDto>{
+    return this.httpClient.post<LocataireDto>(`${this.Url}`, locataire)
+  }
+
+  public getAllLocataire(): Observable<LocataireDto[]>{
+    return this.httpClient.get<LocataireDto[]>(`${this.Url}`)
   }
 }

@@ -24,7 +24,6 @@ public class Locataire extends Utilisateur{
 
     private String email;
 
-    private String profession;
 
     @Embedded
     private SituationProfessionnelle situationProfessionnelle;

@@ -5,13 +5,7 @@ import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { ProprieteDto } from './../../../shared/dts/propriete-dto';
 import { ProprietaireDto } from './../../../shared/dts/proprietaire-dto';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { ProprietaireDto } from 'src/app/shared/dts/proprietaire-dto';
-import { ProprieteDto } from 'src/app/shared/dts/propriete-dto';
-import { TypePropriete } from 'src/app/shared/enums/type-propriete';
-import { ProprietaireService } from 'src/app/shared/services/proprietaire.service';
 
 @Component({
   selector: 'app-create-proprietaire',

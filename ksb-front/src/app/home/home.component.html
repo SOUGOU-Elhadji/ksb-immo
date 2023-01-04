@@ -5,19 +5,19 @@
     <div class="tile_count">
       <div class="col-md-2 col-sm-4  tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total des agences</span>
-        <div class="count" *ngIf="agences.length > 0" >{{ agences.length }} &nbsp;<small style="font-size: 20px;">agences</small></div>
+        <div class="count">{{ agences.length }} &nbsp;<small style="font-size: 20px;">agence(s)</small></div>
         <span class="count_bottom"><i class="green">4% </i> From last Week</span>
       </div>
       <div class="col-md-2 col-sm-4  tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i> Total des employers</span>
-        <div class="count" *ngIf="employers.length > 0" >{{ employers.length }} &nbsp;<small style="font-size: 20px;">employers</small></div>
-        
+        <span class="count_top"><i class="fa fa-user"></i> Total des employés</span>
+        <div class="count">{{ employers.length }} &nbsp;<small style="font-size: 20px;">employé(s)</small></div>
+
         <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
       </div>
       <div class="col-md-2 col-sm-4  tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total des proprietaires</span>
-        <div class="count" *ngIf="proprietaires.length > 0" >{{ proprietaires.length }} &nbsp;<small style="font-size: 20px;">proprio</small></div>
-        
+        <div class="count">{{ proprietaires.length }} &nbsp;<small style="font-size: 20px;">proprio</small></div>
+
         <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
       </div>
       <div class="col-md-2 col-sm-4  tile_stats_count">
@@ -32,14 +32,14 @@
       </div> -->
       <div class="col-md-2 col-sm-4  tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total loyer Payés</span>
-        <div class="count" *ngIf="loyers.length > 0 || loyers.length == 0">{{ loyers.length }} &nbsp;<small style="font-size: 20px;">payé</small></div>
-        
+        <div class="count">{{ loyers.length }} &nbsp;<small style="font-size: 20px;">payé(s)</small></div>
+
         <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
       </div>
       <div class="col-md-2 col-sm-4  tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total loyer Impayés</span>
-        <div class="count" *ngIf="loyersImp.length > 0" >{{ loyersImp.length }} &nbsp;<small style="font-size: 20px;">impayé</small></div>
-        
+        <div class="count" >{{ loyersImp.length }} &nbsp;<small style="font-size: 20px;">impayé(s)</small></div>
+
         <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
       </div>
     </div>

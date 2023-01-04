@@ -140,7 +140,7 @@ public class LocataireService {
             Locataire loc = locataireRepo.existsByCni(dto.getCni()) ? locataireRepo.findByCni(dto.getCni()) : mapper.map(dto, Locataire.class);
             //recupération de l'agence
             //Agence agence = agenceService.findById(UUID.fromString(dto.getAgenceId())).orElse(null);
-            Propriete propriete = proprieteRepo.findById(UUID.fromString(dto.getProprieteId())).orElse(null);
+            Propriete propriete = proprieteRepo.findById(UUID.fromString(dto.getLoyer().getPropriete().getId())).orElse(null);
             //ajout de l'agence au locataire
             if (propriete != null) {
                 loc.getRoles().add(roleRepo.findByName("Locataire"));
@@ -206,7 +206,6 @@ public class LocataireService {
                 l.setAdresse(dto.getAdresse());
                 l.setTelephone(dto.getTelephone());
                 l.setEmail(dto.getEmail());
-                l.setProfession(dto.getProfession());
                 l.setSituationProfessionnelle(mapper.map(dto.getSituationProfessionnelle(), SituationProfessionnelle.class));
                 //sauvegarde du locataire
                 locataire = mapper.map(locataireRepo.save(l), LocataireDto.class);

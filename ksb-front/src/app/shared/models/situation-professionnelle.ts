@@ -7,5 +7,4 @@ export class SituationProfessionnelle {
     posteOccupe !: String;
     salaire !: number;
     dateEmbauche !: Date;
-    dateDepart!: Date;
 }

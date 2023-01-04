@@ -1,5 +1,6 @@
 package sn.ksb.immo.ksbimmo.application.configs;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +31,9 @@ public class InitDatas implements CommandLineRunner {
 
     @Autowired
     private RoleRepo roleRepo;
+
+    @Autowired
+    ModelMapper mapper;
 
     @Override
     public void run(String... args) throws Exception {
@@ -225,6 +229,7 @@ public class InitDatas implements CommandLineRunner {
                 .prenom("Macoumba")
                 .adresse("Dakar")
                 .cni("569542839540")
+                .email("macoumba@ksb.sn")
                 .dateDelivranceCni("2020-12-20")
                 .telephone("77 685 74 85")
                 .numCompteBancaire("745896321")
@@ -251,7 +256,6 @@ public class InitDatas implements CommandLineRunner {
                                 )
                                 .build()
                 )
-                .profession("Developpeur")
                 .situationProfessionnelle(
                         SituationProfessionnelleDto.builder()
                                 .nomEmployeur("KSB")
@@ -264,13 +268,13 @@ public class InitDatas implements CommandLineRunner {
                                 .posteOccupe("Developpeur")
                                 .build()
                 )
-                .proprieteId(proprietaire1.getProprietes().get(0).getId().toString())
                 .loyer(
                         LoyerDto.builder()
-                                .mensualite(100000.0)
+                                .mensualite(250000.0)
                                 .dateDebut("2022-11-26")
                                 .dureeBail(48)
                                 .caution(200000.0)
+                                .propriete(mapper.map(proprietaire1.getProprietes().get(0), ProprieteDto.class))
                                 .build()
                 )
                 .build();
@@ -282,6 +286,7 @@ public class InitDatas implements CommandLineRunner {
                 .cni("56954283954084")
                 .dateDelivranceCni("2020-12-20")
                 .telephone("77 666 66 36")
+                .email("elhadji@ksb.sn")
                 .numCompteBancaire("74589632231")
                 .garant(
                         GarantDto.builder()
@@ -306,7 +311,6 @@ public class InitDatas implements CommandLineRunner {
                                 )
                                 .build()
                 )
-                .profession("Developpeur")
                 .situationProfessionnelle(
                         SituationProfessionnelleDto.builder()
                                 .nomEmployeur("KSB")
@@ -319,13 +323,13 @@ public class InitDatas implements CommandLineRunner {
                                 .posteOccupe("Developpeur")
                                 .build()
                 )
-                .proprieteId(proprietaire2.getProprietes().get(0).getId().toString())
                 .loyer(
                         LoyerDto.builder()
-                                .mensualite(100000.0)
+                                .mensualite(175000.0)
                                 .dateDebut("2022-12-01")
                                 .dureeBail(48)
                                 .caution(200000.0)
+                                .propriete(mapper.map(proprietaire2.getProprietes().get(0), ProprieteDto.class))
                                 .build()
                 )
                 .build();

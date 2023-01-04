@@ -21,10 +21,10 @@ public interface LoyerRepo extends JpaRepository<Loyer, UUID> {
     List<Loyer> findByDateProchainPaiementAfter(Date today);
 
 
-    @Query("SELECT l FROM Loyer l WHERE month(l.dateProchainPaiement) >= ?1")
+    @Query("SELECT l FROM Loyer l WHERE l.dateProchainPaiement < now()")
     List<Loyer> findByCurrentMonth(int mois);
 
-    @Query("SELECT l FROM Loyer l WHERE month(l.dateProchainPaiement) < ?1")
+    @Query("SELECT l FROM Loyer l WHERE l.dateProchainPaiement >= now()")
     List<Loyer> findByPaidForCurrentMonth(int mois);
 
     List<Loyer> findByPropriete_Id(UUID fromString);

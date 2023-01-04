@@ -1,3 +1,4 @@
+import { AllLocataireComponent } from './modules/locataire/all-locataire/all-locataire.component';
 import { CreateProprietaireComponent } from './modules/proprietaire/create-proprietaire/create-proprietaire.component';
 import { ProprieteDisponiblesComponent } from './modules/propriete/propriete-disponibles/propriete-disponibles.component';
 import { ProprieteLoueesComponent } from './modules/propriete/propriete-louees/propriete-louees.component';
@@ -20,9 +21,7 @@ import { AllEmployeeComponent } from './modules/employee/all-employee/all-employ
 import { CreateLocataireComponent } from './modules/locataire/create-locataire/create-locataire.component';
 
 import { UpdateProprietaireComponent } from './modules/proprietaire/update-proprietaire/update-proprietaire.component';
-import { CreateProprietaireComponent } from './modules/proprietaire/create-proprietaire/create-proprietaire.component';
 import { DetailsProprieteComponent } from './modules/propriete/details-propriete/details-propriete.component';
-import { UpdateProprieteComponent } from './modules/propriete/update-propriete/update-propriete.component';
 import { UpdateEmployeeComponent } from './modules/employee/update-employee/update-employee.component';
 import { DetailsEmployeeComponent } from './modules/employee/details-employee/details-employee.component';
 
@@ -49,6 +48,7 @@ const routes: Routes = [
       {path: 'agences/:id/edit', component: UpdateAgenceComponent},
       {path: 'agences/new', component: CreateAgenceComponent, pathMatch: 'full'},
       //Locataire Routes
+      {path: 'locataires', component: AllLocataireComponent},
       {path: 'locataires/new', component: CreateLocataireComponent},
       //Loyer Routes
       {path: 'loyers/payes', component: LoyerPayesComponent},

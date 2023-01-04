@@ -8,20 +8,6 @@ import { AllEmployeeComponent } from './all-employee/all-employee.component';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
-// material modules
-import {MatIconModule} from '@angular/material/icon';
-import {MatSelectModule} from '@angular/material/select';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar'
-import {MatDividerModule} from '@angular/material/divider';
-import {MatInputModule} from '@angular/material/input';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-
 import { NgxPaginationModule } from 'ngx-pagination';
 
 
@@ -38,19 +24,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     EmployeeRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    
-    
-    MatExpansionModule,
-    MatIconModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatDividerModule,
-    MatInputModule,
-    MatMenuModule,
-    MatTooltipModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
 
     NgxPaginationModule
 

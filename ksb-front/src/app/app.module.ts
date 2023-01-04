@@ -57,7 +57,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     Ng2SearchPipeModule,
 
     NgxPaginationModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],

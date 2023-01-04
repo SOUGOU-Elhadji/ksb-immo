@@ -1,3 +1,5 @@
+import { NgxMaskModule } from 'ngx-mask';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -20,6 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LocataireRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
+    NgxMaskModule.forRoot(),
   ],
   exports: [
     CreateLocataireComponent,

@@ -14,6 +14,7 @@ export class LoyerNonPayesComponent implements OnInit {
   loyers: Loyer[] = [];
   nombreDeMois !: number ;
   mensualiteDto !: MensualiteDto;
+  loyer : Loyer = new Loyer();
   p: number = 1;
 
   constructor(private service: LoyerService, private toastr: ToastrService) { }
@@ -27,14 +28,20 @@ export class LoyerNonPayesComponent implements OnInit {
     this.mensualiteDto.loyerId = loyer.id;
     this.mensualiteDto.montant = loyer.mensualite;
     this.mensualiteDto.nombreMois = this.nombreDeMois;
+    console.log(loyer.id)
     this.service.enregistrerMensualite(this.mensualiteDto).subscribe(
       data => {
-        if (data.hasOwnProperty('id') && JSON.stringify(data).indexOf('id') != null) {
+        if (JSON.stringify(data).indexOf('id') != null) {
           this.showNotification();
           this.getLoyersNonPayes();
         }
       }
     )
+  }
+
+  public setLoyer(loyer: Loyer){
+    console.log(loyer)
+    this.loyer = loyer;
   }
 
   public getLoyersNonPayes() {
