@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 
+import { NgxMaskModule } from 'ngx-mask';
+
 
 
 @NgModule({
@@ -25,8 +27,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
 
-    NgxPaginationModule
-
+    NgxPaginationModule,
+    NgxMaskModule.forRoot(),
 
   ],
   exports: [
