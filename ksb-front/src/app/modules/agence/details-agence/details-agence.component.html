@@ -1,7 +1,135 @@
-<div>
-  <h2>{{ agence.nom }}</h2>
-  <h2>{{ agence.adresse }}</h2>
-  <h2>{{ agence.departement }}</h2>
-  <h2>{{ agence.dateCreation }}</h2>
-  <h2>{{ agence.telephone }}</h2>
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Details Agence</h3>
+        </div>
+
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5  form-group pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 ">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Information de <small>{{ agence.id | slice:0:15 }}...</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Settings 1</a>
+                                <a class="dropdown-item" href="#">Settings 2</a>
+                            </div>
+                        </li>
+                        <li><a class=""><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <div class="col-md-12 col-sm-9 ">
+
+                        <div class="profile_title">
+                            <div class="col-md-6">
+                                <h2>Information de l'agence {{ agence.nom }}</h2>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="" class="pull-right"
+                                    style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
+                                    <i class="fa fa-calendar"></i>&nbsp;
+                                    <span>{{ date | date: 'MMMM d, y' }}</span> <b class="caret"></b>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- start of user-activity-graph -->
+                        <!-- <div id="graph_bar" style="width:100%; height:280px;"></div> -->
+                        <br>
+                        <div class="col-md-3">
+                            <div class="profile_img">
+                                <div id="crop-avatar" style="display: flex;justify-content: center;align-items: center;">
+                                
+                                        <i class="fa fa-building" style="font-size: 20rem; text-align: center;" ></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h1>{{ agence.nom }}</h1>
+                        <!-- <hr> -->
+                        <div class="col-md-4">
+
+                            <ul class="list-unstyled user_data">
+                                <hr>
+                                <li><i class="fa fa-map-marker user-profile-icon"></i>&nbsp; &nbsp;<u>Adresse </u>: {{ agence.adresse }}</li>
+                                <hr>
+                                <li><i class="fa fa-envelope"></i>&nbsp;&nbsp;<u>Separtement </u>: {{ agence.departement }}</li>
+                                <hr>
+                                <li><i class="fa fa-phone"></i>&nbsp;&nbsp;<u>Telephone </u>: {{ agence.telephone }}
+                                </li>
+                                <hr>
+                                <li><i class="fa fa-user"></i>&nbsp;&nbsp;<u>Date Creation </u>: {{ agence.dateCreation }} </li>
+                                <hr>
+                            </ul>
+
+                            <a class="btn btn-success" (click)="agenceEdit(id)" style="color: #fff;"><i
+                                    class="fa fa-edit m-right-xs"></i>&nbsp; Modifier Agence</a>
+                                    <a class="btn btn-warning" (click)="agenceEdit(id)" style="color: #fff;"><i
+                                        class="fa fa-plus m-right-xs"></i>&nbsp; Ajouter Employer</a>
+                            <br />
+                        </div>
+                        <div class="col-md-5">
+                            <hr>
+                            <table class="table table-striped dt-responsive nowrap" aria-label="Liste agences">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>Telephone</th>
+                                        <th>Adresse</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let em of agence.employees | paginate: { itemsPerPage: 3, currentPage: p }" >
+                                        <td><img src="assets/images/user.png" class="avatar" alt="Avatar"></td>
+                                        <td>{{em.nom}}</td>
+                                        <td>{{em.prenom}}</td>
+                                        <td>{{em.telephone}}</td>
+                                        <td>{{em.adresse}}</td>
+                                        <td>
+                                            <button type="button" style="background-color: #fff;border: none;border-radius: 5px;">
+                                               <i class="fa fa-file" aria-hidden="true"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <br>
+                                <br>
+                                <pagination-controls class="page my-pagination" (pageChange)="p = $event"></pagination-controls>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <hr>
+            <span type="button" class="btn" style="background-color: #2A3F54; color: white;" routerLink="/employes">
+                <i class="fa fa-chevron-left"></i>&nbsp; Retour</span>
+        </div>
+    </div>
 </div>

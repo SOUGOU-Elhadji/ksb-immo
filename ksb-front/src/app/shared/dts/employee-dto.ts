@@ -12,5 +12,6 @@ export class EmployeeDto{
     adresse!: string;
     numCompteBancaire!: string;
     manager!: boolean;
-    agenceId!: Agence;
+    // agenceId!: Agence;
+    agenceId?: Pick<Agence, 'id' | 'nom'> | null;
 }

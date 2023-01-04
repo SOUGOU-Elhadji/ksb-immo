@@ -61,7 +61,7 @@
                     </div>
   
                     <div class="col-md-4 col-sm-6  form-group has-feedback">
-                      <input type="text" class="form-control has-feedback-left" name="telephone"
+                      <input type="text" class="form-control has-feedback-left" name="telephone" mask="00 000-00-00" [dropSpecialCharacters]="false" [showMaskTyped]="true"
                         [(ngModel)]="employee.telephone" placeholder="Telephone*">
                       <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
                     </div>
@@ -76,7 +76,8 @@
                     </div>
   
                     <div class="col-md-4 col-sm-6  form-group has-feedback">
-                      <input type="text" class="form-control has-feedback-left" name="cni" [(ngModel)]="employee.cni"
+                      <input type="text" class="form-control has-feedback-left" mask="0 000 0000 00000"  [dropSpecialCharacters]="false" [showMaskTyped]="true"
+                       name="cni" [(ngModel)]="employee.cni"
                         placeholder="CNI*">
                       <span class="fa fa-newspaper-o form-control-feedback left" aria-hidden="true"></span>
                     </div>
@@ -100,7 +101,8 @@
                     </div>
   
                     <div class="col-md-4 col-sm-6  form-group has-feedback">
-                      <input type="text" class="form-control has-feedback-left" name="numCompteBancaire"
+                      <input type="text" class="form-control has-feedback-left" mask="00 00 00 00 00 00 00 00"  [dropSpecialCharacters]="false" 
+                      [showMaskTyped]="true" name="numCompteBancaire"
                         [(ngModel)]="employee.numCompteBancaire" placeholder="Numero Compte bancaire*">
                       <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
                     </div>

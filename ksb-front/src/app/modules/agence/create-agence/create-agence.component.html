@@ -181,7 +181,7 @@
 
                         <div class="col-md-4 col-sm-6  form-group has-feedback">
                           <input type="text" class="form-control has-feedback-left" id="cni" [(ngModel)]="em.cni" formControlName="cni"
-                          placeholder="Cni*" [ngClass]="{ 'is-invalid': formErrors.cni }">
+                          placeholder="Cni*" mask="0 000 0000 00000"  [dropSpecialCharacters]="false" [showMaskTyped]="true" [ngClass]="{ 'is-invalid': formErrors.cni }">
                           <span class="fa fa-newspaper-o form-control-feedback left" aria-hidden="true"></span>
                           <span class="invalid-feedback">
                             {{ formErrors.cni }}

@@ -23,6 +23,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 
+import { NgxMaskModule } from 'ngx-mask';
+
 
 @NgModule({
   declarations: [
@@ -37,20 +39,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     
-    
-    MatExpansionModule,
-    MatIconModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatDividerModule,
-    MatInputModule,
-    MatMenuModule,
-    MatTooltipModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxMaskModule.forRoot(),
 
   ],
   exports: [
